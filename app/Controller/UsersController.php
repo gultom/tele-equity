@@ -22,14 +22,38 @@ class UsersController extends AppController {
     public function login() {
         $this->layout = 'login';
         $this->set('title_for_layout', 'Equity Tele-Sales | Login');
+        $this->set('formName', 'UserLoginForm');
     }
     
     public function doLogin() {
         $this->autoRender = false;
-        if ($this->request->is('get')) {
+        if (!$this->RequestHandler->isAjax()) {
             throw new MethodNotAllowedException;
         }
-        echo 'asd';
+        
+        $username = $this->data['User']['username'];
+        $password = md5($this->data['User']['password']);
+        
+        $isValid = $this->User->find('first', array(
+            'conditions' => array(
+                'User.username' => $username,
+                'User.password' => $password
+            )
+        ));
+        
+        if ($isValid) {
+            $this->Auth->login();
+            $this->Session->write('Auth', $isValid);
+            echo 123123123;
+            $this->redirect(array(
+                'controller' => 'customers',
+                'action' => 'view'
+            ));
+            echo 'asddbg';
+        }
+        else {
+            echo 'fail';
+        }
     }
 }
 

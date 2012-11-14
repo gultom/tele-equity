@@ -1,16 +1,15 @@
 
 var Users = Class.create({
     
-    doLogin: function() {
-        var target = '/tele-equity/users/dologin';
-        new Ajax.Request (target, {
+    doLogin: function(formName) {
+        new Ajax.Request ('dologin', {
             method: 'post',
-            parameters: Form.serialize("UserLoginForm"),
+            parameters: Form.serialize(formName.toString()),
             onSuccess: function(response) {
-                alert(response);
+                if (response.responseText === 'true') {
+                    window.location.href = '/tele-equity/customers/view';
+                }
             }
         })
     }
 });
-
-var Users = new Users();
