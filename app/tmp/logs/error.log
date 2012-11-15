@@ -436,3 +436,41 @@
 #14 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #15 /mnt/data/root/My Work/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #16 {main}
+2012-11-15 01:49:45 Error: [MissingTableException] Table users for model User was not found in datasource default.
+#0 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Model/Model.php(3179): Model->setSource('users')
+#1 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Model/Model.php(1301): Model->getDataSource()
+#2 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/View/Helper/FormHelper.php(197): Model->schema()
+#3 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/View/Helper/FormHelper.php(438): FormHelper->_introspectModel('User', 'fields')
+#4 /mnt/data/root/My Work/webapps/tele-equity/app/View/Users/login.ctp(15): FormHelper->create(Array)
+#5 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/View/View.php(921): include('/mnt/data/root/...')
+#6 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/View/View.php(884): View->_evaluate('/mnt/data/root/...', Array)
+#7 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/View/View.php(476): View->_render('/mnt/data/root/...')
+#8 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Controller/Controller.php(956): View->render(NULL, NULL)
+#9 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(193): Controller->render()
+#10 /mnt/data/root/My Work/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /mnt/data/root/My Work/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-11-16 00:38:33 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\root\My Work\webapps\tele-equity\app\View\Users\login.ctp, line 7]
+2012-11-16 00:38:33 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\root\My Work\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\root\My Work...', 7)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\root\My Work...', 7, Array)
+#2 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\root\My Work...', 7, Array)
+#3 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-16 00:38:41 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\root\My Work\webapps\tele-equity\app\View\Users\login.ctp, line 7]
+2012-11-16 00:38:41 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\root\My Work\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\root\My Work...', 7)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\root\My Work...', 7, Array)
+#2 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\root\My Work...', 7, Array)
+#3 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-16 00:58:13 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [D:\root\My Work\webapps\tele-equity\app\View\Users\login.ctp, line 1]
+2012-11-16 00:58:13 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+#0 D:\root\My Work\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\root\My Work...', 1)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\root\My Work...', 1, Array)
+#2 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\root\My Work...', 1, Array)
+#3 D:\root\My Work\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
