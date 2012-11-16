@@ -16,38 +16,37 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+	<?= $this->Html->charset(); ?>
+    
+	<title><?= $title_for_layout ?></title>
+	<?= $this->Html->meta('icon'); ?>
+    
+    <?= $this->Html->css('default/style'); ?>
+    
+    <?= $this->fetch('meta'); ?>
+    <?= $this->fetch('css'); ?>
+    <?= $this->fetch('script'); ?>
 
-		echo $this->Html->css('default/style');
-
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-            <?php echo $this->Html->image('header-main.gif', array('alt' => 'Equity Life Indonesia', 'border' => 0)); ?>
+            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'Users.confirmLogout()', 'escape' => false))); ?>
+            
+            <?= $this->Html->image('header-main.gif', array('alt' => 'Equity Life Indonesia', 'border' => 0)); ?>
 		</div>
 		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
+            
+			<?= $this->Session->flash(); ?>
+            
+			<?= $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
+            &copy; 2012 - Jaring Synergi Mandiri
 		</div>
 	</div>
 </body>

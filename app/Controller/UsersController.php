@@ -15,7 +15,7 @@ class UsersController extends AppController {
     }
 
     public function index() {
-        if (true) {
+        if (!$this->Auth->login()) {
             $this->redirect('/users/login');
         }
     }
@@ -35,9 +35,24 @@ class UsersController extends AppController {
         $data['password'] = md5($this->data['User']['password']);
         
         $isValid = $this->User->find('first', array(
+            'fields' => array (
+                'User.username',
+                'User.usercode',
+                'User.level_code',
+                'User.activity_time',
+                'User.activity_code',
+                'User.sip_host',
+                'User.sip_port',
+                'User.sip_user',
+                'User.sip_pass',
+                'User.prefix_local',
+                'User.prefix_sljj',
+                'User.prefix_mobile'
+            ),
             'conditions' => array (
                 'User.username' => $data['username'],
-                'User.password' => $data['password']
+                'User.password' => $data['password'],
+                'User.is_enabled' => 1
             )
         ));
         
@@ -49,6 +64,27 @@ class UsersController extends AppController {
         
         $this->Session->setFlash('Username/Password failed');
         $this->redirect('login/');
+    }
+    
+    public function updateLastLogin($username) {
+        $this->User->updateAll(
+            array(
+                'User.activity_time' => date('Y-m-d H:i:s')
+            ),
+            array(
+                'User.username' => $username
+            )
+        );
+    }
+    
+    public function logout() {
+        $this->autoRender = false;
+        $this->Auth->logout();
+        $this->Session->setFlash('Logout Success');
+        $this->redirect(array(
+            'controller' => 'users',
+            'action' => 'index'
+        ));
     }
 }
 
