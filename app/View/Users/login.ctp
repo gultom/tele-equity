@@ -1,7 +1,16 @@
-<?= $this->Form->create('User'); ?>
+<?= $this->Form->create('User', array('action' => 'dologin')); ?>
 <table align="center">
     <tr>
-        <td align="center"><?= $this->Html->image('equity-life-indonesia-logo.gif'); ?></td>
+        <td align="center"><?= $this->Html->image('callgroup.png'); ?></td>
+    </tr>
+    <tr>
+        <td><?= $this->Session->flash('flash', array(
+                    'params' => array(
+                        'element' => 'p',
+                        'class' => 'error'
+                    )
+                )); 
+        ?></td>
     </tr>
     <tr>
         <td><label for="Username">Username</label></td>
