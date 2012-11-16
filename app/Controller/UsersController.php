@@ -5,6 +5,7 @@
  *
  * @author charles
  */
+
 class UsersController extends AppController {
     public $helpers = array ('Html', 'Form', 'Js');
     
@@ -26,34 +27,28 @@ class UsersController extends AppController {
     }
     
     public function doLogin() {
-        $this->autoRender = false;
-        if (!$this->RequestHandler->isAjax()) {
+        if ($this->RequestHandler->isGet()) {
             throw new MethodNotAllowedException;
         }
         
-        $username = $this->data['User']['username'];
-        $password = md5($this->data['User']['password']);
+        $data['username'] = $this->data['User']['username'];
+        $data['password'] = md5($this->data['User']['password']);
         
         $isValid = $this->User->find('first', array(
-            'conditions' => array(
-                'User.username' => $username,
-                'User.password' => $password
+            'conditions' => array (
+                'User.username' => $data['username'],
+                'User.password' => $data['password']
             )
         ));
         
         if ($isValid) {
             $this->Auth->login();
             $this->Session->write('Auth', $isValid);
-            echo 123123123;
-            $this->redirect(array(
-                'controller' => 'customers',
-                'action' => 'view'
-            ));
-            echo 'asddbg';
+            $this->redirect(array('controller' => 'customers', 'action' => 'view'));
         }
-        else {
-            echo 'fail';
-        }
+        
+        $this->Session->setFlash('Username/Password failed');
+        $this->redirect('login/');
     }
 }
 
