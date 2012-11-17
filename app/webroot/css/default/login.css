@@ -20,7 +20,7 @@ table {
 
 table tr td {
     color: lightyellow;
-    font-family: "Trebuchet MS", Tahoma;
+    font-family: "Trebuchet MS", Tahoma, Arial;
     font-weight: bold;
 }
 
@@ -75,7 +75,8 @@ table tr td {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    font-size: 15px;
+    font-family: "Trebuchet MS", "Tahoma", Arial;
+    font-size: 13px;
     text-align: center;
     background-color: #fff;
     color: #c43c35;
