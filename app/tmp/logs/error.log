@@ -580,3 +580,58 @@
 2012-11-16 17:29:45 Error: [MissingControllerException] Controller class LogoutController could not be found.
 #0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-11-17 14:37:10 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-17 14:41:50 Error: Fatal Error (4): syntax error, unexpected '?>' in [/mnt/data/Project/webapps/tele-equity/app/View/Customers/view.ctp, line 3]
+2012-11-17 14:41:50 Error: [FatalErrorException] syntax error, unexpected '?>'
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/mnt/data/Proje...', 3)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/mnt/data/Proje...', 3, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/mnt/data/Proje...', 3, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-17 14:43:09 Error: Fatal Error (1): Unsupported operand types in [/mnt/data/Project/webapps/tele-equity/lib/Cake/View/Helper/HtmlHelper.php, line 558]
+2012-11-17 14:43:09 Error: [FatalErrorException] Unsupported operand types
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Unsupported ope...', '/mnt/data/Proje...', 558)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', '/mnt/data/Proje...', 558, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', '/mnt/data/Proje...', 558, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-17 15:07:38 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-17 15:34:09 Error: Fatal Error (4): syntax error, unexpected ';' in [/mnt/data/Project/webapps/tele-equity/app/View/Layouts/default.ctp, line 65]
+2012-11-17 15:34:09 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/mnt/data/Proje...', 65)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/mnt/data/Proje...', 65, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/mnt/data/Proje...', 65, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-17 15:50:17 Error: [MissingActionException] Action CustomersController::users() could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-11-17 15:53:53 Error: [MissingActionException] Action CustomersController::users() could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-11-17 16:05:19 Error: [MissingActionException] Action CustomersController::users() could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-11-17 16:06:39 Error: [MissingActionException] Action CustomersController::users() could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-11-17 16:07:01 Error: [MissingActionException] Action CustomersController::users() could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

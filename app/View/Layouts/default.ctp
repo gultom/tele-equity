@@ -25,7 +25,34 @@
 	<title><?= $title_for_layout ?></title>
 	<?= $this->Html->meta('icon'); ?>
     
-    <?= $this->Html->css('default/style'); ?>
+    <?= 
+        $this->Html->css(array(
+            'default/style',
+            'lib/jquery-ui/south-street/jquery-ui-1.8.18.custom'
+        )); 
+    ?>
+    
+    <?= 
+        $this->Html->script(array(
+            'lib/jquery/jquery-1.8.2.min',
+            'lib/jquery-ui/jquery-ui-1.9.1.custom.min',
+            'lib/prototype/prototype',
+            'app/Functions',
+            'app/Users'
+        ));
+    
+        $this->Html->scriptBlock('
+        var Functions = new Functions();
+        var Users = new Users();
+        
+        jQuery(document).ready(function($) {
+            Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {Users.logout()});
+        })
+        
+        ', array('inline' => FALSE));
+        
+        $scripts_for_layout;
+    ?>
     
     <?= $this->fetch('meta'); ?>
     <?= $this->fetch('css'); ?>
@@ -35,7 +62,9 @@
 <body>
 	<div id="container">
 		<div id="header">
-            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'Users.confirmLogout()', 'escape' => false))); ?>
+            <?= $this->Html->tag('div', 'Are sure want to logout this session ?', array('id' => 'logoutDialog')); ?>
+            
+            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'Users.initLogoutDialog()', 'escape' => false))); ?>
             
             <?= $this->Html->image('header-main.gif', array('alt' => 'Equity Life Indonesia', 'border' => 0)); ?>
 		</div>

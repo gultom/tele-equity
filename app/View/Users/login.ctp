@@ -25,7 +25,7 @@
         <td><?= $this->Form->input('password', array('class' => 'input-text', 'label' => false)); ?></td>
     </tr>
     <tr>
-        <td align="right"><?= $this->Form->submit("Login", array('class' => 'button')); ?></td>
+        <td align="center"><hr /><?= $this->Form->submit("Login", array('class' => 'button')); ?></td>
     </tr>
 </table>
 <?= $this->Form->end(); ?>

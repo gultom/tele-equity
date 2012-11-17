@@ -1,7 +1,12 @@
 
 var Users = Class.create({
     
-    confirmLogout: function() {
-        
+    initLogoutDialog: function() {
+        jQuery("#logoutDialog").dialog("open");
+    },
+    
+    logout: function() {
+        jQuery("#logoutDialog").dialog("close");
+        Functions.redirect(Functions.getAppAddress() + 'users/logout');
     }
 });

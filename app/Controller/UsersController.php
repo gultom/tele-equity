@@ -62,7 +62,7 @@ class UsersController extends AppController {
             $this->redirect(array('controller' => 'customers', 'action' => 'view'));
         }
         
-        $this->Session->setFlash('Username/Password failed');
+        $this->Session->setFlash('Wrong Username or Password');
         $this->redirect('login/');
     }
     
