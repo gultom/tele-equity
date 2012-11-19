@@ -37,6 +37,35 @@ img {
     text-align: right;
 }
 
+#menu {
+    border-top: 1px solid #cec;
+}
+
+#menu ul {
+    list-style-type: none;
+    text-align: left;
+    padding: 2px;
+    margin: 2px;
+    text-indent: 10px;
+}
+
+#menu ul li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 8px;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: #039E12;
+    font-weight: bold;
+}
+
+#menu ul li a:hover {
+    color: #FF1437;
+    text-decoration: underline;
+}
+
 #content {
     min-height: 450px;
     border: 1px solid #ccc;

@@ -12,11 +12,19 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('login', 'doLogin', 'logout');
+        $userMenu = self::getMenus();
+        $this->set('menu', $userMenu);
     }
 
     public function index() {
         if (!$this->Auth->login()) {
             $this->redirect('/users/login');
+        }
+        else {
+            $this->redirect(array(
+                'controller' => 'customers',
+                'action' => 'view'
+            ));
         }
     }
     
@@ -59,6 +67,7 @@ class UsersController extends AppController {
         if ($isValid) {
             $this->Auth->login();
             $this->Session->write('Auth', $isValid);
+            self::updateLastLogin($data['username']);
             $this->redirect(array('controller' => 'customers', 'action' => 'view'));
         }
         
@@ -66,15 +75,79 @@ class UsersController extends AppController {
         $this->redirect('login/');
     }
     
-    public function updateLastLogin($username) {
+    public function getUserData() {
+        return $this->Auth->user();
+    }
+    
+    private function updateLastLogin($username) {
         $this->User->updateAll(
             array(
-                'User.activity_time' => date('Y-m-d H:i:s')
+                'User.activity_time' => "'". date('Y-m-d H:i:s' ."'")
             ),
             array(
                 'User.username' => $username
             )
         );
+    }
+    
+    public function getMenus() {
+        $user = self::getUserData();
+        $level = $user['level_code'];
+        unset($user);
+        
+        $menus = array (
+            'Home' => array (
+                'controller' => 'info',
+                'action' => 'home'
+            ),
+            'Info' => array (
+                'controller' => 'info',
+                'action' => 'view'
+            ),
+            'Customers' => array (
+                'controller' => 'customers',
+                'action' => 'view'
+            )
+        );
+        
+        if ($level > 1) {
+            $menus = array_merge($menus, array (
+                'Monitor' => array (
+                    'controller' => 'dashboard',
+                    'action' => 'monitor'
+                )
+            ));
+        }
+        
+        if ($level > 2) {
+            $menus = array_merge($menus, array (
+                'Collections' => array (
+                    'controller' => 'collection',
+                    'action' => 'index'
+                ),
+                'Reports' => array (
+                    'controller' => 'report',
+                    'action' => 'index'
+                ),
+                'Salesfile' => array (
+                    'controller' => 'report',
+                    'action' => 'salesfile'
+                ),
+                'Users' => array (
+                    'controller' => 'users',
+                    'action' => 'view'
+                ),
+                'Campaigns' => array (
+                    'controller' => 'campaigns',
+                    'action' => 'view'
+                ),
+                'Settings' => array (
+                    'controller' => 'settings',
+                    'action' => 'index'
+                )
+            ));
+        }
+        return $menus;
     }
     
     public function logout() {

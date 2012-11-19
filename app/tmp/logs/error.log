@@ -635,3 +635,138 @@
 #1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
 #2 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2012-11-17 18:20:36 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '18:20:36  WHERE `User`.`username` = 'irwan'' at line 1
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('UPDATE `ts_equi...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\Database\Mysql.php(360): DboSource->execute('UPDATE `ts_equi...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(2334): Mysql->update(Object(User), Array, NULL, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(84): Model->updateAll(Array, Array)
+#5 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(68): UsersController->updateLastLogin('irwan')
+#6 [internal function]: UsersController->doLogin()
+#7 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-11-17 18:45:02 Error: Fatal Error (1): Call to a member function getMenus() on a non-object in [D:\Project\webapps\tele-equity\app\Controller\CustomersController.php, line 11]
+2012-11-17 18:45:02 Error: [FatalErrorException] Call to a member function getMenus() on a non-object
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Project\weba...', 11)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Project\weba...', 11, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Project\weba...', 11, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-17 19:11:42 Error: Fatal Error (1): Call to a member function getMenus() on a non-object in [D:\Project\webapps\tele-equity\app\Controller\CustomersController.php, line 12]
+2012-11-17 19:11:42 Error: [FatalErrorException] Call to a member function getMenus() on a non-object
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Project\weba...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Project\weba...', 12, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Project\weba...', 12, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-17 19:12:45 Error: Fatal Error (1): Class 'UsersController' not found in [D:\Project\webapps\tele-equity\app\Controller\CustomersController.php, line 12]
+2012-11-17 19:12:45 Error: [FatalErrorException] Class 'UsersController' not found
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'UsersCon...', 'D:\Project\weba...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'UsersCon...', 'D:\Project\weba...', 12, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'UsersCon...', 'D:\Project\weba...', 12, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-19 15:02:26 Error: Fatal Error (4): syntax error, unexpected 'foreach' (T_FOREACH) in [/mnt/data/Project/webapps/tele-equity/app/View/Elements/menu.ctp, line 1]
+2012-11-19 15:02:26 Error: [FatalErrorException] syntax error, unexpected 'foreach' (T_FOREACH)
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/mnt/data/Proje...', 1)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/mnt/data/Proje...', 1, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/mnt/data/Proje...', 1, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-19 15:02:51 Error: Fatal Error (4): syntax error, unexpected 'endforeach' (T_ENDFOREACH) in [/mnt/data/Project/webapps/tele-equity/app/View/Elements/menu.ctp, line 3]
+2012-11-19 15:02:51 Error: [FatalErrorException] syntax error, unexpected 'endforeach' (T_ENDFOREACH)
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/mnt/data/Proje...', 3)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/mnt/data/Proje...', 3, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/mnt/data/Proje...', 3, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-19 15:17:05 Error: Fatal Error (1): Call to undefined function asd() in [/mnt/data/Project/webapps/tele-equity/app/Controller/CustomersController.php, line 15]
+2012-11-19 15:17:05 Error: [FatalErrorException] Call to undefined function asd()
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/mnt/data/Proje...', 15)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/mnt/data/Proje...', 15, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/mnt/data/Proje...', 15, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-19 15:19:16 Error: Fatal Error (1): Call to undefined function asd() in [/mnt/data/Project/webapps/tele-equity/app/Controller/CustomersController.php, line 15]
+2012-11-19 15:19:16 Error: [InternalErrorException] Internal Server Error
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Error/ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/mnt/data/Proje...', 15)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/mnt/data/Proje...', 15, Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/mnt/data/Proje...', 15, Array)
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Core/App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-19 15:19:16 Warning: Warning (2): Invalid argument supplied for foreach() in [/mnt/data/Project/webapps/tele-equity/app/View/Elements/menu.ctp, line 1]
+Trace:
+include - APP/View/Elements/menu.ctp, line 1
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::element() - CORE/Cake/View/View.php, line 422
+include - APP/View/Layouts/default.ctp, line 71
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::renderLayout() - CORE/Cake/View/View.php, line 540
+View::render() - CORE/Cake/View/View.php, line 484
+Controller::render() - CORE/Cake/Controller/Controller.php, line 956
+ExceptionRenderer::_outputMessage() - CORE/Cake/Error/ExceptionRenderer.php, line 268
+ExceptionRenderer::error500() - CORE/Cake/Error/ExceptionRenderer.php, line 237
+ExceptionRenderer::render() - CORE/Cake/Error/ExceptionRenderer.php, line 170
+ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
+call_user_func - [internal], line ??
+ErrorHandler::handleFatalError() - CORE/Cake/Error/ErrorHandler.php, line 213
+ErrorHandler::handleError() - CORE/Cake/Error/ErrorHandler.php, line 161
+call_user_func - [internal], line ??
+App::_checkFatalError() - CORE/Cake/Core/App.php, line 926
+App::shutdown() - CORE/Cake/Core/App.php, line 899
+[main] - [internal], line ??
+
+2012-11-19 15:39:33 Error: [MissingControllerException] Controller class SettingsController could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-19 15:39:33 Warning: Warning (2): Invalid argument supplied for foreach() in [/mnt/data/Project/webapps/tele-equity/app/View/Elements/menu.ctp, line 3]
+Trace:
+include - APP/View/Elements/menu.ctp, line 3
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::element() - CORE/Cake/View/View.php, line 422
+include - APP/View/Layouts/default.ctp, line 71
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::renderLayout() - CORE/Cake/View/View.php, line 540
+View::render() - CORE/Cake/View/View.php, line 484
+Controller::render() - CORE/Cake/Controller/Controller.php, line 956
+ExceptionRenderer::_outputMessage() - CORE/Cake/Error/ExceptionRenderer.php, line 268
+ExceptionRenderer::error400() - CORE/Cake/Error/ExceptionRenderer.php, line 214
+ExceptionRenderer::render() - CORE/Cake/Error/ExceptionRenderer.php, line 170
+ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
+[main] - [internal], line ??
+
+2012-11-19 15:52:06 Error: [MissingControllerException] Controller class InfoController could not be found.
+#0 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-19 15:52:06 Warning: Warning (2): Invalid argument supplied for foreach() in [/mnt/data/Project/webapps/tele-equity/app/View/Elements/menu.ctp, line 3]
+Trace:
+include - APP/View/Elements/menu.ctp, line 3
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::element() - CORE/Cake/View/View.php, line 422
+include - APP/View/Layouts/default.ctp, line 71
+View::_evaluate() - CORE/Cake/View/View.php, line 921
+View::_render() - CORE/Cake/View/View.php, line 884
+View::renderLayout() - CORE/Cake/View/View.php, line 540
+View::render() - CORE/Cake/View/View.php, line 484
+Controller::render() - CORE/Cake/Controller/Controller.php, line 956
+ExceptionRenderer::_outputMessage() - CORE/Cake/Error/ExceptionRenderer.php, line 268
+ExceptionRenderer::error400() - CORE/Cake/Error/ExceptionRenderer.php, line 214
+ExceptionRenderer::render() - CORE/Cake/Error/ExceptionRenderer.php, line 170
+ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
+[main] - [internal], line ??
+
