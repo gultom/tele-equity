@@ -36,11 +36,6 @@ class AppController extends Controller {
     public $components = array (
         'Session',
         'RequestHandler',
-        'Auth',
-        /* Temporary disable autocheck session
-        'Auth' => array (
-            'loginRedirect' => array('controller' => 'customers', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
-        )*/
+        'Auth'
     );
 }
