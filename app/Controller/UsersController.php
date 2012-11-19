@@ -22,8 +22,8 @@ class UsersController extends AppController {
         }
         else {
             $this->redirect(array(
-                'controller' => 'customers',
-                'action' => 'view'
+                'controller' => 'info',
+                'action' => 'home'
             ));
         }
     }
@@ -68,7 +68,7 @@ class UsersController extends AppController {
             $this->Auth->login();
             $this->Session->write('Auth', $isValid);
             self::updateLastLogin($data['username']);
-            $this->redirect(array('controller' => 'customers', 'action' => 'view'));
+            $this->redirect(array('controller' => 'info', 'action' => 'home'));
         }
         
         $this->Session->setFlash('Wrong Username or Password');
