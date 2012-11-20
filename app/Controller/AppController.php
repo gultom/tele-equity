@@ -38,4 +38,69 @@ class AppController extends Controller {
         'RequestHandler',
         'Auth'
     );
+    
+    public function beforeFilter() {
+        parent::beforeFilter();
+        self::getMenus();
+    }
+    
+    public function getMenus() {
+        $user = $this->Auth->user();
+        $level = $user['level_code'];
+        unset($user);
+        
+        $menus = array (
+            'Home' => array (
+                'controller' => 'info',
+                'action' => 'home'
+            ),
+            'Info' => array (
+                'controller' => 'info',
+                'action' => 'view'
+            ),
+            'Customers' => array (
+                'controller' => 'customers',
+                'action' => 'view'
+            )
+        );
+        
+        if ($level > 1) {
+            $menus = array_merge($menus, array (
+                'Monitor' => array (
+                    'controller' => 'dashboard',
+                    'action' => 'monitor'
+                )
+            ));
+        }
+        
+        if ($level > 2) {
+            $menus = array_merge($menus, array (
+                'Collections' => array (
+                    'controller' => 'collection',
+                    'action' => 'index'
+                ),
+                'Reports' => array (
+                    'controller' => 'report',
+                    'action' => 'index'
+                ),
+                'Salesfile' => array (
+                    'controller' => 'report',
+                    'action' => 'salesfile'
+                ),
+                'Users' => array (
+                    'controller' => 'users',
+                    'action' => 'view'
+                ),
+                'Campaigns' => array (
+                    'controller' => 'campaigns',
+                    'action' => 'view'
+                ),
+                'Settings' => array (
+                    'controller' => 'settings',
+                    'action' => 'index'
+                )
+            ));
+        }
+        $this->set('menu', $menus);
+    }
 }
