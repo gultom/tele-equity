@@ -52,20 +52,29 @@ $this->Html->tableCells(array (
 <?php foreach($users as $key => $value): ?>
 <?= 
 $this->Html->tableCells(array(
+        array (
+            $value['ListValue']['Level'],
+            $value['User']['UserCode'],
+            $value['User']['Username'],
+            $value['User']['Fullname'],
+            ($value['User']['Active']) ? 'Yes' : 'No',
+            $value['User']['JoinDate'],
+            $value['User']['ExpDate'],
+            $value['UserGroup']['GroupName'],
+            $value['UserGroup']['TL'],
+            $value['User']['QA'],
+            $value['User']['Extension']
+        )
+    ), 
     array (
-        $value['ListValue']['Level'],
-        $value['User']['UserCode'],
-        $value['User']['Username'],
-        $value['User']['Fullname'],
-        ($value['User']['Active']) ? 'Yes' : 'No',
-        $value['User']['JoinDate'],
-        $value['User']['ExpDate'],
-        $value['UserGroup']['GroupName'],
-        $value['UserGroup']['TL'],
-        $value['User']['QA'],
-        $value['User']['Extension']
+        'onclick' => 'Users.setId('. $value['User']['Id'] .')',
+        'ondblclick' => 'alert("showEditUser");alert(Users.getId())',
+    ), 
+    array (
+        'onclick' => 'Users.setId('. $value['User']['Id'] .')',
+        'ondblclick' => 'alert("showEditUser");alert(Users.getId())',
     )
-));
+);
 ?>
 <?php endforeach; ?>
     </tbody>

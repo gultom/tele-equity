@@ -97,6 +97,7 @@ class UsersController extends AppController {
     public function view() {
         $this->set('title_for_layout', 'User List');
         $users = $this->User->query("SELECT ListValue.list_data AS Level,
+                                     User.id AS Id,
                                      User.usercode AS UserCode,
                                      User.username AS Username,
                                      User.fullname AS Fullname,
