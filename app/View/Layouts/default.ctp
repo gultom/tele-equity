@@ -38,12 +38,12 @@
             'lib/jquery-ui/jquery-ui-1.9.1.custom.min',
             'lib/prototype/prototype',
             'app/Functions',
-            'app/Users'
+            'app/User'
         ));
     ?>
     <script type="text/javascript">
         var Functions = new Functions();
-        var Users = new Users();
+        var User = new User();
         
         jQuery(document).ready(function($) {
             Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {Users.logout()});
