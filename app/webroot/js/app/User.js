@@ -1,5 +1,5 @@
 
-var Users = Class.create({
+var User = Class.create({
     
     id: null,
     

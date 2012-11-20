@@ -67,12 +67,12 @@ $this->Html->tableCells(array(
         )
     ), 
     array (
-        'onclick' => 'Users.setId('. $value['User']['Id'] .')',
-        'ondblclick' => 'alert("showEditUser");alert(Users.getId())',
+        'onclick' => 'User.setId('. $value['User']['Id'] .')',
+        'ondblclick' => 'alert("showEditUser");alert(User.getId())',
     ), 
     array (
-        'onclick' => 'Users.setId('. $value['User']['Id'] .')',
-        'ondblclick' => 'alert("showEditUser");alert(Users.getId())',
+        'onclick' => 'User.setId('. $value['User']['Id'] .')',
+        'ondblclick' => 'alert("showEditUser");alert(User.getId())',
     )
 );
 ?>
