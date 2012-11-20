@@ -1310,3 +1310,11 @@ ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
 #9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #10 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #11 {main}
+2012-11-20 17:27:28 Error: Fatal Error (4): syntax error, unexpected ')' in [D:\Project\webapps\tele-equity\app\View\Users\view.ctp, line 69]
+2012-11-20 17:27:28 Error: [FatalErrorException] syntax error, unexpected ')'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 69)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 69, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 69, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
