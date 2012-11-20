@@ -7,6 +7,13 @@
  */
 class User extends AppModel {
     
+    /*
+    public $belongsTo = array (
+        'ListValue' => array (
+            'className' => 'ListValue'
+        )
+    );
+    */
 }
 
 ?>

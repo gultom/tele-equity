@@ -73,10 +73,6 @@ class UsersController extends AppController {
         $this->redirect('login/');
     }
     
-    public function getUserData() {
-        return $this->Auth->user();
-    }
-    
     private function updateLastLogin($username) {
         $this->User->updateAll(
             array(
@@ -96,6 +92,28 @@ class UsersController extends AppController {
             'controller' => 'users',
             'action' => 'index'
         ));
+    }
+    
+    public function view() {
+        $this->set('title_for_layout', 'User List');
+        $users = $this->User->query("SELECT ListValue.list_data AS Level,
+                                     User.usercode AS UserCode,
+                                     User.username AS Username,
+                                     User.fullname AS Fullname,
+                                     User.is_enabled AS Active,
+                                     User.join_date AS JoinDate,
+                                     User.exp_date AS ExpDate,
+                                     User.qa_username AS QA,
+                                     UserGroup.group_name AS GroupName,
+                                     UserGroup.tl_username AS TL,
+                                     User.sip_user AS Extension
+                                     FROM users AS User
+                                     LEFT JOIN _list_values AS ListValue ON ListValue.list_code=User.level_code
+                                     LEFT JOIN user_groups AS UserGroup ON UserGroup.id=User.group_id
+                                     WHERE ListValue.group_id=3
+                                     ORDER BY User.username");
+        
+        $this->set('users', $users);
     }
 }
 
