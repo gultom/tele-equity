@@ -7,12 +7,6 @@
  */
 class InfoController extends AppController {
     
-    public function beforeFilter() {
-        parent::beforeFilter();
-        $userMenu = $this->requestAction('/users/getmenus');
-        $this->set('menu', $userMenu);
-    }
-    
     public function index() {
         if ($this->Auth->isAuthorized()) {
             self::home();
