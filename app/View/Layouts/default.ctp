@@ -40,23 +40,18 @@
             'app/Functions',
             'app/Users'
         ));
-    
-        $this->Html->scriptBlock('
+    ?>
+    <script type="text/javascript">
         var Functions = new Functions();
         var Users = new Users();
         
         jQuery(document).ready(function($) {
             Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {Users.logout()});
-        })
-        
-        ', array('inline' => FALSE));
-        
+        });
+    </script>
+    <?=
         $scripts_for_layout;
     ?>
-    
-    <?= $this->fetch('meta'); ?>
-    <?= $this->fetch('css'); ?>
-    <?= $this->fetch('script'); ?>
 
 </head>
 <body>
