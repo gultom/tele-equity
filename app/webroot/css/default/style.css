@@ -82,6 +82,12 @@ img {
     font-size: 11px;
 }
 
+#clear {
+    clear: both;
+    padding: 0;
+    margin: 5px 0 5px 0;
+}
+
 .input-text {
     background: #ffffff;
     border: 1px solid #707070;
