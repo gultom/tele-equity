@@ -4,7 +4,7 @@ $this->Html->script(array(
 ), false);
 
 $this->Html->css(array (
-    'lib/datatables/default'
+    'lib/datatables/style'
 ), null, array (
     'inline' => false
 ))
