@@ -59,7 +59,7 @@
 		<div id="header">
             <?= $this->Html->tag('div', 'Are sure want to logout this session ?', array('id' => 'logoutDialog')); ?>
             
-            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'Users.initLogoutDialog()', 'escape' => false))); ?>
+            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'User.initLogoutDialog()', 'escape' => false))); ?>
             
             <?= $this->Html->image('header-main.gif', array('alt' => 'Equity Life Indonesia', 'border' => 0)); ?>
             
