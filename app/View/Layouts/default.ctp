@@ -46,7 +46,7 @@
         var User = new User();
         
         jQuery(document).ready(function($) {
-            Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {Users.logout()});
+            Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {User.logout()});
         });
     </script>
     <?=
