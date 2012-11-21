@@ -18,5 +18,13 @@ var User = Class.create({
     logout: function() {
         jQuery("#logoutDialog").dialog("close");
         Functions.redirect(Functions.getAppAddress() + 'users/logout');
+    },
+    
+    initAddDialog: function() {
+        jQuery("#addUserDialog").dialog("open");
+    },
+    
+    initEditDialog: function() {
+        jQuery("#editUserDialog").dialog("open");
     }
 });
