@@ -7,7 +7,7 @@
  */
 class User extends AppModel {
     
-    var $virtualFields = array('Active' => 'CASE WHEN (User.is_enabled = 0) THEN "No" ELSE "Yes" END');
+    public $virtualFields = array('Active' => 'CASE WHEN (User.is_enabled = 0) THEN "No" ELSE "Yes" END');
     public $belongsTo = array (
         'ListValue' => array (
             'foreignKey' => 'level_code',
