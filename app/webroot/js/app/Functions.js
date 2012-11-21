@@ -49,6 +49,18 @@ var Functions = Class.create({
         })
     },
     
+    initDialog: function(elementId, dialogTitle, dialogWidth, dialogHeight) {
+        jQuery("#" + elementId.toString()).dialog({
+            title: dialogTitle,
+            autoOpen: false,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            width: dialogWidth,
+            height: dialogHeight
+        })
+    },
+    
     initConfirmationDialog: function(elementId, dialogTitle, dialogWidth, dialogHeight, confirmFunction) {
         jQuery("#" + elementId).dialog({
             title: dialogTitle,
