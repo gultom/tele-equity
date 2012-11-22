@@ -149,5 +149,51 @@ var Functions = Class.create({
         var r = curr1+n1+y.join('')+n2+curr2;
         
         return r;
+    },
+    
+    splitSerializeForm: function(formId) {
+        var myForm = Form.serialize(formId.toString()).toString().split('&');
+        var myArray = new Array();
+        for (var i = 0; i < myForm.length; ++i) {
+            var explode = myForm[i].toString().split('=');
+            myArray[explode[0]] = explode[1];
+        }
+        return myArray;
+    },
+    
+    /**
+    * Function : dump()
+    * Arguments: The data - array,hash(associative array),object
+    *    The level - OPTIONAL
+    * Returns  : The textual representation of the array.
+    * This function was inspired by the print_r function of PHP.
+    * This will accept some data as the argument and return a
+    * text that will be a more readable version of the
+    * array/hash/object that is given.
+    * Docs: http://www.openjs.com/scripts/others/dump_function_php_print_r.php
+    */
+    dump: function(arr, level) {
+        var dumped_text = "";
+        if(!level) level = 0;
+
+        //The padding given at the beginning of the line.
+        var level_padding = "";
+        for(var j=0;j<level+1;j++) level_padding += "    ";
+
+        if(typeof(arr) == 'object') { //Array/Hashes/Objects 
+            for(var item in arr) {
+                var value = arr[item];
+
+                if(typeof(value) == 'object') { //If it is an array,
+                    dumped_text += level_padding + "'" + item + "' ...\n";
+                    dumped_text += dump(value,level+1);
+                } else {
+                    dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+                }
+            }
+        } else { //Stings/Chars/Numbers etc.
+            dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+        }
+        return dumped_text;
     }
 })
