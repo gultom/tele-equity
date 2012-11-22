@@ -13,8 +13,8 @@ $this->Html->css(array (
 $this->Html->scriptBlock(
     '
 jQuery(document).ready(function($) {
-    Functions.initDialog("addUserDialog", "Add User", 500, 300);
-    Functions.initDialog("editUserDialog", "User Details", 500, 300);
+    Functions.initDialog("addUserDialog", "Add User", 550, 350);
+    Functions.initDialog("editUserDialog", "User Details", 550, 350);
     Functions.initDatatable("usersDatatable", 100);
 });
     ', array('inline' => FALSE));
@@ -33,6 +33,7 @@ $this->Html->tableCells(array (
 </table>
 <?php
 echo 
+$this->Html->tag('div', '', array('id' => 'userInfo')) .
 $this->Html->tag('div', '', array('id' => 'groupsDialog')) .
 $this->Html->tag('div', '', array('id' => 'addUserDialog')) .
 $this->Html->tag('div', '', array('id' => 'editUserDialog'));

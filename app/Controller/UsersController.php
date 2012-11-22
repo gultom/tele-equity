@@ -94,7 +94,8 @@ class UsersController extends AppController {
         ));
     }
     
-    public function view() {
+    public function view($view = NULL) {
+        $this->view = ($view) ? 'load' : 'view';
         $this->set('title_for_layout', 'User List');
         $users = $this->User->find('all', array (
                 'fields' => array (
@@ -119,6 +120,29 @@ class UsersController extends AppController {
             )
         );
         $this->set('users', $users);
+    }
+    
+    public function add() {
+        if ($this->RequestHandler->isGet()) {
+            $this->loadModel('ListValue');
+            $this->set('levels', $this->User->ListValue->find('list', array (
+                'fields' => array (
+                    'ListValue.list_data'
+                ),
+                'conditions' => array (
+                    'ListValue.group_id' => 3
+                )
+            )));
+        }
+        else {
+            $this->autoRender = false;
+            if ($this->RequestHandler->isAjax()) {
+                $this->User->create();
+                if ($this->User->save($this->request->data))
+                    return json_encode (true);
+                return json_encode (false);
+            }
+        }
     }
 }
 
