@@ -1429,3 +1429,175 @@ ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
 2012-11-21 11:45:26 Error: [MissingControllerException] Controller class CampaignsController could not be found.
 #0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-11-21 13:44:43 Error: Fatal Error (1): Call to a member function find() on a non-object in [D:\Project\webapps\tele-equity\app\Controller\UsersController.php, line 126]
+2012-11-21 13:44:43 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Project\weba...', 126)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Project\weba...', 126, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Project\weba...', 126, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 14:19:26 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 1]
+2012-11-21 14:19:26 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 1)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 1, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 1, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 14:31:52 Error: Fatal Error (4): syntax error, unexpected T_VARIABLE, expecting ')' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 10]
+2012-11-21 14:31:52 Error: [FatalErrorException] syntax error, unexpected T_VARIABLE, expecting ')'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 10)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 10, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 10, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:05:19 Error: Fatal Error (1): Call to undefined method View::scriptBlock() in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 2]
+2012-11-21 15:05:19 Error: [FatalErrorException] Call to undefined method View::scriptBlock()
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Project\weba...', 2)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Project\weba...', 2, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Project\weba...', 2, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:22:52 Error: Fatal Error (4): syntax error, unexpected ')' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 66]
+2012-11-21 15:22:52 Error: [FatalErrorException] syntax error, unexpected ')'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 66)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 66, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 66, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:23:01 Error: Fatal Error (4): syntax error, unexpected ')' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 66]
+2012-11-21 15:23:01 Error: [FatalErrorException] syntax error, unexpected ')'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 66)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 66, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 66, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:42:34 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 70]
+2012-11-21 15:42:34 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 70)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:42:37 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 70]
+2012-11-21 15:42:37 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 70)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-21 15:42:51 Error: Fatal Error (4): syntax error, unexpected ';' in [D:\Project\webapps\tele-equity\app\View\Users\add.ctp, line 70]
+2012-11-21 15:42:51 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 70)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 70, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-22 11:28:04 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'd' for key 'username'
+#0 /mnt/data/Project/webapps/tele-equity/lib/Cake/Model/Datasource/DboSource.php(459): PDOStatement->execute(Array)
+#1 /mnt/data/Project/webapps/tele-equity/lib/Cake/Model/Datasource/DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 /mnt/data/Project/webapps/tele-equity/lib/Cake/Model/Datasource/DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 /mnt/data/Project/webapps/tele-equity/lib/Cake/Model/Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 /mnt/data/Project/webapps/tele-equity/app/Controller/UsersController.php(140): Model->save(Array)
+#5 [internal function]: UsersController->add()
+#6 /mnt/data/Project/webapps/tele-equity/lib/Cake/Controller/Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-22 12:01:49 Error: [MissingControllerException] Controller class ReportController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 12:02:25 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(140): Model->save(Array)
+#5 [internal function]: UsersController->add()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-22 12:02:35 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(140): Model->save(Array)
+#5 [internal function]: UsersController->add()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-22 12:05:56 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(140): Model->save(Array)
+#5 [internal function]: UsersController->add()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-22 12:13:28 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(140): Model->save(Array)
+#5 [internal function]: UsersController->add()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-22 12:38:12 Error: Fatal Error (4): syntax error, unexpected '<' in [D:\Project\webapps\tele-equity\app\View\Users\view.ctp, line 43]
+2012-11-22 12:38:12 Error: [FatalErrorException] syntax error, unexpected '<'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 43)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 43, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 43, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-22 14:15:02 Error: [MissingControllerException] Controller class CollectionController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 15:26:52 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 15:27:43 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 15:28:27 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 15:36:35 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-11-22 18:24:13 Error: [MissingViewException] View file "D:\Project\webapps\tele-equity\app\View\Users\load.ctp.ctp" is missing.
+#0 D:\Project\webapps\tele-equity\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-11-22 18:24:31 Error: [MissingViewException] View file "D:\Project\webapps\tele-equity\app\View\Users\load.ctp" is missing.
+#0 D:\Project\webapps\tele-equity\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}

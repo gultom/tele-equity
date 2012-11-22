@@ -34,7 +34,9 @@
     
     <?= 
         $this->Html->script(array(
-            'lib/jquery/jquery-1.8.2.min',
+            'lib/jquery/jquery-1.8.3.min',
+            'lib/jquery/plugins/jquery.validate.min',
+            'lib/qtip/jquery.qtip-1.0.0-rc3.min',
             'lib/jquery-ui/jquery-ui-1.9.1.custom.min',
             'lib/prototype/prototype',
             'app/Functions',
