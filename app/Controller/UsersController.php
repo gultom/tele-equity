@@ -100,7 +100,7 @@ class UsersController extends AppController {
         $users = $this->User->find('all', array (
                 'fields' => array (
                     'User.id AS Id',
-                    'ListValue.list_data AS Level',
+                    'Level.list_data AS Level',
                     'User.usercode AS UserCode',
                     'User.username AS Username',
                     'User.fullname AS Fullname',
@@ -114,7 +114,7 @@ class UsersController extends AppController {
                 ),
                 'order' => array (
                     'User.Active DESC',
-                    'ListValue.sort_index ASC',
+                    'Level.sort_index ASC',
                     'Fullname ASC'
                 )
             )
@@ -124,13 +124,13 @@ class UsersController extends AppController {
     
     public function add() {
         if ($this->RequestHandler->isGet()) {
-            $this->loadModel('ListValue');
-            $this->set('levels', $this->User->ListValue->find('list', array (
+            $this->loadModel('Level');
+            $this->set('levels', $this->User->Level->find('list', array (
                 'fields' => array (
-                    'ListValue.list_data'
+                    'Level.list_data'
                 ),
                 'conditions' => array (
-                    'ListValue.group_id' => 3
+                    'Level.group_id' => 3
                 )
             )));
         }

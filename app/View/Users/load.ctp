@@ -22,7 +22,7 @@
     <?= 
     $this->Html->tableCells(array(
             array (
-                $value['ListValue']['Level'],
+                $value['Level']['Level'],
                 $value['User']['UserCode'],
                 $value['User']['Username'],
                 $value['User']['Fullname'],
