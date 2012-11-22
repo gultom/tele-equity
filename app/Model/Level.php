@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Description of ListValue
+ * Description of Level
  *
  * @author Charles
  */
-class ListValue extends AppModel {
+class Level extends AppModel {
     
-    public $name = 'ListValue';
+    public $name = 'Level';
     public $useTable = '_list_values';
     public $primaryKey = 'list_code';
     

@@ -9,10 +9,10 @@ class User extends AppModel {
     
     public $virtualFields = array('Active' => 'CASE WHEN (User.is_enabled = 0) THEN "No" ELSE "Yes" END');
     public $belongsTo = array (
-        'ListValue' => array (
+        'Level' => array (
             'foreignKey' => 'level_code',
             'conditions' => array (
-                'ListValue.group_id' => 3
+                'Level.group_id' => 3
             )
         ),
         'Group' => array (
