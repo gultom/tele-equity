@@ -50,6 +50,12 @@ var User = Class.create({
     checkLevel: function(code) {
         if (code == 0) {
             jQuery("#UserGroupId").prop('disabled', false);
+            new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
+                method: 'get',
+                onSuccess: function(response) {
+                    Functions.dump(response.responseText);
+                }
+            })
             jQuery("#UserQa").prop('disabled', false);
         }
         else {
