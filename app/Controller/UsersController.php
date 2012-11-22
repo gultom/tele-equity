@@ -7,7 +7,6 @@
  */
 
 class UsersController extends AppController {
-    public $helpers = array ('Html', 'Form', 'Js');
     
     public function beforeFilter() {
         parent::beforeFilter();

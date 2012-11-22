@@ -39,6 +39,11 @@ class AppController extends Controller {
         'Auth'
     );
     
+    public $helpers = array (
+        'Html', 
+        'Form'
+    );
+    
     public function beforeFilter() {
         parent::beforeFilter();
         self::getMenus();
