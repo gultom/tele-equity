@@ -94,8 +94,8 @@ class UsersController extends AppController {
         ));
     }
     
-    public function view($view = NULL) {
-        $this->view = ($view) ? 'load' : 'view';
+    public function view() {
+        $this->view = ($this->RequestHandler->isAjax()) ? 'load' : 'view';
         $this->set('title_for_layout', 'User List');
         $users = $this->User->find('all', array (
                 'fields' => array (

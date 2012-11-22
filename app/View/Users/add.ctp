@@ -1,6 +1,6 @@
 
-
-<?= $this->Form->create('User', array ('id' => 'UserAdd')); ?>
+<?= $this->Html->tag('div', '', array ('id' => 'addInfo')); ?>
+<?= $this->Form->create('User', array ('id' => 'UserAdd', 'name' => 'UserAdd')); ?>
 
 <table width="100%">
 
@@ -33,7 +33,7 @@ $this->Html->tableCells(array(
     array (
         'Level',
         ':',
-        $this->Form->input('level', array('label' => false, 'options' => $levels, 'empty' => '(Choose One)', 'class' => 'input-text')),
+        $this->Form->input('level', array('label' => false, 'options' => $levels, 'onchange' => 'User.checkLevel(this.value)', 'empty' => '(Choose One)', 'class' => 'input-text')),
         'SIP Pass',
         ':',
         $this->Form->input('sip_pass', array('label' => false, 'class' => 'input-text'))

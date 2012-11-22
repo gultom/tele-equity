@@ -14,12 +14,13 @@ var User = Class.create({
     load: function() {
         new Ajax.Request(Functions.getAppAddress() + 'users/view', {
             method: 'get',
-            parameters: 'users=reload',
             onLoading: function() {
-                
+                Functions.write('userList', '<img src="' + Functions.getAppAddress() + 'img/loading.gif' + '" />');
+                jQuery("#userList").css('text-align', 'center');
             },
-            onSuccess: function() {
-                
+            onSuccess: function(response) {
+                Functions.write('userList', response.responseText);
+                Functions.initDatatable('usersDatatable', 100);
             }
         })
     },
@@ -38,11 +39,22 @@ var User = Class.create({
         new Ajax.Request(Functions.getAppAddress() + 'users/add', {
             method: 'get',
             onSuccess: function(response) {
-                document.getElementById("addUserDialog").innerHTML = response.responseText;
+                Functions.write('addUserDialog', response.responseText);
                 Functions.initCalendar("joinDate");
                 User.validate();
             }
         });
+    },
+    
+    checkLevel: function(code) {
+        if (code == 0) {
+            jQuery("#UserGroupId").prop('disabled', false);
+            jQuery("#UserQa").prop('disabled', false);
+        }
+        else {
+            jQuery("#UserGroupId").prop('disabled', true);
+            jQuery("#UserQa").prop('disabled', true);
+        }
     },
     
     validate: function() {
@@ -94,10 +106,12 @@ var User = Class.create({
             onSuccess: function(response) {
                 if (response.responseText === 'true') {
                     jQuery("#addUserDialog").dialog("close");
-                    //User.load();
+                    User.load();
                 }
                 else {
-                    alert('false');
+                    Functions.write('addInfo', 'Failed to add new User. Please try again later.');
+                    jQuery('#addInfo').addClass('error');
+                    jQuery('#addInfo').css('text-align', 'center');
                 }
             }
         })
@@ -105,7 +119,7 @@ var User = Class.create({
     
     initEditDialog: function() {
         if (this.id === null) {
-            document.getElementById('userInfo').innerHTML = '<b>Please select user first.</b>';
+            Functions.write('userInfo', '<b>Please select user first.</b>');
             Functions.initInformationDialog('userInfo', 300, 125);
             jQuery("#userInfo").dialog('open');
         }
