@@ -19,6 +19,7 @@ var User = Class.create({
                 jQuery("#userList").css('text-align', 'center');
             },
             onSuccess: function(response) {
+                jQuery("#userList").css('text-align', 'left');
                 Functions.write('userList', response.responseText);
                 Functions.initDatatable('usersDatatable', 100);
             }
