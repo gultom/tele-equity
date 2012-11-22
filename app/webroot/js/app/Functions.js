@@ -108,6 +108,10 @@ var Functions = Class.create({
         field.value = field.value.toUpperCase();
     },
     
+    write: function(elementId, content) {
+        document.getElementById(elementId.toString()).innerHTML = content;
+    },
+    
     /**
      * number formatting function
      * copyright Stephen Chapman 24th March 2006, 22nd August 2008
