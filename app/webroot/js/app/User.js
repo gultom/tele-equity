@@ -48,19 +48,32 @@ var User = Class.create({
     },
     
     checkLevel: function(code) {
-        if (code == 0) {
+        if (code !== '' && code == 0) {
             jQuery("#UserGroupId").prop('disabled', false);
             new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
                 method: 'get',
                 onSuccess: function(response) {
-                    Functions.dump(response.responseText);
+                    jQuery.each(response.responseText.evalJSON(), function (key, value) {
+                        jQuery("#UserGroupId").append(jQuery('<option>', {
+                            value : key
+                        }).text(value));
+                    });
                 }
             })
+            
             jQuery("#UserQa").prop('disabled', false);
         }
         else {
             jQuery("#UserGroupId").prop('disabled', true);
+            jQuery("#UserGroupId option").each(function() {
+                jQuery(this).remove();
+            });
+            
             jQuery("#UserQa").prop('disabled', true);
+            jQuery("#UserQa option").each(function() {
+                jQuery(this).remove();
+            });
+            
         }
     },
     
