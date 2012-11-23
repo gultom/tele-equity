@@ -64,7 +64,7 @@ $this->Html->tableCells(array(
     ),
     array (
         array (
-            $this->Form->checkbox('is_active', array ('disabled' => 'disabled', 'checked' => 'checked')) .' Active', array('colspan' => 6)
+            $this->Form->checkbox('is_enabled', array ('disabled' => 'disabled', 'checked' => 'checked')) .' Active', array('colspan' => 6)
         )
     ),
     array (
