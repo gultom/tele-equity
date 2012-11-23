@@ -42,7 +42,7 @@ var User = Class.create({
             onSuccess: function(response) {
                 Functions.write('addUserDialog', response.responseText);
                 Functions.initCalendar("joinDate");
-                User.validate();
+                User.validate('UserAdd');
             }
         });
     },
@@ -89,8 +89,8 @@ var User = Class.create({
         }
     },
     
-    validate: function() {
-        jQuery("#UserAdd").validate({
+    validate: function(formId) {
+        jQuery("#" + formId.toString()).validate({
             errorPlacement: function(error, placement) {
                 $(placement).qtip({
                     content: error.text(),
