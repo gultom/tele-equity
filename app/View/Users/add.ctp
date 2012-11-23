@@ -25,7 +25,7 @@ $this->Html->tableCells(array(
     array (
         'User Code',
         ':',
-        $this->Form->input('user_code', array('label' => false, 'class' => 'input-text')),
+        $this->Form->input('usercode', array('label' => false, 'class' => 'input-text')),
         'SIP User',
         ':',
         $this->Form->input('sip_user', array('label' => false, 'class' => 'input-text'))
