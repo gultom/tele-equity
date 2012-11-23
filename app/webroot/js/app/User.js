@@ -126,7 +126,7 @@ var User = Class.create({
                 }
             },
             submitHandler: function() {
-                User.add();
+                (formId.toString() === 'UserAdd') ? User.add() : User.edit();
             }
         });
     },
