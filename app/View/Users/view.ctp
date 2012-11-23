@@ -13,8 +13,8 @@ $this->Html->css(array (
 $this->Html->scriptBlock(
     '
 jQuery(document).ready(function($) {
-    Functions.initDialog("addUserDialog", "Add User", 550, 350);
-    Functions.initDialog("editUserDialog", "User Details", 550, 350);
+    Functions.initDialog("addUserDialog", "Add User", 550, 380);
+    Functions.initDialog("editUserDialog", "User Details", 550, 380);
     User.load();
 });
     ', array('inline' => FALSE));
