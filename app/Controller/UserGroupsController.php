@@ -12,8 +12,7 @@ class UserGroupsController extends AppController {
     
     public function lists() {
         $this->autoRender = false;
-        $groups = array ('' => '(Choose One)');
-        $groups = array_merge($groups, $this->UserGroup->find('list', array (
+        $groups = $this->UserGroup->find('list', array (
             'fields' => array (
                 'UserGroup.id',
                 'UserGroup.group_name'
@@ -21,7 +20,7 @@ class UserGroupsController extends AppController {
             'order' => array (
                 'UserGroup.group_name'
             )
-        )));
+        ));
         return json_encode($groups);
     }
 
