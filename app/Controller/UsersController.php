@@ -144,6 +144,35 @@ class UsersController extends AppController {
         }
     }
     
+    public function edit($id = null) {
+        if ($this->RequestHandler->isGet()) {
+            $this->User->id = $id;
+            $this->request->data = $this->User->read();
+            $this->loadModel('Level');
+            $levels = $this->Level->find('list', array (
+                'fields' => array (
+                    'Level.list_data'
+                ),
+                'conditions' => array (
+                    'Level.group_id' => 3
+                )
+            ));
+            
+            $this->set(array (
+                'levels' => $levels,
+                'current_group' => $this->request->data['User']['group_id'],
+                'current_qa' => $this->request->data['User']['qa_username']
+            ));
+        }
+        elseif ($this->RequestHandler->isAjax()) {
+            $this->autoRender = false;
+            $this->request->data['User']['update_time'] = date('Y-m-d H:i:s');
+            if ($this->User->save($this->request->data)) {
+                return json_encode (true);
+            }
+        }
+    }
+    
     public function getUserByLevel($level) {
         $this->autoRender = false;
         $isAjax = ($this->RequestHandler->isAjax()) ? true : false;

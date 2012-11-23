@@ -51,6 +51,7 @@ var User = Class.create({
         if (code !== '' && code == 0) {
             jQuery("#UserGroupId").prop('disabled', false);
             new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
+                asynchronous: false,
                 method: 'get',
                 onSuccess: function(response) {
                     jQuery("#UserGroupId").append(new Option('(Choose One)', ''));
@@ -64,6 +65,7 @@ var User = Class.create({
             
             jQuery("#UserQaUsername").prop('disabled', false);
             new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/1', {
+                asynchronous: false,
                 method: 'get',
                 onSuccess: function(response) {
                     jQuery("#UserQaUsername").append(new Option('(Choose One)', ''));
@@ -116,7 +118,7 @@ var User = Class.create({
                 'data[User][username]':  {
                     required: true
                 },
-                'data[User][level]': {
+                'data[User][level_code]': {
                     required: true
                 }
             },
@@ -126,7 +128,8 @@ var User = Class.create({
                 }
             },
             submitHandler: function() {
-                (formId.toString() === 'UserAdd') ? User.add() : User.edit();
+                User.edit();
+                //(formId.toString() === 'UserAdd') ? User.add() : User.edit();
             }
         });
     },
@@ -157,6 +160,35 @@ var User = Class.create({
         }
         else {
             jQuery("#editUserDialog").dialog("open");
+            new Ajax.Request(Functions.getAppAddress() + 'users/edit/' + User.getId(), {
+                method: 'get',
+                onSuccess: function(response) {
+                    Functions.write('editUserDialog', response.responseText);
+                    Functions.initCalendar("joinDate");
+                    User.validate('UserEdit');
+                    User.checkLevel(jQuery("#UserLevelCode option:selected").val());
+                    jQuery("#UserGroupId").val(jQuery("#UserCurrentGroup").val());
+                    jQuery("#UserQaUsername").val(jQuery("#UserCurrentQa").val());
+                }
+            });
         }
+    },
+    
+    edit: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'users/edit/', {
+            method: 'post',
+            parameters: Form.serialize("UserEdit"),
+            onSuccess: function(response) {
+                if (response.responseText === 'true') {
+                    jQuery("#editUserDialog").dialog("close");
+                    User.load();
+                }
+                else {
+                    Functions.write('editInfo', 'Failed to add new User. Please try again later.');
+                    jQuery('#editInfo').addClass('error');
+                    jQuery('#editInfo').css('text-align', 'center');
+                }
+            }
+        });
     }
 });
