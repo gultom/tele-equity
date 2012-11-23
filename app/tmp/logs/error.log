@@ -1661,3 +1661,162 @@ ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
 #8 D:\root\My Work\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #9 D:\root\My Work\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
+2012-11-23 10:07:22 Error: Fatal Error (1): Call to undefined function array_append() in [D:\Project\webapps\tele-equity\app\Controller\UserGroupsController.php, line 16]
+2012-11-23 10:07:22 Error: [FatalErrorException] Call to undefined function array_append()
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Project\weba...', 16)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Project\weba...', 16, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Project\weba...', 16, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-23 10:09:27 Error: Fatal Error (1): Call to undefined function array_append() in [D:\Project\webapps\tele-equity\app\Controller\UserGroupsController.php, line 16]
+2012-11-23 10:09:27 Error: [FatalErrorException] Call to undefined function array_append()
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Project\weba...', 16)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Project\weba...', 16, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Project\weba...', 16, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-23 10:34:36 Error: [MissingViewException] View file "D:\Project\webapps\tele-equity\app\View\Users\getuserbylevel.ctp" is missing.
+#0 D:\Project\webapps\tele-equity\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-11-23 10:41:18 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'UserGroup.group_name' in 'order clause'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('SELECT `User`.`...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(669): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1080): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(2630): DboSource->read(Object(User), Array)
+#5 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(161): Model->find('all', Array)
+#6 [internal function]: UsersController->getUserByLevel('1')
+#7 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-11-23 12:00:30 Error: [MissingViewException] View file "D:\Project\webapps\tele-equity\app\View\Users\edit.ctp" is missing.
+#0 D:\Project\webapps\tele-equity\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-11-23 12:25:17 Error: Fatal Error (1): Call to a member function find() on a non-object in [D:\Project\webapps\tele-equity\app\Controller\UsersController.php, line 161]
+2012-11-23 12:25:17 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Project\weba...', 161)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Project\weba...', 161, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Project\weba...', 161, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-11-23 12:26:09 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Group.group_id' in 'field list'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('SELECT `Group`....', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(669): DboSource->execute('SELECT `Group`....', Array, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1080): DboSource->fetchAll('SELECT `Group`....', false)
+#4 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(2630): DboSource->read(Object(UserGroup), Array)
+#5 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(166): Model->find('list', Array)
+#6 [internal function]: UsersController->edit('41')
+#7 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-11-23 13:52:30 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'list' at line 1
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('list', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(669): DboSource->execute('list', Array, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(611): DboSource->fetchAll('list', Array, Array)
+#4 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(784): DboSource->query('list', Array, Object(UserGroup))
+#5 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(165): Model->__call('list', Array)
+#6 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(165): UserGroup->list()
+#7 [internal function]: UsersController->edit('147')
+#8 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-11-23 13:52:55 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'lists' at line 1
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('lists', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(669): DboSource->execute('lists', Array, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(611): DboSource->fetchAll('lists', Array, Array)
+#4 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(784): DboSource->query('lists', Array, Object(UserGroup))
+#5 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(165): Model->__call('lists', Array)
+#6 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(165): UserGroup->lists()
+#7 [internal function]: UsersController->edit('147')
+#8 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-11-23 14:22:33 Error: [MethodNotAllowedException] Method Not Allowed
+#0 [internal function]: UsersController->doLogin()
+#1 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-11-23 16:52:31 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Test2' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(169): Model->save(Array)
+#5 [internal function]: UsersController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-23 16:54:40 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'cipta' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(169): Model->save(Array)
+#5 [internal function]: UsersController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-23 16:56:03 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'agus tsr' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(170): Model->save(Array)
+#5 [internal function]: UsersController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-23 17:00:00 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Test2' for key 'username'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `ts...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `ts...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(169): Model->save(Array)
+#5 [internal function]: UsersController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-11-23 17:19:53 Error: [PDOException] SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: ''2012-11-23 17:19:53'' for column 'update_time' at row 1
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('UPDATE `ts_equi...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\Database\Mysql.php(360): DboSource->execute('UPDATE `ts_equi...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1715): Mysql->update(Object(User), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UsersController.php(170): Model->save(Array)
+#5 [internal function]: UsersController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
