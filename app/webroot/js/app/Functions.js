@@ -57,7 +57,10 @@ var Functions = Class.create({
             resizable: false,
             modal: true,
             width: dialogWidth,
-            height: dialogHeight
+            height: dialogHeight,
+            close: function() {
+                Functions.write(elementId.toString(), '');
+            }
         })
     },
     
