@@ -192,6 +192,13 @@ class UsersController extends AppController {
             return json_encode($users);
         return $users;
     }
+    
+    public function delete($id) {
+        $this->autoRender = false;
+        if ($this->User->delete($id))
+            return json_encode (true);
+        return json_encode (false);
+    }
 }
 
 ?>

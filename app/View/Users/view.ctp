@@ -15,6 +15,10 @@ $this->Html->scriptBlock(
 jQuery(document).ready(function($) {
     Functions.initDialog("addUserDialog", "Add User", 550, 380);
     Functions.initDialog("editUserDialog", "User Details", 550, 380);
+    Functions.initConfirmationDialog("deleteUserDialog", "Delete Confirmation", 300, 150, function() {
+        User.del();
+        jQuery("#deleteUserDialog").dialog("close");
+    });
     User.load();
 });
     ', array('inline' => FALSE));
@@ -36,7 +40,9 @@ echo
 $this->Html->tag('div', '', array('id' => 'userInfo')) .
 $this->Html->tag('div', '', array('id' => 'groupsDialog')) .
 $this->Html->tag('div', '', array('id' => 'addUserDialog')) .
-$this->Html->tag('div', '', array('id' => 'editUserDialog'));
+$this->Html->tag('div', '', array('id' => 'editUserDialog')) .
+$this->Html->tag('div', '', array('id' => 'deleteUserDialog'));
 ?>
+
 <div id="clear"></div>
 <?= $this->Html->tag('div', '', array('id' => 'userList')); ?>

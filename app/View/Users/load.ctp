@@ -3,6 +3,7 @@
         <thead>
             <?= 
             $this->Html->tableHeaders( array (
+                array ('Del.' => array ('width' => '8px')),
                 array ('Level' => array ('width' => '10px')),
                 array ('User Code' => array ('width' => '65px')),
                 array ('Username' => array ('width' => '10px')),
@@ -22,6 +23,7 @@
     <?= 
     $this->Html->tableCells(array(
             array (
+                $this->Html->link($this->Html->image('icons/icon-user_delete.png'), 'javascript:void(0)', array('escape' => false, 'onmouseover' => 'User.setId('. $value['User']['Id'] .')', 'onclick' => 'User.initDeleteDialog()')),
                 $value['Level']['Level'],
                 $value['User']['UserCode'],
                 $value['User']['Username'],

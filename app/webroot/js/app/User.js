@@ -15,13 +15,14 @@ var User = Class.create({
         new Ajax.Request(Functions.getAppAddress() + 'users/view', {
             method: 'get',
             onLoading: function() {
-                Functions.write('userList', '<img src="' + Functions.getAppAddress() + 'img/loading.gif' + '" />');
-                jQuery("#userList").css('text-align', 'center');
+                Functions.write('userList', '');
+                jQuery("#userList").append('<div id="loadingImage"></div>');
+                Functions.write('loadingImage', '<img src="' + Functions.getAppAddress() + 'img/loading.gif' + '" />');
+                jQuery("#loadingImage").css('text-align', 'center');
             },
             onSuccess: function(response) {
-                jQuery("#userList").css('text-align', 'left');
                 Functions.write('userList', response.responseText);
-                Functions.initDatatable('usersDatatable', 100);
+                Functions.initDatatable('usersDatatable', 105);
             }
         })
     },
@@ -190,5 +191,29 @@ var User = Class.create({
                 }
             }
         });
+    },
+    
+    initDeleteDialog: function() {
+        Functions.write('deleteUserDialog', 'Are you sure want to delete this user ?');
+        jQuery("#deleteUserDialog").dialog("open");
+    },
+    
+    del: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'users/delete/' + User.getId(), {
+            method: 'post',
+            onSuccess: function(response) {
+                if (response.responseText === 'true') {
+                    jQuery("#userInfo").addClass("error");
+                    jQuery("#userInfo").css('text-align', 'center');
+                    jQuery("#userInfo").css('display', 'block');
+                    Functions.write('userInfo', 'User has been successfully deleted.');
+                    jQuery("#userInfo").fadeOut(8000);
+                    User.load();
+                }
+                else {
+                    Functions.write('userInfo', 'Failed to delete user');
+                }
+            }
+        })
     }
 });
