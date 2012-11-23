@@ -53,6 +53,7 @@ var User = Class.create({
             new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
                 method: 'get',
                 onSuccess: function(response) {
+                    jQuery("#UserGroupId").append(new Option('(Choose One)', ''));
                     jQuery.each(response.responseText.evalJSON(), function (key, value) {
                         jQuery("#UserGroupId").append(jQuery('<option>', {
                             value : key
@@ -61,7 +62,18 @@ var User = Class.create({
                 }
             })
             
-            jQuery("#UserQa").prop('disabled', false);
+            jQuery("#UserQaUsername").prop('disabled', false);
+            new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/1', {
+                method: 'get',
+                onSuccess: function(response) {
+                    jQuery("#UserQaUsername").append(new Option('(Choose One)', ''));
+                    jQuery.each(response.responseText.evalJSON(), function (key, value) {
+                        jQuery("#UserQaUsername").append(jQuery('<option>', {
+                            value : key
+                        }).text(value));
+                    });
+                }
+            });
         }
         else {
             jQuery("#UserGroupId").prop('disabled', true);
@@ -69,8 +81,8 @@ var User = Class.create({
                 jQuery(this).remove();
             });
             
-            jQuery("#UserQa").prop('disabled', true);
-            jQuery("#UserQa option").each(function() {
+            jQuery("#UserQaUsername").prop('disabled', true);
+            jQuery("#UserQaUsername option").each(function() {
                 jQuery(this).remove();
             });
             

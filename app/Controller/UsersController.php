@@ -143,6 +143,26 @@ class UsersController extends AppController {
             }
         }
     }
+    
+    public function getUserByLevel($level) {
+        $this->autoRender = false;
+        $isAjax = ($this->RequestHandler->isAjax()) ? true : false;
+        $users = $this->User->find(($isAjax) ? 'list' : 'all', array (
+            'fields' => array (
+                'User.username',
+                'User.username'
+            ),
+            'conditions' => array (
+                'User.level_code' => $level
+            ),
+            'order' => array (
+                'User.username'
+            )
+        ));
+        if ($isAjax)
+            return json_encode($users);
+        return $users;
+    }
 }
 
 ?>
