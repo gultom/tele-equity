@@ -11,7 +11,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'marlboro',
-		'database' => 'ts_equity',
+		'database' => 'tele_equity',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
