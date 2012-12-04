@@ -7,8 +7,7 @@
  */
 class CustomerResponse extends AppModel {
     
-    public $useTable = 'list_values';
-    public $primaryKey = 'list_code';
+    public $primaryKey = 'code';
 }
 
 ?>
