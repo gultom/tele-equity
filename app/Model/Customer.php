@@ -10,18 +10,13 @@ class Customer extends AppModel {
     public $belongsTo = array (
         'Status' => array (
             'className' => 'CustomerStatus',
-            'foreignKey' => 'status_code',
-            'conditions' => array (
-                'Status.group_id' => 4
-            )
+            'foreignKey' => 'status_id'
         ),
         'Response' => array (
             'className' => 'CustomerResponse',
-            'foreignKey' => 'result_code',
-            'conditions' => array (
-                'Response.group_id' => 5
-            )
-        )
+            'foreignKey' => 'response_id'
+        ),
+        'Campaign'
     );
 }
 
