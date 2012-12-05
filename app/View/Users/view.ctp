@@ -15,7 +15,7 @@ $this->Html->scriptBlock(
     '
 jQuery(document).ready(function($) {
     UserGroup = new UserGroup();
-    Functions.initDialog("groupsDialog", "Group Lists", 550, 380);
+    Functions.initDialog("groupsDialog", "Group Lists", 500, 400);
     Functions.initDialog("addUserDialog", "Add User", 550, 380);
     Functions.initDialog("editUserDialog", "User Details", 550, 380);
     Functions.initConfirmationDialog("deleteUserDialog", "Delete Confirmation", 300, 150, function() {
