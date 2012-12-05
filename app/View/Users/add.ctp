@@ -33,7 +33,7 @@ $this->Html->tableCells(array(
     array (
         'Level',
         ':',
-        $this->Form->input('level_code', array('label' => false, 'options' => $levels, 'onchange' => 'User.checkLevel(this.value)', 'empty' => '(Choose One)', 'class' => 'input-text')),
+        $this->Form->input('level_id', array('label' => false, 'options' => $levels, 'onchange' => 'User.checkLevel(this.value)', 'empty' => '(Choose One)', 'class' => 'input-text')),
         'SIP Pass',
         ':',
         $this->Form->input('sip_pass', array('label' => false, 'class' => 'input-text'))
