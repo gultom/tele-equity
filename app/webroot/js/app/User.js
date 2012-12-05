@@ -129,8 +129,7 @@ var User = Class.create({
                 }
             },
             submitHandler: function() {
-                User.edit();
-                //(formId.toString() === 'UserAdd') ? User.add() : User.edit();
+                (formId.toString() === 'UserAdd') ? User.add() : User.edit();
             }
         });
     },
