@@ -13,8 +13,7 @@ class User extends AppModel {
             'className' => 'UserLevel',
             'foreignKey' => 'level_id'
         ),
-        'Group' => array (
-            'className' => 'UserGroup',
+        'UserGroup' => array (
             'foreignKey' => 'group_id'
         ),
         'QA' => array (

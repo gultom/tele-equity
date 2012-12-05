@@ -110,9 +110,9 @@ class UsersController extends AppController {
                             'Level.name AS Level'
                         )
                     ),
-                    'Group' => array (
+                    'UserGroup' => array (
                         'fields' => array (
-                            'Group.name AS Group'
+                            'UserGroup.name AS Group'
                         ),
                         'Leader' => array (
                             'fields' => array (

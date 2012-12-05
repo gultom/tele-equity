@@ -1,4 +1,3 @@
-<div id="userList">
     <table id="usersDatatable" class="display">
         <thead>
             <?= 
@@ -31,8 +30,8 @@
                 $value['User']['Active'],
                 $value['User']['join_date'],
                 $value['User']['exp_date'],
-                $value['Group']['Group'],
-                (isset($value['Group']['Leader'])) ? $value['Group']['Leader']['LeaderUsername'] : '',
+                $value['UserGroup']['Group'],
+                (isset($value['UserGroup']['Leader'])) ? $value['UserGroup']['Leader']['LeaderUsername'] : '',
                 $value['QA']['Username'],
                 $value['User']['sip_user']
             )
@@ -50,4 +49,3 @@
     <?php endforeach; ?>
         </tbody>
     </table>
-</div>
