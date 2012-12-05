@@ -76,6 +76,9 @@
 		<div id="footer">
             &copy; 2012 - Jaring Synergi Mandiri
 		</div>
+        <div>
+            <?= $this->element('sql_dump'); ?>
+        </div>
 	</div>
 </body>
 </html>

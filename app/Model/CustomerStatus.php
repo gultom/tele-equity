@@ -7,7 +7,6 @@
  */
 class CustomerStatus extends AppModel {
     
-    public $primaryKey = 'code';
 }
 
 ?>

@@ -51,7 +51,7 @@ class AppController extends Controller {
     
     public function getMenus() {
         $user = $this->Auth->user();
-        $level = $user['level_code'];
+        $level = $user['level_id'];
         unset($user);
         
         $menus = array (
@@ -66,45 +66,49 @@ class AppController extends Controller {
             'Customers' => array (
                 'controller' => 'customers',
                 'action' => 'view'
+            ),
+            'Monitor' => array (
+                'controller' => 'dashboard',
+                'action' => 'monitor'
+            ),
+            'Collections' => array (
+                'controller' => 'collection',
+                'action' => 'index'
+            ),
+            'Reports' => array (
+                'controller' => 'report',
+                'action' => 'index'
+            ),
+            'Salesfile' => array (
+                'controller' => 'report',
+                'action' => 'salesfile'
+            ),
+            'Users' => array (
+                'controller' => 'users',
+                'action' => 'view'
+            ),
+            'Campaigns' => array (
+                'controller' => 'campaigns',
+                'action' => 'view'
             )
         );
         
-        if ($level > 1) {
-            $menus = array_merge($menus, array (
-                'Monitor' => array (
-                    'controller' => 'dashboard',
-                    'action' => 'monitor'
-                )
-            ));
-        }
-        
-        if ($level > 2) {
-            $menus = array_merge($menus, array (
-                'Collections' => array (
-                    'controller' => 'collection',
-                    'action' => 'index'
-                ),
-                'Reports' => array (
-                    'controller' => 'report',
-                    'action' => 'index'
-                ),
-                'Salesfile' => array (
-                    'controller' => 'report',
-                    'action' => 'salesfile'
-                ),
-                'Users' => array (
-                    'controller' => 'users',
-                    'action' => 'view'
-                ),
-                'Campaigns' => array (
-                    'controller' => 'campaigns',
-                    'action' => 'view'
-                ),
-                'Settings' => array (
-                    'controller' => 'settings',
-                    'action' => 'index'
-                )
-            ));
+        switch ($level) {
+            case 8: // TM Level
+                unset($menus['Monitor'], $menus['Collections'], $menus['Reports'], $menus['Salesfile'], $menus['Users'], $menus['Campaigns']);
+                break;
+            
+            case (in_array($level, array(7, 6))): // TL & SPV Level
+                unset($menus['Collections'], $menus['Reports'], $menus['Salesfile'], $menus['Users'], $menus['Campaigns']);
+                break;
+            
+            case 4: // Collection Level
+                unset($menus['Monitor'], $menus['Reports'], $menus['Salesfile'], $menus['Users'], $menus['Campaigns']);
+                break;
+            
+            case 5: // QA Level
+                unset($menus['Monitor'], $menus['Collections'], $menus['Reports'], $menus['Salesfile'], $menus['Users'], $menus['Campaigns']);
+                break;
         }
         $this->set('menu', $menus);
     }

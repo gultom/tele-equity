@@ -43,9 +43,9 @@ class UsersController extends AppController {
             'fields' => array (
                 'User.username',
                 'User.usercode',
-                'User.level_code',
+                'User.level_id',
+                'User.activity_id',
                 'User.activity_time',
-                'User.activity_code',
                 'User.sip_host',
                 'User.sip_port',
                 'User.sip_user',
@@ -96,20 +96,31 @@ class UsersController extends AppController {
     public function view() {
         $this->view = ($this->RequestHandler->isAjax()) ? 'load' : 'view';
         $this->set('title_for_layout', 'User List');
+        
+        $this->User->Behaviors->attach('Containable');
         $users = $this->User->find('all', array (
-                'fields' => array (
-                    'User.id AS Id',
-                    'Level.list_data AS Level',
-                    'User.usercode AS UserCode',
-                    'User.username AS Username',
-                    'User.fullname AS Fullname',
-                    'User.Active',
-                    'User.join_date AS JoinDate',
-                    'User.exp_date AS ExpDate',
-                    'Group.group_name AS Group',
-                    'Group.tl_username AS TL',
-                    'User.qa_username AS QA',
-                    'User.sip_user AS Extension'
+                'contain' => array (
+                    'QA' => array (
+                        'fields' => array (
+                            'QA.username AS Username',
+                        )
+                    ),
+                    'Level' => array (
+                        'fields' => array (
+                            'Level.name AS Level'
+                        )
+                    ),
+                    'Group' => array (
+                        'fields' => array (
+                            'Group.name AS Group'
+                        ),
+                        'Leader' => array (
+                            'fields' => array (
+                                'Leader.id AS LeaderId',
+                                'Leader.username AS LeaderUsername'
+                            )
+                        )
+                    )
                 ),
                 'order' => array (
                     'User.Active DESC',
@@ -126,11 +137,10 @@ class UsersController extends AppController {
             $this->loadModel('Level');
             $this->set('levels', $this->User->Level->find('list', array (
                 'fields' => array (
-                    'Level.list_data'
+                    'Level.id',
+                    'Level.name'
                 ),
-                'conditions' => array (
-                    'Level.group_id' => 3
-                )
+                'order' => 'Level.sort_index'
             )));
         }
         else {
@@ -151,17 +161,15 @@ class UsersController extends AppController {
             $this->loadModel('Level');
             $levels = $this->Level->find('list', array (
                 'fields' => array (
-                    'Level.list_data'
-                ),
-                'conditions' => array (
-                    'Level.group_id' => 3
+                    'Level.id',
+                    'Level.name'
                 )
             ));
             
             $this->set(array (
                 'levels' => $levels,
                 'current_group' => $this->request->data['User']['group_id'],
-                'current_qa' => $this->request->data['User']['qa_username']
+                'current_qa' => $this->request->data['User']['qa_id']
             ));
         }
         elseif ($this->RequestHandler->isAjax()) {
@@ -178,11 +186,11 @@ class UsersController extends AppController {
         $isAjax = ($this->RequestHandler->isAjax()) ? true : false;
         $users = $this->User->find(($isAjax) ? 'list' : 'all', array (
             'fields' => array (
-                'User.username',
+                'User.id',
                 'User.username'
             ),
             'conditions' => array (
-                'User.level_code' => $level
+                'User.level_id' => $level
             ),
             'order' => array (
                 'User.username'

@@ -22,7 +22,7 @@ var User = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('userList', response.responseText);
-                Functions.initDatatable('usersDatatable', 105);
+                Functions.initDatatable('usersDatatable', 115);
             }
         })
     },
@@ -49,7 +49,7 @@ var User = Class.create({
     },
     
     checkLevel: function(code) {
-        if (code !== '' && code == 0) {
+        if (code !== '' && code == 8) {
             jQuery("#UserGroupId").prop('disabled', false);
             new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
                 asynchronous: false,
@@ -65,7 +65,7 @@ var User = Class.create({
             })
             
             jQuery("#UserQaUsername").prop('disabled', false);
-            new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/1', {
+            new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/5', {
                 asynchronous: false,
                 method: 'get',
                 onSuccess: function(response) {
@@ -167,7 +167,7 @@ var User = Class.create({
                     Functions.write('editUserDialog', response.responseText);
                     Functions.initCalendar("joinDate");
                     User.validate('UserEdit');
-                    User.checkLevel(jQuery("#UserLevelCode option:selected").val());
+                    User.checkLevel(jQuery("#UserLevelId option:selected").val());
                     jQuery("#UserGroupId").val(jQuery("#UserCurrentGroup").val());
                     jQuery("#UserQaUsername").val(jQuery("#UserCurrentQa").val());
                 }
