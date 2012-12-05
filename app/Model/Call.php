@@ -7,11 +7,6 @@
  */
 class Call extends AppModel {
     
-    public $hasMany = array (
-        'Customer' => array (
-            'foreignKey' => 'customer_id'
-        )
-    );
 }
 
 ?>

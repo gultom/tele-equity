@@ -7,7 +7,6 @@
  */
 class CustomerResponse extends AppModel {
     
-    public $primaryKey = 'code';
 }
 
 ?>
