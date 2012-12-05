@@ -7,15 +7,20 @@
 class UserGroupsController extends AppController {
     
     public function view() {
-        $groups = $this->Group->find('all', array (
+        
+    }
+    
+    public function load() {
+        $groups = $this->UserGroup->find('all', array (
             'fields' => array (
-                'Group.id AS Id',
-                'Group.name AS Name',
-                'Group.Type'
+                'UserGroup.id AS Id',
+                'UserGroup.name AS Name',
+                'Leader.username AS Leader',
+                'UserGroup.Type'
             ),
-            'order' => 'Group.insert_time'
+            'order' => 'UserGroup.insert_time'
         ));
-        $this->set(compact($groups));
+        $this->set(compact('groups'));
     }
     
     public function lists() {
@@ -33,11 +38,21 @@ class UserGroupsController extends AppController {
     }
 
     public function add() {
-        
+        if ($this->RequestHandler->isGet()) {
+            
+        }
+        else {
+            
+        }
     }
     
-    public function edit() {
-        
+    public function edit($id = null) {
+        if ($this->RequestHandler->isGet()) {
+            
+        }
+        else {
+            
+        }
     }
     
     public function delete() {
