@@ -13,7 +13,8 @@ $this->Html->tableCells(array (
 echo 
 $this->Html->tag('div', '', array('id' => 'userGroupInfo')) .
 $this->Html->tag('div', '', array('id' => 'addGroupDialog')) .
-$this->Html->tag('div', '', array('id' => 'editGroupDialog'));
+$this->Html->tag('div', '', array('id' => 'editGroupDialog')) .
+$this->Html->tag('div', '', array('id' => 'deleteGroupDialog'));
 ?>
 
 <div id="clear"></div>
