@@ -49,11 +49,21 @@ var User = Class.create({
     },
     
     checkLevel: function(id) {
+        jQuery("#UserGroupId").prop('disabled', true);
+        jQuery("#UserGroupId option").each(function() {
+            jQuery(this).remove();
+        });
+            
+        jQuery("#UserQaId").prop('disabled', true);
+        jQuery("#UserQaId option").each(function() {
+            jQuery(this).remove();
+        });
+            
         if (id !== '' && (jQuery.inArray(parseInt(id), new Array(7, 8)) > -1)) {
             var type = (id == 7) ? 1 : 0; 
             jQuery("#UserGroupId").prop('disabled', false);
             jQuery("#UserGroupId").find('option').remove().end();
-            jQuery("#UserQaUsername").find('option').remove().end();
+            jQuery("#UserQaId").find('option').remove().end();
             new Ajax.Request(Functions.getAppAddress() + 'userGroups/lists/' + type, {
                 asynchronous: false,
                 method: 'get',
@@ -67,31 +77,21 @@ var User = Class.create({
                 }
             })
             
-            jQuery("#UserQaUsername").prop('disabled', false);
-            new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/5', {
-                asynchronous: false,
-                method: 'get',
-                onSuccess: function(response) {
-                    jQuery("#UserQaUsername").append(new Option('(Choose One)', ''));
-                    jQuery.each(response.responseText.evalJSON(), function (key, value) {
-                        jQuery("#UserQaUsername").append(jQuery('<option>', {
-                            value : key
-                        }).text(value));
-                    });
-                }
-            });
-        }
-        else {
-            jQuery("#UserGroupId").prop('disabled', true);
-            jQuery("#UserGroupId option").each(function() {
-                jQuery(this).remove();
-            });
-            
-            jQuery("#UserQaUsername").prop('disabled', true);
-            jQuery("#UserQaUsername option").each(function() {
-                jQuery(this).remove();
-            });
-            
+            if (id == 8) {
+                jQuery("#UserQaId").prop('disabled', false);
+                new Ajax.Request(Functions.getAppAddress() + 'users/getuserbylevel/5', {
+                    asynchronous: false,
+                    method: 'get',
+                    onSuccess: function(response) {
+                        jQuery("#UserQaId").append(new Option('(Choose One)', ''));
+                        jQuery.each(response.responseText.evalJSON(), function (key, value) {
+                            jQuery("#UserQaId").append(jQuery('<option>', {
+                                value : key
+                            }).text(value));
+                        });
+                    }
+                });
+            }
         }
     },
     
@@ -171,7 +171,7 @@ var User = Class.create({
                     User.validate('UserEdit');
                     User.checkLevel(jQuery("#UserLevelId option:selected").val());
                     jQuery("#UserGroupId").val(jQuery("#UserCurrentGroup").val());
-                    jQuery("#UserQaUsername").val(jQuery("#UserCurrentQa").val());
+                    jQuery("#UserQaId").val(jQuery("#UserCurrentQa").val());
                 }
             });
         }
