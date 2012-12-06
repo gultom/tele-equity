@@ -14,6 +14,7 @@ var UserGroup = Class.create({
     checkType: function(type) {
         jQuery("#UserGroupUserId").find('option').remove().end();
         new Ajax.Request(Functions.getAppAddress() + 'userGroups/listleaders/' + type, {
+            asynchronous: false,
             method: 'get',
             onSuccess: function(response) {
                 if (type != '') {
@@ -141,9 +142,7 @@ var UserGroup = Class.create({
                     Functions.write('editGroupDialog', response.responseText);
                     UserGroup.validate('UserGroupEdit');
                     UserGroup.checkType(jQuery("#UserGroupType option:selected").val());
-                    setTimeout(function() {
-                        jQuery("#UserGroupUserId").val(jQuery("#UserGroupCurrentLeader").val());
-                    },300);
+                    jQuery("#UserGroupUserId").val(jQuery("#UserGroupCurrentLeader").val());
                 }
             })
         }
