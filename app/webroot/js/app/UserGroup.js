@@ -11,6 +11,23 @@ var UserGroup = Class.create({
         return this.id;
     },
     
+    checkType: function(type) {
+        jQuery("#UserGroupUserId").find('option').remove().end();
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/listleaders/' + type, {
+            method: 'get',
+            onSuccess: function(response) {
+                if (type != '') {
+                    jQuery("#UserGroupUserId").append(new Option('(Choose One)', ''));
+                    jQuery.each(response.responseText.evalJSON(), function (key , value) {
+                        jQuery("#UserGroupUserId").append(jQuery('<option>', {
+                            value : key
+                        }).text(value));
+                    })
+                }
+            }
+        })
+    },
+    
     initShowGroupsDialog: function() {
         jQuery("#groupsDialog").dialog("open");
         new Ajax.Request (Functions.getAppAddress() + 'userGroups/view', {
@@ -46,12 +63,9 @@ var UserGroup = Class.create({
             method: 'get',
             onSuccess: function(response) {
                 Functions.write('addGroupDialog', response.responseText);
+                UserGroup.validate('UserGroupAdd');
             }
         })
-    },
-    
-    add: function() {
-        
     },
     
     validate: function(formId) {
@@ -77,8 +91,37 @@ var UserGroup = Class.create({
                    }
                 });
             },
+            rules: {
+                'data[UserGroup][name]':  {
+                    required: true
+                },
+                'data[UserGroup][type]': {
+                    required: true
+                },
+                'data[UserGroup][user_id]': {
+                    required: true
+                }
+            },
             submitHandler: function() {
-                (formId.toString() === 'GroupAdd') ? UserGroup.add() : UserGroup.edit();
+                (formId.toString() === 'UserGroupAdd') ? UserGroup.add() : UserGroup.edit();
+            }
+        })
+    },
+    
+    add: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/add', {
+            method: 'post',
+            parameters: Form.serialize('UserGroupAdd'),
+            onSuccess: function(response) {
+                if (response.responseText == 'true') {
+                    jQuery("#addGroupDialog").dialog("close");
+                    UserGroup.load();
+                }
+                else {
+                    Functions.write('addGroupInfo', 'Failed to add new Group');
+                    jQuery('#addGroupInfo').addClass('error');
+                    jQuery('#addGroupInfo').css('text-align', 'center');
+                }
             }
         })
     },
@@ -94,6 +137,6 @@ var UserGroup = Class.create({
     },
     
     edit: function() {
-        
+        alert('edit');
     }
 });
