@@ -49,7 +49,7 @@ $this->Html->tableCells(array(
     array (
         'QA',
         ':',
-        $this->Form->input('qa_username', array('label' => false, 'disabled' => 'disabled', 'options' => array(), 'class' => 'input-text')),
+        $this->Form->input('qa_id', array('label' => false, 'disabled' => 'disabled', 'options' => array(), 'class' => 'input-text')),
         'Prefix Local',
         ':',
         $this->Form->input('prefix_sljj', array('label' => false, 'class' => 'input-text'))
