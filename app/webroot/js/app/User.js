@@ -119,7 +119,7 @@ var User = Class.create({
                 'data[User][username]':  {
                     required: true
                 },
-                'data[User][level_code]': {
+                'data[User][level_id]': {
                     required: true
                 }
             },
