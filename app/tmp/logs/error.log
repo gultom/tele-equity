@@ -3354,3 +3354,39 @@ ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
 #8 /mnt/data/Project/webapps/tele-equity/lib/Cake/Routing/Dispatcher.php(161): Dispatcher->_invoke(Object(UserGroupsController), Object(CakeRequest), Object(CakeResponse))
 #9 /mnt/data/Project/webapps/tele-equity/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
+2012-12-06 17:00:46 Error: [PDOException] SQLSTATE[HY000]: General error: 1364 Field 'name' doesn't have a default value
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `te...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `te...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(UserGroup), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UserGroupsController.php(86): Model->save(Array)
+#5 [internal function]: UserGroupsController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UserGroupsController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UserGroupsController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-12-06 17:03:09 Error: [PDOException] SQLSTATE[HY000]: General error: 1364 Field 'name' doesn't have a default value
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `te...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `te...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(UserGroup), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UserGroupsController.php(87): Model->save(Array)
+#5 [internal function]: UserGroupsController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UserGroupsController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UserGroupsController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-12-06 17:04:14 Error: [PDOException] SQLSTATE[HY000]: General error: 1364 Field 'name' doesn't have a default value
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(459): PDOStatement->execute(Array)
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(425): DboSource->_execute('INSERT INTO `te...', Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1007): DboSource->execute('INSERT INTO `te...')
+#3 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(1730): DboSource->create(Object(UserGroup), Array, Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\UserGroupsController.php(87): Model->save(Array)
+#5 [internal function]: UserGroupsController->edit()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UserGroupsController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UserGroupsController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}

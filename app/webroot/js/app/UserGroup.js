@@ -22,7 +22,7 @@ var UserGroup = Class.create({
                         jQuery("#UserGroupUserId").append(jQuery('<option>', {
                             value : key
                         }).text(value));
-                    })
+                    });
                 }
             }
         })
@@ -50,7 +50,7 @@ var UserGroup = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('groupList', response.responseText);
-                Functions.initDatatable('groupsDatatable', 100);
+                Functions.initDatatable('groupsDatatable', 102);
                 Functions.initDialog("addGroupDialog", "Add Group", 380, 230);
                 Functions.initDialog("editGroupDialog", "Edit Group", 380, 230);
             }
@@ -116,6 +116,7 @@ var UserGroup = Class.create({
                 if (response.responseText == 'true') {
                     jQuery("#addGroupDialog").dialog("close");
                     UserGroup.load();
+                    User.load();
                 }
                 else {
                     Functions.write('addGroupInfo', 'Failed to add new Group');
@@ -127,16 +128,43 @@ var UserGroup = Class.create({
     },
     
     initEditDialog: function() {
-        jQuery("#editGroupDialog").dialog("open");
-        new Ajax.Request(Functions.getAppAddress() + 'userGroups/edit', {
-            method: 'get',
-            onSuccess: function(response) {
-                Functions.write('editGroupDialog', response.responseText);
-            }
-        })
+        if (UserGroup.getId() == null) {
+            Functions.write('userGroupInfo', '<b>Please select group first.</b>');
+            Functions.initInformationDialog('userGroupInfo', 300, 125);
+            jQuery("#userGroupInfo").dialog('open');
+        }
+        else {
+            jQuery("#editGroupDialog").dialog("open");
+            new Ajax.Request(Functions.getAppAddress() + 'userGroups/edit/' + UserGroup.getId(), {
+                method: 'get',
+                onSuccess: function(response) {
+                    Functions.write('editGroupDialog', response.responseText);
+                    UserGroup.validate('UserGroupEdit');
+                    UserGroup.checkType(jQuery("#UserGroupType option:selected").val());
+                    setTimeout(function() {
+                        jQuery("#UserGroupUserId").val(jQuery("#UserGroupCurrentLeader").val());
+                    },300);
+                }
+            })
+        }
     },
     
     edit: function() {
-        alert('edit');
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/edit/', {
+            method: 'post',
+            parameters: Form.serialize("UserGroupEdit"),
+            onSuccess: function(response) {
+                if (response.responseText === 'true') {
+                    jQuery("#editGroupDialog").dialog("close");
+                    UserGroup.load();
+                    User.load();
+                }
+                else {
+                    Functions.write('editGroupInfo', 'Failed to add new User. Please try again later.');
+                    jQuery('#editGroupInfo').addClass('error');
+                    jQuery('#editGroupInfo').css('text-align', 'center');
+                }
+            }
+        })
     }
 });

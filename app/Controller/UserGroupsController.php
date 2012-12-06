@@ -63,7 +63,7 @@ class UserGroupsController extends AppController {
                 $this->request->data['UserGroup']['insert_user'] = $data['username'];
                 $this->UserGroup->create();
                 if ($this->UserGroup->save($this->request->data))
-                    return json_encode (true);
+                    return json_encode(true);
                 return json_encode(false);
             }
         }
@@ -71,10 +71,21 @@ class UserGroupsController extends AppController {
     
     public function edit($id = null) {
         if ($this->RequestHandler->isGet()) {
-            
+            $this->UserGroup->id = $id;
+            $this->request->data = $this->UserGroup->read();
+            $this->set(array (
+                'types' => array (0 => 'TL', 1 => 'SPV'),
+                'current_leader' => $this->request->data['UserGroup']['user_id']
+            ));
         }
         else {
-            
+            $this->autoRender = false;
+            $data = $this->Auth->user();
+            $this->request->data['UserGroup']['update_time'] = date('Y-m-d H:i:s');
+            $this->request->data['UserGroup']['update_user'] = $data['username'];
+            if ($this->UserGroup->save($this->request->data))
+                return json_encode(true);
+            return json_encode(false);
         }
     }
     
