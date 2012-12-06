@@ -54,6 +54,10 @@ var UserGroup = Class.create({
                 Functions.initDatatable('groupsDatatable', 102);
                 Functions.initDialog("addGroupDialog", "Add Group", 380, 230);
                 Functions.initDialog("editGroupDialog", "Edit Group", 380, 230);
+                Functions.initConfirmationDialog("deleteGroupDialog", "Delete Confirmation", 300, 150, function() {
+                    UserGroup.del();
+                    jQuery("#deleteGroupDialog").dialog("close");
+                });
             }
         })
     },
@@ -162,6 +166,30 @@ var UserGroup = Class.create({
                     Functions.write('editGroupInfo', 'Failed to add new User. Please try again later.');
                     jQuery('#editGroupInfo').addClass('error');
                     jQuery('#editGroupInfo').css('text-align', 'center');
+                }
+            }
+        })
+    },
+    
+    initDeleteDialog: function() {
+        Functions.write('deleteGroupDialog', 'Are you sure want to delete this group ?');
+        jQuery("#deleteGroupDialog").dialog("open");
+    },
+    
+    del: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/delete/' + UserGroup.getId(), {
+            method: 'post',
+            onSuccess: function(response) {
+                if (response.responseText === 'true') {
+                    jQuery("#userGroupInfo").addClass("error");
+                    jQuery("#userGroupInfo").css('text-align', 'center');
+                    jQuery("#userGroupInfo").css('display', 'block');
+                    Functions.write('userGroupInfo', 'Group has been successfully deleted.');
+                    jQuery("#userGroupInfo").fadeOut(8000);
+                    UserGroup.load();
+                }
+                else {
+                    Functions.write('userGroupInfo', 'Failed to delete group');
                 }
             }
         })

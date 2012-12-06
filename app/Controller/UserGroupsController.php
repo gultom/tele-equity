@@ -89,8 +89,11 @@ class UserGroupsController extends AppController {
         }
     }
     
-    public function delete() {
-        
+    public function delete($id) {
+        $this->autoRender = false;
+        if ($this->UserGroup->delete($id))
+            return json_encode (true);
+        return json_encode (false);
     }
 }
 
