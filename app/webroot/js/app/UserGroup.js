@@ -34,8 +34,8 @@ var UserGroup = Class.create({
             onSuccess: function(response) {
                 Functions.write('groupList', response.responseText);
                 Functions.initDatatable('groupsDatatable', 100);
-                Functions.initDialog("addGroupDialog", "Add Group", 480, 300);
-                Functions.initDialog("editGroupDialog", "Edit Group", 480, 300);
+                Functions.initDialog("addGroupDialog", "Add Group", 380, 230);
+                Functions.initDialog("editGroupDialog", "Edit Group", 380, 230);
             }
         })
     },
