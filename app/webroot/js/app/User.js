@@ -22,7 +22,7 @@ var User = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('userList', response.responseText);
-                Functions.initDatatable('usersDatatable', 115);
+                Functions.initDatatable('usersDatatable', 120);
             }
         })
     },
