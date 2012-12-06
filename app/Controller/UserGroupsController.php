@@ -23,12 +23,15 @@ class UserGroupsController extends AppController {
         $this->set(compact('groups'));
     }
     
-    public function lists() {
+    public function lists($type) {
         $this->autoRender = false;
         $groups = $this->UserGroup->find('list', array (
             'fields' => array (
                 'UserGroup.id',
                 'UserGroup.name'
+            ),
+            'conditions' => array (
+                'UserGroup.type' => $type
             ),
             'order' => array (
                 'UserGroup.name'
