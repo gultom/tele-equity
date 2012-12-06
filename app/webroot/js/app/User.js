@@ -51,7 +51,7 @@ var User = Class.create({
     checkLevel: function(code) {
         if (code !== '' && code == 8) {
             jQuery("#UserGroupId").prop('disabled', false);
-            new Ajax.Request(Functions.getAppAddress() + 'usergroups/lists', {
+            new Ajax.Request(Functions.getAppAddress() + 'userGroups/lists', {
                 asynchronous: false,
                 method: 'get',
                 onSuccess: function(response) {
