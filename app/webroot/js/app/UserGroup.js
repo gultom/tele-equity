@@ -13,7 +13,7 @@ var UserGroup = Class.create({
     
     initShowGroupsDialog: function() {
         jQuery("#groupsDialog").dialog("open");
-        new Ajax.Request (Functions.getAppAddress() + 'usergroups/view', {
+        new Ajax.Request (Functions.getAppAddress() + 'userGroups/view', {
             method: 'get',
             onSuccess: function(response) {
                 Functions.write("groupsDialog", response.responseText);
@@ -23,7 +23,7 @@ var UserGroup = Class.create({
     },
     
     load: function() {
-        new Ajax.Request(Functions.getAppAddress() + 'usergroups/load', {
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/load', {
             method: 'get',
             onLoading: function() {
                 Functions.write('groupList', '');
@@ -42,7 +42,7 @@ var UserGroup = Class.create({
     
     initAddDialog: function() {
         jQuery("#addGroupDialog").dialog("open");
-        new Ajax.Request(Functions.getAppAddress() + 'usergroups/add', {
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/add', {
             method: 'get',
             onSuccess: function(response) {
                 Functions.write('addGroupDialog', response.responseText);
@@ -85,7 +85,7 @@ var UserGroup = Class.create({
     
     initEditDialog: function() {
         jQuery("#editGroupDialog").dialog("open");
-        new Ajax.Request(Functions.getAppAddress() + 'usergroups/edit', {
+        new Ajax.Request(Functions.getAppAddress() + 'userGroups/edit', {
             method: 'get',
             onSuccess: function(response) {
                 Functions.write('editGroupDialog', response.responseText);
