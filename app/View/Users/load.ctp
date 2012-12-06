@@ -11,7 +11,7 @@
                 array ('Join' => array ('width' => '70px')),
                 array ('Expired' => array ('width' => '70px')),
                 array ('Group' => array ('width' => '70px')),
-                array ('TL' => array ('width' => '65px')),
+                array ('Leader' => array ('width' => '65px')),
                 array ('QA' => array ('width' => '65px')),
                 array ('Ext.' => array ('width' => '20px')),
             ));
