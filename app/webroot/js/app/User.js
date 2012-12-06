@@ -50,9 +50,11 @@ var User = Class.create({
     
     checkLevel: function(id) {
         if (id !== '' && (jQuery.inArray(parseInt(id), new Array(7, 8)) > -1)) {
+            var type = (id == 7) ? 1 : 0; 
             jQuery("#UserGroupId").prop('disabled', false);
             jQuery("#UserGroupId").find('option').remove().end();
-            new Ajax.Request(Functions.getAppAddress() + 'userGroups/lists', {
+            jQuery("#UserQaUsername").find('option').remove().end();
+            new Ajax.Request(Functions.getAppAddress() + 'userGroups/lists/' + type, {
                 asynchronous: false,
                 method: 'get',
                 onSuccess: function(response) {
