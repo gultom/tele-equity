@@ -36,13 +36,36 @@ class UserGroupsController extends AppController {
         ));
         return json_encode($groups);
     }
+    
+    public function listLeaders($type = null) {
+        $this->autoRender = false;
+        $this->loadModel('User');
+        return json_encode($this->UserGroup->Leader->find('list', array (
+            'fields' => array (
+                'Leader.id',
+                'Leader.username'
+            ),
+            'conditions' => array (
+                'Leader.level_id' => ($type == 0) ? 7 : 6
+            )
+        )));
+    }
 
     public function add() {
         if ($this->RequestHandler->isGet()) {
-            
+            $this->set('types', array (0 => 'TL', 1 => 'SPV'));
         }
         else {
-            
+            $this->autoRender = false;
+            if ($this->RequestHandler->isAjax()) {
+                $data = $this->Auth->user();
+                $this->request->data['UserGroup']['insert_time'] = date('Y-m-d H:i:s');
+                $this->request->data['UserGroup']['insert_user'] = $data['username'];
+                $this->UserGroup->create();
+                if ($this->UserGroup->save($this->request->data))
+                    return json_encode (true);
+                return json_encode(false);
+            }
         }
     }
     
