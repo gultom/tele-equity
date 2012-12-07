@@ -108,7 +108,7 @@ var User = Class.create({
                 }
             });
             return isExist;
-        }, 'Username is Already Taken');
+        }, 'Username is already taken');
         
         jQuery("#" + formId.toString()).validate({
             onkeyup: false,
@@ -145,7 +145,7 @@ var User = Class.create({
             messages: {
                 'data[User][username]': {
                     required: 'Please fill username',
-                    usernameExist: 'Username already taken'
+                    usernameExist: 'Username is exist'
                 },
                 'data[User][level_id]': {
                     required: 'Please choose user level'
