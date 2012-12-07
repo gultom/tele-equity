@@ -132,7 +132,7 @@ class UsersController extends AppController {
         $this->set('users', $users);
     }
     
-    public function checkUsername() {
+    public function isUsernameExist() {
         $this->autoRender = false;
         $user = $this->User->find('count', array (
             'conditions' => array (

@@ -99,7 +99,7 @@ var User = Class.create({
     validate: function(formId) {
         jQuery.validator.addMethod("usernameExist", function(value, element) {
             var isExist;
-            new Ajax.Request (Functions.getAppAddress() + 'users/checkusername', {
+            new Ajax.Request (Functions.getAppAddress() + 'users/isusernameexist', {
                 asynchronous: false,
                 method: 'post',
                 parameters: 'username=' + value + '&id=' + User.getId(),
