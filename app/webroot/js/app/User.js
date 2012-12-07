@@ -145,7 +145,7 @@ var User = Class.create({
             messages: {
                 'data[User][username]': {
                     required: 'Please fill username',
-                    usernameExist: 'Username is exist'
+                    usernameExist: 'Username already exist'
                 },
                 'data[User][level_id]': {
                     required: 'Please choose user level'
