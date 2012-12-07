@@ -74,7 +74,21 @@ var UserGroup = Class.create({
     },
     
     validate: function(formId) {
+        jQuery.validator.addMethod("groupNameExist", function(value, element) {
+            var isExist;
+            new Ajax.Request (Functions.getAppAddress() + 'userGroups/isgroupnameexist', {
+                asynchronous: false,
+                method: 'post',
+                parameters: 'name=' + value + '&id=' + UserGroup.getId(),
+                onSuccess: function(response) {
+                    isExist = (response.responseText === 'true') ? false : true;
+                }
+            });
+            return isExist;
+        }, 'Group name is already taken');
+        
         jQuery("#" + formId.toString()).validate({
+            onkeyup: false,
             errorPlacement: function(error, placement) {
                 $(placement).qtip({
                     content: error.text(),
@@ -98,13 +112,26 @@ var UserGroup = Class.create({
             },
             rules: {
                 'data[UserGroup][name]':  {
-                    required: true
+                    required: true,
+                    groupNameExist: true
                 },
                 'data[UserGroup][type]': {
                     required: true
                 },
                 'data[UserGroup][user_id]': {
                     required: true
+                }
+            },
+            messages: {
+                'data[UserGroup][name]': {
+                    required: 'Please fill group name',
+                    groupNameExist: 'Group name already exist'
+                },
+                'data[UserGroup][type]': {
+                    required: 'Please choose group type'
+                },
+                'data[UserGroup][user_id]': {
+                    required: 'Please choose group leader'
                 }
             },
             submitHandler: function() {
@@ -121,7 +148,6 @@ var UserGroup = Class.create({
                 if (response.responseText == 'true') {
                     jQuery("#addGroupDialog").dialog("close");
                     UserGroup.load();
-                    User.load();
                 }
                 else {
                     Functions.write('addGroupInfo', 'Failed to add new Group');
