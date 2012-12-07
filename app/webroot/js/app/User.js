@@ -188,6 +188,7 @@ var User = Class.create({
                 onSuccess: function(response) {
                     Functions.write('editUserDialog', response.responseText);
                     Functions.initCalendar("joinDate");
+                    Functions.initDialog('addPassword', 'Password', 180, 200);
                     User.validate('UserEdit');
                     User.checkLevel(jQuery("#UserLevelId option:selected").val());
                     jQuery("#UserGroupId").val(jQuery("#UserCurrentGroup").val());
@@ -213,6 +214,75 @@ var User = Class.create({
                 }
             }
         });
+    },
+    
+    initAddPasswordDialog: function() {
+        jQuery("#addPassword").dialog("open");
+        new Ajax.Request(Functions.getAppAddress() + 'users/addpassword/' + User.getId(), {
+            method: 'get',
+            onSuccess: function(response) {
+                Functions.write('addPassword', response.responseText);
+                User.validateAddPassword('UserPassword');
+            }
+        })
+    },
+    
+    validateAddPassword: function(formId) {
+        jQuery("#" + formId.toString()).validate({
+            onkeyup: false,
+            errorPlacement: function(error, placement) {
+                $(placement).qtip({
+                    content: error.text(),
+                    show: { when: { event: 'none'}, ready: true },
+                    hide: { when: { event: 'unfocus' } },
+                    position: {
+                      corner: {
+                         target: 'topRight',
+                         tooltip: 'bottomLeft'
+                      }
+                   },
+                   style: {
+                      border: {
+                         width: 1,
+                         radius: 10
+                      },
+                      tip: true,
+                      name: 'red'
+                   }
+                });
+            },
+            rules: {
+                'data[UserPassword][password]':  {
+                    required: true
+                },
+                'data[UserPassword][password_confirm]': {
+                    required: true,
+                    equalTo: '#UserPasswordPassword'
+                }
+            },
+            messages: {
+                'data[UserPassword][password]':  {
+                    required: 'Please input new password'
+                },
+                'data[UserPassword][password_confirm]': {
+                    required: 'Please re-enter password',
+                    equalTo: 'Password not match'
+                }
+            },
+            submitHandler: function() {
+                User.addPassword();
+            }
+        });
+    },
+    
+    addPassword: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'users/addpassword/' + User.getId(), {
+            method: 'post',
+            parameters: Form.serialize('UserPassword'),
+            onSuccess: function() {
+                jQuery("#addPassword").dialog("close");
+            }
+        })
     },
     
     initDeleteDialog: function() {

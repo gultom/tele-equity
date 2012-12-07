@@ -1,5 +1,6 @@
 
 <?= $this->Html->tag('div', '', array ('id' => 'editInfo')); ?>
+<?= $this->Html->tag('div', '', array ('id' => 'addPassword')); ?>
 <?= $this->Form->create('User', array ('id' => 'UserEdit', 'name' => 'UserEdit')); ?>
 <?= $this->Form->input('id', array ('type' => 'hidden')); ?>
 <?= $this->Form->input('current_group', array ('type' => 'hidden', 'value' => $current_group)); ?>
@@ -78,7 +79,11 @@ $this->Html->tableCells(array(
         array (
             $this->Form->button('Save', array('class' => 'button')) .' '.
             $this->Form->button('Cancel', array('type' => 'button', 'class' => 'button', 'onclick' => 'Functions.closeDialog(\'editUserDialog\')'))
-            , array ('colspan' => 6, 'align' => 'center')
+            , array ('colspan' => 4, 'align' => 'left')
+        ),
+        array (
+            $this->Form->button($this->Html->image('icons/icon-padlock.png', array('align' => 'absmiddle')) .' Password', array('type' => 'button', 'class' => 'button', 'onclick' => 'User.initAddPasswordDialog()')),
+            array ('colspan' => 2, 'align' => 'right')
         )
     )
 ));
