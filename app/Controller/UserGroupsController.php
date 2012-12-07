@@ -53,6 +53,17 @@ class UserGroupsController extends AppController {
             )
         )));
     }
+    
+    public function isGroupNameExist() {
+        $this->autoRender = false;
+        $group = $this->UserGroup->find('count', array (
+            'conditions' => array (
+                'UserGroup.id <>' => $this->request->data['id'],
+                'UserGroup.name' => $this->request->data['name']
+            )
+        ));
+        return json_encode(($group) ? true : false);
+    }
 
     public function add() {
         if ($this->RequestHandler->isGet()) {
