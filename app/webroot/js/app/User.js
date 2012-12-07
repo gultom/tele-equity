@@ -37,6 +37,7 @@ var User = Class.create({
     },
     
     initAddDialog: function() {
+        User.setId(null);
         jQuery("#addUserDialog").dialog("open");
         new Ajax.Request(Functions.getAppAddress() + 'users/add', {
             method: 'get',
@@ -96,7 +97,21 @@ var User = Class.create({
     },
     
     validate: function(formId) {
+        jQuery.validator.addMethod("usernameExist", function(value, element) {
+            var isExist;
+            new Ajax.Request (Functions.getAppAddress() + 'users/checkusername', {
+                asynchronous: false,
+                method: 'post',
+                parameters: 'username=' + value + '&id=' + User.getId(),
+                onSuccess: function(response) {
+                    isExist = (response.responseText === 'true') ? false : true;
+                }
+            });
+            return isExist;
+        }, 'Username is Already Taken');
+        
         jQuery("#" + formId.toString()).validate({
+            onkeyup: false,
             errorPlacement: function(error, placement) {
                 $(placement).qtip({
                     content: error.text(),
@@ -120,7 +135,8 @@ var User = Class.create({
             },
             rules: {
                 'data[User][username]':  {
-                    required: true
+                    required: true,
+                    usernameExist: true
                 },
                 'data[User][level_id]': {
                     required: true
@@ -128,7 +144,11 @@ var User = Class.create({
             },
             messages: {
                 'data[User][username]': {
-                    messages: 'Please fill username'
+                    required: 'Please fill username',
+                    usernameExist: 'Username already taken'
+                },
+                'data[User][level_id]': {
+                    required: 'Please choose user level'
                 }
             },
             submitHandler: function() {
@@ -156,7 +176,7 @@ var User = Class.create({
     },
     
     initEditDialog: function() {
-        if (this.id === null) {
+        if (User.getId() === null) {
             Functions.write('userInfo', '<b>Please select user first.</b>');
             Functions.initInformationDialog('userInfo', 300, 125);
             jQuery("#userInfo").dialog('open');
