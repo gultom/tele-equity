@@ -132,6 +132,17 @@ class UsersController extends AppController {
         $this->set('users', $users);
     }
     
+    public function checkUsername() {
+        $this->autoRender = false;
+        $user = $this->User->find('count', array (
+            'conditions' => array (
+                'User.id <> ' => $this->request->data['id'],
+                'User.username' => $this->request->data['username']
+            )
+        ));
+        return json_encode(($user) ? true : false);
+    }
+    
     public function add() {
         if ($this->RequestHandler->isGet()) {
             $this->loadModel('Level');
