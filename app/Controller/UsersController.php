@@ -157,6 +157,7 @@ class UsersController extends AppController {
         else {
             $this->autoRender = false;
             if ($this->RequestHandler->isAjax()) {
+                $this->request->data['User']['password'] = md5($this->request->data['User']['username']);
                 $this->User->create();
                 if ($this->User->save($this->request->data))
                     return json_encode (true);
@@ -209,7 +210,16 @@ class UsersController extends AppController {
         ));
         if ($isAjax)
             return json_encode($users);
-        return $users;
+    }
+    
+    public function addPassword($id = null) {
+        $this->request->data['UserPassword']['id'] = $id;
+        if ($this->RequestHandler->isPost()) {
+            $this->User->updateAll(
+                    array ('User.password' => 'MD5("'. $this->request->data['UserPassword']['password']. '")'),
+                    array ('User.id' => $id)
+                    );
+        }
     }
     
     public function delete($id) {
