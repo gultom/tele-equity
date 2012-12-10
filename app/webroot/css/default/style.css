@@ -6,8 +6,11 @@
         Purpose of the stylesheet follows.
 */
 
-body {
+* {
     font-family: "trebuchet ms", arial, helvetica, verdana;
+}
+
+body {
     font-size: 11px;
     color: #000;
     margin: 0;
@@ -92,6 +95,7 @@ img {
     background: #ffffff;
     border: 1px solid #707070;
     border-radius: 3px;
+    font-size: 11px;
     box-shadow: inset 0 0 10px #c0c0c0;
     -webkit-box-shadow: inset 0 0 10px #c0c0c0;
     padding: 5px 3px 5px 3px;
