@@ -1,7 +1,8 @@
 <?=
 $this->Html->script(array(
     'lib/datatables/script',
-    'app/Customer'
+    'app/Customer',
+    'app/Import'
 ), false);
 
 $this->Html->css(array (
@@ -9,13 +10,21 @@ $this->Html->css(array (
 ), null, array (
     'inline' => false
 ));
+
+$this->Html->scriptBlock (
+    '
+jQuery(document).ready(function($) {
+    Import = new Import();
+    Functions.initDialog("upload", "Upload Data", 600, 500);
+});
+    ', array ('inline' => false));
 ?>
 
 <table>
 <?=
 $this->Html->tableCells (array (
     array (
-        $this->Html->tag('button', $this->Html->image('icons/icon-_upload.png', array('align' => 'absmiddle')) . ' Upload', array ('class' => 'transButton', 'onclick' => 'alert("Enabled")', 'disabled' => $buttons['upload'])),
+        $this->Html->tag('button', $this->Html->image('icons/icon-_upload.png', array('align' => 'absmiddle')) . ' Upload', array ('class' => 'transButton', 'onclick' => 'Import.initUploadDialog()', 'disabled' => $buttons['upload'])),
         $this->Html->tag('button', $this->Html->image('icons/icon-_distribute.png', array('align' => 'absmiddle')). ' Distribute', array ('class' => 'transButton', 'onclick' => 'alert("Enabled")', 'disabled' => $buttons['distribute'])),
         $this->Html->tag('button', $this->Html->image('icons/icon-_reassign.png', array('align' => 'absmiddle')). ' Reassign', array ('class' => 'transButton', 'onclick' => 'alert("Enabled")', 'disabled' => $buttons['reassign'])),
         $this->Html->tag('button', $this->Html->image('icons/icon-_recycle.png', array('align' => 'absmiddle')). ' Recycle', array ('class' => 'transButton', 'onclick' => 'alert("Enabled")', 'disabled' => $buttons['recycle'])),
@@ -26,5 +35,31 @@ $this->Html->tableCells (array (
 ?>
 </table>
 
+<?= $this->Form->create('FilterCustomer', array ('id' => 'FilterCustomer', 'name' => 'FilterCustomer')); ?>
+
+<fieldset>
+    <legend>Filters</legend>
+    <table>
+<?=
+$this->Html->tableCells( array (
+    array (
+        'Campaign',
+        'Status',
+        'Response'
+    ),
+    array (
+        $this->Form->input('campaign_id', array ('label' => false, 'empty' => '(All)', 'options' => $campaigns, 'class' => 'input-text')),
+        $this->Form->input('status_id', array ('label' => false, 'empty' => '(All)', 'options' => $statuses, 'class' => 'input-text')),
+        $this->Form->input('response_id', array ('label' => false, 'empty' => '(All)', 'options' => $responses, 'class' => 'input-text'))
+    )
+));
+?>
+    </table>
+</fieldset>
+
+<?= $this->Form->end(); ?>
+<?=
+$this->Html->tag('div', '', array ('id' => 'upload'));
+?>
 <div id="clear"></div>
 <?= $this->Html->tag('div', '', array('id' => 'customerList')); ?>
