@@ -65,7 +65,18 @@ class CustomersController extends AppController {
     }
     
     public function view() {
-        
+        $sessions = $this->Auth->user();
+        $level = $sessions['level_id'];
+        unset($sessions);
+        $buttons = array (
+            'upload' => (in_array($level, array (1, 2, 3))) ? false : true,
+            'distribute' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'reassign' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'recycle' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'details' => (!in_array($level, array(4)) ? false : true),
+            'search' => false
+        );
+        $this->set(compact('buttons'));
     }
 }
 
