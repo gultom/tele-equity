@@ -9,13 +9,6 @@ $this->Html->css(array (
 ), null, array (
     'inline' => false
 ));
-
-$this->Html->scriptBlock(
-    '
-jQuery(document).ready(function($) {
-    Customer.load();
-});
-    ', array('inline' => FALSE));
 ?>
 
 <div id="clear"></div>
