@@ -44,6 +44,7 @@ class UsersController extends AppController {
                 'User.username',
                 'User.usercode',
                 'User.level_id',
+                'User.group_id',
                 'User.activity_id',
                 'User.activity_time',
                 'User.sip_host',
