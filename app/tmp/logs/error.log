@@ -3690,3 +3690,29 @@ ErrorHandler::handleException() - CORE/Cake/Error/ErrorHandler.php, line 126
 #8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
+2012-12-10 12:10:17 Error: [MissingTableException] Table customer_statuses for model Status was not found in datasource default.
+#0 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(3186): Model->setSource('customer_status...')
+#1 D:\Project\webapps\tele-equity\lib\Cake\Model\Datasource\DboSource.php(1066): Model->getDataSource()
+#2 D:\Project\webapps\tele-equity\lib\Cake\Model\Model.php(2637): DboSource->read(Object(Customer), Array)
+#3 D:\Project\webapps\tele-equity\app\Controller\CustomersController.php(63): Model->find('all', Array)
+#4 D:\Project\webapps\tele-equity\app\Controller\CustomersController.php(69): CustomersController->load()
+#5 [internal function]: CustomersController->view()
+#6 D:\Project\webapps\tele-equity\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(CustomersController), Array)
+#7 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Project\webapps\tele-equity\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CustomersController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2012-12-10 13:54:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-12-10 14:00:28 Error: [MissingControllerException] Controller class CollectionController could not be found.
+#0 D:\Project\webapps\tele-equity\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-12-10 14:08:26 Error: Fatal Error (4): syntax error, unexpected '<' in [D:\Project\webapps\tele-equity\app\View\Customers\view.ctp, line 12]
+2012-12-10 14:08:26 Error: [FatalErrorException] syntax error, unexpected '<'
+#0 D:\Project\webapps\tele-equity\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Project\weba...', 12)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Project\weba...', 12, Array)
+#2 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Project\weba...', 12, Array)
+#3 D:\Project\webapps\tele-equity\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
