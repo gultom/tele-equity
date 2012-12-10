@@ -7,6 +7,7 @@
  */
 class CustomerResponse extends AppModel {
     
+    public $useTable = 'customer_response';
 }
 
 ?>
