@@ -76,7 +76,33 @@ class CustomersController extends AppController {
             'details' => (!in_array($level, array(4)) ? false : true),
             'search' => false
         );
-        $this->set(compact('buttons'));
+        
+        $this->loadModel('Campaign');
+        $campaigns = $this->Campaign->find('list', array (
+            'fields' => array (
+                'id', 
+                'name'
+            ),
+        ));
+        
+        $this->loadModel('CustomerStatus');
+        $statuses = $this->CustomerStatus->find('list', array (
+            'fields' => array (
+                'id',
+                'name'
+            ),
+            'order' => 'CustomerStatus.sort_index'
+        ));
+        
+        $this->loadModel('CustomerResponse');
+        $responses = $this->CustomerResponse->find('list', array (
+            'fields' => array (
+                'id',
+                'response'
+            )
+        ));
+        
+        $this->set(compact('buttons', 'campaigns', 'statuses', 'responses'));
     }
 }
 

@@ -8,6 +8,7 @@
 class Customer extends AppModel {
     
     public $belongsTo = array (
+        'User',
         'Status' => array (
             'className' => 'CustomerStatus',
             'foreignKey' => 'status_id'
@@ -16,7 +17,7 @@ class Customer extends AppModel {
             'className' => 'CustomerResponse',
             'foreignKey' => 'response_id'
         ),
-        'Campaign'
+        'Import'
     );
 }
 
