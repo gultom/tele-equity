@@ -157,12 +157,10 @@ class UsersController extends AppController {
         }
         else {
             $this->autoRender = false;
-            if ($this->RequestHandler->isAjax()) {
+            if ($this->RequestHandler->isPost()) {
                 $this->request->data['User']['password'] = md5($this->request->data['User']['username']);
                 $this->User->create();
-                if ($this->User->save($this->request->data))
-                    return json_encode (true);
-                return json_encode (false);
+                return json_encode(($this->User->save($this->request->data)) ? true : false);
             }
         }
     }
