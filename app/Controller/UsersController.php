@@ -223,9 +223,7 @@ class UsersController extends AppController {
     
     public function delete($id) {
         $this->autoRender = false;
-        if ($this->User->delete($id))
-            return json_encode (true);
-        return json_encode (false);
+        return json_encode(($this->User->delete($id)) ? true : false);
     }
 }
 

@@ -291,21 +291,24 @@ var User = Class.create({
     },
     
     del: function() {
+        var useClass;
         new Ajax.Request(Functions.getAppAddress() + 'users/delete/' + User.getId(), {
+            asynchronous: false,
             method: 'post',
             onSuccess: function(response) {
                 if (response.responseText === 'true') {
-                    jQuery("#userInfo").addClass("error");
-                    jQuery("#userInfo").css('text-align', 'center');
-                    jQuery("#userInfo").css('display', 'block');
                     Functions.write('userInfo', 'User has been successfully deleted.');
-                    jQuery("#userInfo").fadeOut(8000);
-                    User.load();
+                    useClass = 'info';
                 }
                 else {
                     Functions.write('userInfo', 'Failed to delete user');
+                    useClass = 'error';
                 }
             }
         })
+        jQuery('#userInfo').addClass(useClass.toString());
+        jQuery('#userInfo').css('text-align', 'center');
+        jQuery('#userInfo').css('display', 'block');
+        jQuery('#userInfo').fadeOut(8000, User.load());
     }
 });
