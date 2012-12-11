@@ -203,21 +203,24 @@ var UserGroup = Class.create({
     },
     
     del: function() {
+        var useClass;
         new Ajax.Request(Functions.getAppAddress() + 'userGroups/delete/' + UserGroup.getId(), {
+            asynchronous: false,
             method: 'post',
             onSuccess: function(response) {
                 if (response.responseText === 'true') {
-                    jQuery("#userGroupInfo").addClass("error");
-                    jQuery("#userGroupInfo").css('text-align', 'center');
-                    jQuery("#userGroupInfo").css('display', 'block');
                     Functions.write('userGroupInfo', 'Group has been successfully deleted.');
-                    jQuery("#userGroupInfo").fadeOut(8000);
-                    UserGroup.load();
+                    useClass = 'info';
                 }
                 else {
                     Functions.write('userGroupInfo', 'Failed to delete group');
+                    useClass = 'error';
                 }
             }
         })
+        jQuery('#userGroupInfo').addClass(useClass.toString());
+        jQuery('#userGroupInfo').css('text-align', 'center');
+        jQuery('#userGroupInfo').css('display', 'block');
+        jQuery('#userGroupInfo').fadeOut(8000, UserGroup.load());
     }
 });
