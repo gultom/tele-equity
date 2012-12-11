@@ -11,6 +11,22 @@ var Campaign = new Class.create({
         return this.id;
     },
     
+    load: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'campaigns/view', {
+            method: 'get',
+            onLoading: function() {
+                Functions.write('campaignList', '');
+                jQuery("#campaignList").append('<div id="loadingImage"></div>');
+                Functions.write('loadingImage', '<img src="' + Functions.getAppAddress() + 'img/loading.gif' + '" />');
+                jQuery("#loadingImage").css('text-align', 'center');
+            },
+            onSuccess: function(response) {
+                Functions.write('campaignList', response.responseText);
+                Functions.initDatatable('campaignDatatable', 100);
+            }
+        })
+    },
+    
     initAddDialog: function() {
         Campaign.setId(null);
         jQuery("#addCampaignDialog").dialog("open");
@@ -83,8 +99,10 @@ var Campaign = new Class.create({
             method: 'post',
             parameters: Form.serialize('CampaignAdd'),
             onSuccess: function(response) {
-                if (response.responseText === 'true')
+                if (response.responseText === 'true') {
+                    Campaign.load();
                     Functions.closeDialog('addCampaignDialog');
+                }
                 else {
                     jQuery('#campaignInfo').addClass('error');
                     jQuery('#campaignInfo').css('text-align', 'center');
@@ -96,5 +114,14 @@ var Campaign = new Class.create({
     
     initEditDialog: function() {
         jQuery("#editCampaignDialog").dialog("open");
+    },
+    
+    initDeleteDialog: function() {
+        Functions.write('deleteCampaignDialog', 'Are you sure want to delete this campaign ?');
+        jQuery("#deleteCampaignDialog").dialog("open");
+    },
+    
+    del: function() {
+        
     }
 })

@@ -12,7 +12,19 @@ class CampaignsController extends AppController {
     }
     
     public function view() {
+        $this->view = ($this->RequestHandler->isAjax()) ? 'load' : 'view';
+        $this->set('title_for_layout', 'Campaign List');
         
+        $campaigns = $this->Campaign->find('all', array (
+            'fields' => array (
+                'Campaign.id AS Id',
+                'Campaign.name AS Name',
+                'Campaign.insert_time AS Added',
+                'Campaign.insert_user AS AddedBy'
+            ),
+            'order' => 'Added DESC'
+        ));
+        $this->set(compact('campaigns'));
     }
     
     public function add() {
