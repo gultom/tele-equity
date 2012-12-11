@@ -15,7 +15,7 @@ $this->Html->scriptBlock (
     '
 jQuery(document).ready(function($) {
     Import = new Import();
-    Functions.initDialog("upload", "Upload Data", 600, 500);
+    Functions.initDialog("uploadDialog", "Upload Data", 600, 500);
 });
     ', array ('inline' => false));
 ?>
@@ -59,7 +59,7 @@ $this->Html->tableCells( array (
 
 <?= $this->Form->end(); ?>
 <?=
-$this->Html->tag('div', '', array ('id' => 'upload'));
+$this->Html->tag('div', '', array ('id' => 'uploadDialog'));
 ?>
 <div id="clear"></div>
 <?= $this->Html->tag('div', '', array('id' => 'customerList')); ?>
