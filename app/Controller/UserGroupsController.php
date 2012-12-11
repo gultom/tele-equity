@@ -72,9 +72,8 @@ class UserGroupsController extends AppController {
         else {
             $this->autoRender = false;
             if ($this->RequestHandler->isAjax()) {
-                $data = $this->Auth->user();
                 $this->request->data['UserGroup']['insert_time'] = date('Y-m-d H:i:s');
-                $this->request->data['UserGroup']['insert_user'] = $data['username'];
+                $this->request->data['UserGroup']['insert_user'] = $this->session['username'];
                 $this->UserGroup->create();
                 if ($this->UserGroup->save($this->request->data))
                     return json_encode(true);
@@ -94,9 +93,8 @@ class UserGroupsController extends AppController {
         }
         else {
             $this->autoRender = false;
-            $data = $this->Auth->user();
             $this->request->data['UserGroup']['update_time'] = date('Y-m-d H:i:s');
-            $this->request->data['UserGroup']['update_user'] = $data['username'];
+            $this->request->data['UserGroup']['update_user'] = $this->session['username'];
             if ($this->UserGroup->save($this->request->data))
                 return json_encode(true);
             return json_encode(false);

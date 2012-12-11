@@ -30,8 +30,7 @@ class CustomersController extends AppController {
             )
         );
         
-        $user = $this->Auth->user();
-        $level = $user['level_code'];
+        $level = $this->session['level_id'];
         $status = array();
         for ($i = -1; $i <= 10; ++$i) {
             $status[] = $i;
@@ -65,9 +64,7 @@ class CustomersController extends AppController {
     }
     
     public function view() {
-        $sessions = $this->Auth->user();
-        $level = $sessions['level_id'];
-        unset($sessions);
+        $level = $this->session['level_id'];
         $buttons = array (
             'upload' => (in_array($level, array (1, 2, 3))) ? false : true,
             'distribute' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
