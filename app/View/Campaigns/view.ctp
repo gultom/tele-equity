@@ -15,7 +15,12 @@ $this->Html->scriptBlock (
     jQuery(document).ready(function($) {
         Campaign = new Campaign();
         Functions.initDialog("addCampaignDialog", "Add Campaign", 300, 150);
-        Functions.initDialog("editCampaignDialog", "Edit Campaign", 300, 150);
+        Functions.initDialog("editCampaignDialog", "Edit Campaign", 300, 150);;
+        Functions.initConfirmationDialog("deleteCampaignDialog", "Delete Confirmation", 300, 150, function() {
+            Campaign.del();
+            jQuery("#deleteCampaignDialog").dialog("close");
+        });
+        Campaign.load();
     });
     ', array ('inline' => false));
 ?>
