@@ -44,8 +44,11 @@ class AppController extends Controller {
         'Form'
     );
     
+    public $session = array();
+    
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->session = $this->Auth->user();
         self::getMenus();
     }
     
