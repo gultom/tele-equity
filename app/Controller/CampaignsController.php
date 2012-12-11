@@ -47,6 +47,24 @@ class CampaignsController extends AppController {
         ));
         return json_encode(($campaign) ? true : false);
     }
+    
+    public function edit($id = null) {
+        if ($this->RequestHandler->isGet()) {
+            $this->Campaign->id = $id;
+            $this->request->data = $this->Campaign->read();
+        }
+        else {
+            $this->autoRender = false;
+            $this->request->data['Campaign']['update_user'] = $this->session['username'];
+            $this->request->data['Campaign']['update_time'] = date('Y-m-d H:i:s');
+            return json_encode(($this->Campaign->save($this->request->data)) ? true : false);
+        }
+    }
+    
+    public function delete($id = null) {
+        $this->autoRender = false;
+        return json_encode(($this->Campaign->delete($id)) ? true : false);
+    }
 }
 
 ?>
