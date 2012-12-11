@@ -183,7 +183,7 @@ class UsersController extends AppController {
                 'current_qa' => $this->request->data['User']['qa_id']
             ));
         }
-        elseif ($this->RequestHandler->isPost()) {
+        elseif ($this->RequestHandler->isAjax()) {
             $this->autoRender = false;
             $this->request->data['User']['update_time'] = date('Y-m-d H:i:s');
             if ($this->User->save($this->request->data)) {
