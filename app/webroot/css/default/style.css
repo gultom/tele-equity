@@ -169,6 +169,14 @@ img {
     color: #039E12;
 }
 
+
+.info {
+    padding: 5px 3px 5px 3px;
+    border: 1px solid #5cb811;
+    background: #DDFF75;
+    color: #3F6219
+}
+
 div.ui-datepicker{
     font-size: 11px;
 }
