@@ -1,3 +1,13 @@
+<?=
+
+$this->Html->scriptBlock (
+    '
+    jQuery(document).ready(function() {
+        jQuery("#UserUsername").focus();
+    })
+    ', array ('inline' => false));
+
+?>
 <?= $this->Form->create('User', array('action' => 'dologin')); ?>
 <table align="center">
     <tr>

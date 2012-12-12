@@ -2,6 +2,19 @@
 var User = Class.create({
     
     id: null,
+    level: null,
+    
+    initialize: function() {
+        var level;
+        new Ajax.Request(Functions.getAppAddress() + 'users/getlevel', {
+            asynchronous: false,
+            method: 'post',
+            onSuccess: function(response) {
+                level = response.responseText;
+            }
+        })
+        this.level = parseInt(level.evalJSON());
+    },
     
     setId: function(id) {
         this.id = id;
@@ -9,6 +22,10 @@ var User = Class.create({
     
     getId: function() {
         return this.id;
+    },
+    
+    getLevel: function() {
+        return this.level;
     },
     
     load: function() {
@@ -29,6 +46,69 @@ var User = Class.create({
     
     initLogoutDialog: function() {
         jQuery("#logoutDialog").dialog("open");
+    },
+    
+    setLogoutReason: function(reason) {
+        if (reason === 'OTHER') {
+            jQuery('#UserLogoutActivityInfo').val('');
+            jQuery('#UserLogoutActivityInfo').css('display', 'block');
+            jQuery('#UserLogoutActivityInfo').focus();
+        }
+        else {
+            jQuery('#UserLogoutActivityInfo').css('display', 'none');
+            jQuery('#UserLogoutActivityInfo').val(jQuery('#UserLogoutActivity').val());
+        }
+    },
+    
+    validateLogout: function() {
+        jQuery.validator.addMethod('isOther', function(name, value) {
+            return (jQuery('#UserLogoutActivity').val() === 'OTHER' && jQuery('#UserLogoutActivityInfo').val() == '') ? false : true;
+        }, 'Please input reason for logout');
+        
+        jQuery('#UserLogout').validate({
+            onkeyup: false,
+            errorPlacement: function(error, placement) {
+                $(placement).qtip({
+                    content: error.text(),
+                    show: { when: { event: 'none'}, ready: true },
+                    hide: { when: { event: 'unfocus' } },
+                    position: {
+                      corner: {
+                         target: 'topRight',
+                         tooltip: 'bottomLeft'
+                      }
+                   },
+                   style: {
+                      border: {
+                         width: 1,
+                         radius: 10
+                      },
+                      tip: true,
+                      name: 'red'
+                   }
+                });
+            },
+            rules: {
+                'data[UserLogout][activity]':  {
+                    required: true
+                },
+                'data[UserLogout][activity_info]': {
+                    isOther: true
+                }
+            },
+            messages: {
+                'data[UserLogout][activity]':  {
+                    required: 'Please choose logout reason'
+                }
+            },
+            submitHandler: function() {
+                new Ajax.Request(Functions.getAppAddress() + 'users/setactivity/0/' + jQuery('#UserLogoutActivityInfo').val(), {
+                    asynchronous: false,
+                    method: 'post'
+                })
+                User.logout();
+            }
+        });
     },
     
     logout: function() {

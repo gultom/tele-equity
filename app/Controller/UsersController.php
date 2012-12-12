@@ -41,6 +41,7 @@ class UsersController extends AppController {
         
         $isValid = $this->User->find('first', array(
             'fields' => array (
+                'User.id',
                 'User.username',
                 'User.usercode',
                 'User.level_id',
@@ -65,7 +66,7 @@ class UsersController extends AppController {
         if ($isValid) {
             $this->Auth->login();
             $this->Session->write('Auth', $isValid);
-            self::updateLastLogin($data['username']);
+            self::setActivity(1);
             $this->redirect(array('controller' => 'info', 'action' => 'home'));
         }
         
@@ -73,15 +74,38 @@ class UsersController extends AppController {
         $this->redirect('login/');
     }
     
-    private function updateLastLogin($username) {
+    public function getLevel() {
+        $this->autoRender = false;
+        return json_encode($this->session['level_id']);
+    }
+    
+    public function setActivity($id, $info = NULL) {
+        $this->autoRender = false;
+        $data = $this->Auth->user();
         $this->User->updateAll(
-            array(
-                'User.activity_time' => "'". date('Y-m-d H:i:s' ."'")
-            ),
-            array(
-                'User.username' => $username
-            )
-        );
+                    array (
+                        'User.activity_id' => $id,
+                        'User.activity_info' => (is_null($info)) ? "null" : "'$info'",
+                        'User.activity_time' => "'". date('Y-m-d H:i:s') ."'"
+                    ),
+                    array (
+                        'User.id' => $data['id']
+                    )
+                );
+    }
+    
+    public function showLogoutReason() {
+        $this->view = 'logout';
+    }
+    
+    public function updateLogoutReason() {
+        $this->autoRender = false;
+        unset($this->request->data['activity']);
+        $this->User->updateAll(
+                    array (
+                        'User.activity_id'
+                    )
+                );
     }
     
     public function logout() {

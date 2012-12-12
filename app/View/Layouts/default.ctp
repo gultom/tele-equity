@@ -48,7 +48,23 @@
         var User = new User();
         
         jQuery(document).ready(function($) {
-            Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {User.logout()});
+            if (User.getLevel() !== 8) {
+                Functions.write('logoutDialog', 'Are sure want to logout this session ?');
+                Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {User.logout()});
+            }
+            else {
+                Functions.initDialog('logoutDialog', 'Reason for logging out', 340, 170);
+                jQuery('#logoutButton').click(function() {
+                    new Ajax.Request(Functions.getAppAddress() + 'users/showlogoutreason', {
+                        asynchronous: false,
+                        method: 'get',
+                        onSuccess: function(response) {
+                            Functions.write('logoutDialog', response.responseText);
+                        }
+                    })
+                    User.validateLogout();
+                })
+            }
         });
     </script>
     <?=
@@ -59,9 +75,9 @@
 <body>
 	<div id="container">
 		<div id="header">
-            <?= $this->Html->tag('div', 'Are sure want to logout this session ?', array('id' => 'logoutDialog')); ?>
+            <?= $this->Html->tag('div', '', array('id' => 'logoutDialog', 'style' => 'display: none')); ?>
             
-            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'User.initLogoutDialog()', 'escape' => false))); ?>
+            <?= $this->Html->tag('div', $this->Html->link($this->Html->image('icons/icon-logout.png', array('border' => 0)), 'javascript:void(0)', array('title' => 'Logout Session', 'onclick' => 'User.initLogoutDialog()', 'escape' => false)), array ('id' => 'logoutButton')); ?>
             
             <?= $this->Html->image('header-main.gif', array('alt' => 'Equity Life Indonesia', 'border' => 0)); ?>
             

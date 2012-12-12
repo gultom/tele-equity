@@ -7,6 +7,8 @@
 <?= $this->Html->meta('icon'); ?>
 
 <?= $this->Html->css('default/login.css'); ?>
+
+<?= $this->Html->script('lib/jquery/jquery-1.8.3.min'); ?>
 <?= $scripts_for_layout; ?>
 
 </head>
