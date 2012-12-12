@@ -98,16 +98,6 @@ class UsersController extends AppController {
         $this->view = 'logout';
     }
     
-    public function updateLogoutReason() {
-        $this->autoRender = false;
-        unset($this->request->data['activity']);
-        $this->User->updateAll(
-                    array (
-                        'User.activity_id'
-                    )
-                );
-    }
-    
     public function logout() {
         $this->autoRender = false;
         $this->Auth->logout();
