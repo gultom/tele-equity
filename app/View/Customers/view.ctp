@@ -15,7 +15,11 @@ $this->Html->scriptBlock (
     '
 jQuery(document).ready(function($) {
     Import = new Import();
+    Customer = new Customer();
     Functions.initDialog("uploadDialog", "Upload Data", 600, 500);
+    jQuery("#FilterCustomerList").click(function() {
+        Customer.load();
+    });
 });
     ', array ('inline' => false));
 ?>
@@ -45,12 +49,14 @@ $this->Html->tableCells( array (
     array (
         'Campaign',
         'Status',
-        'Response'
+        'Response',
+        ''
     ),
     array (
         $this->Form->input('campaign_id', array ('label' => false, 'empty' => '(All)', 'options' => $campaigns, 'class' => 'input-text')),
         $this->Form->input('status_id', array ('label' => false, 'empty' => '(All)', 'options' => $statuses, 'class' => 'input-text')),
-        $this->Form->input('response_id', array ('label' => false, 'empty' => '(All)', 'options' => $responses, 'class' => 'input-text'))
+        $this->Form->input('response_id', array ('label' => false, 'empty' => '(All)', 'options' => $responses, 'class' => 'input-text')),
+        $this->Form->button('List', array ('label' => false, 'type' => 'button', 'id' => 'FilterCustomerList', 'class' => 'button'))
     )
 ));
 ?>

@@ -11,15 +11,18 @@ App::import('Controller', 'User');
 class CustomersController extends AppController {
 
     public function load() {
+        /*
         $options = array (
             'fields' => array (
                 'Customer.id AS Id',
                 'Customer.batch_no AS BatchNo',
                 'Customer.name AS Name',
                 'Status.name AS Status',
-                'Response.name AS Response',
-                'Customer.tl_username AS TL',
-                'Customer.qa_username AS QA',
+                'Response.response AS Response',
+                'TM.username AS Username',
+                'TL.username AS Username',
+                'SPV.username AS Username',
+                'QA.username AS Username',
                 'Customer.callback_time AS CallbackTime',
                 'Customer.birth_date AS DOB',
                 'Customer.company AS Company',
@@ -27,6 +30,35 @@ class CustomersController extends AppController {
                 'Customer.homephone2 AS Homephone2',
                 'Customer.handphone1 AS Handphone1',
                 'Customer.handphone2 AS Handphone2'
+            )
+        );
+         * 
+         */
+        $options = array (
+            'contain' => array (
+                'Import' => array (
+                    'Campaign' => array (
+                        'fields' => 'Campaign.name AS Name'
+                    )
+                ),
+                'Status' => array (
+                    'fields' => 'Status.name AS Status'
+                ),
+                'Response' => array (
+                    'fields' => 'Response.response AS Response'
+                ),
+                'TM' => array (
+                    'fields' => 'TM.username AS Username'
+                ),
+                'TL' => array (
+                    'fields' => 'TL.username AS Username'
+                ),
+                'SPV' => array (
+                    'fields' => 'SPV.username AS Username'
+                ),
+                'QA' => array (
+                    'fields' => 'QA.username AS Username'
+                )
             )
         );
         
@@ -37,33 +69,35 @@ class CustomersController extends AppController {
         }
         
         switch ($level) {
-            case 0: // TM
+            case 8: // TM
                 $status = array (4, 5 , 7, 9);
                 break;
             
-            case 1: // QA
+            case 5: // QA
                 $status = 6;
                 break;
             
-            case 2: // TL
+            case 7: // TL
                 $status = array (1, 3, 4, 5, 7, 9);
                 break;
             
-            case 6: // Collection
+            case 4: // Collection
                 $status = 8;
                 break;
             
-            case 7: // SPV
+            case 6: // SPV
                 $status = array (1, 2, 3, 4, 5, 7, 9);
                 break;
         }
         
-        $options = array_merge($options, array ('conditions' => array ('Customer.status_code' => $status)));
-        $data = $this->Customer->find('all', $options);
-        $this->set('customers', $data);
+        $options = array_merge($options, array ('conditions' => array ('Customer.status_id' => $status)));
+        $this->Customer->Behaviors->attach('Containable');
+        $customers = $this->Customer->find('all', $options);
+        $this->set(compact('customers'));
     }
     
     public function view() {
+        $this->set('title_for_layout', 'User List');
         $level = $this->session['level_id'];
         $buttons = array (
             'upload' => (in_array($level, array (1, 2, 3))) ? false : true,

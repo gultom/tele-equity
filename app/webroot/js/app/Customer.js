@@ -12,7 +12,7 @@ var Customer = Class.create({
     },
     
     load: function() {
-        new Ajax.Request(Functions.getAppAddress() + 'customers/view', {
+        new Ajax.Request(Functions.getAppAddress() + 'customers/load', {
             method: 'get',
             onLoading: function() {
                 Functions.write('customerList', '');
@@ -22,7 +22,7 @@ var Customer = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('customerList', response.responseText);
-                Functions.initDatatable('customersDatatable', 105);
+                Functions.initDatatable('customersDatatable', 180);
             }
         })
     }
