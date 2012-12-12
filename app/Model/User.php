@@ -17,7 +17,7 @@ class User extends AppModel {
             'foreignKey' => 'group_id'
         ),
         'QA' => array (
-            'className' => 'QualityAssurance',
+            'className' => 'User',
             'foreignKey' => 'qa_id'
         )
     );
