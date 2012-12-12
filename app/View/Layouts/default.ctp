@@ -50,7 +50,13 @@
         jQuery(document).ready(function($) {
             if (User.getLevel() !== 8) {
                 Functions.write('logoutDialog', 'Are sure want to logout this session ?');
-                Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {User.logout()});
+                Functions.initConfirmationDialog("logoutDialog", "Confirmation", 340, 160, function() {
+                    new Ajax.Request(Functions.getAppAddress() + 'users/setactivity/0', {
+                        asynchronous: false,
+                        method: 'post'
+                    })
+                    User.logout();
+                });
             }
             else {
                 Functions.initDialog('logoutDialog', 'Reason for logging out', 340, 170);
