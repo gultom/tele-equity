@@ -3,14 +3,14 @@
             <?=
             $this->Html->tableHeaders( array (
                 array ('Campaign' => array ('width' => '80px')),
-                array ('Batch' => array ('width' => '75px')),
-                array ('Status' => array ('width' => '40px')),
-                array ('TM' => array ('width' => '20px')),
-                array ('TL' => array ('width' => '20px')),
-                array ('SPV' => array ('width' => '20px')),
-                array ('QA' => array ('width' => '20px')),
-                array ('Response' => array ('width' => '100px')),
+                array ('Batch' => array ('width' => '80px')),
                 array ('Name' => array ('width' => '120px')),
+                array ('Status' => array ('width' => '40px')),
+                array ('TM' => array ('width' => '50px')),
+                array ('TL' => array ('width' => '50px')),
+                array ('SPV' => array ('width' => '50px')),
+                array ('QA' => array ('width' => '50px')),
+                array ('Response' => array ('width' => '100px')),
                 array ('DOB' => array ('width' => '40px')),
                 array ('Company' => array ('width' => '70px')),
                 array ('Home ph. 1' => array ('width' => '50px')),
@@ -27,13 +27,13 @@
                     array (
                         $value['Import']['Campaign']['Name'],
                         $value['Customer']['batch_no'],
+                        $value['Customer']['name'],
                         $value['Status']['Status'],
                         $value['TM']['Username'],
                         $value['TL']['Username'],
                         $value['SPV']['Username'],
                         $value['QA']['Username'],
                         $value['Response']['Response'],
-                        $value['Customer']['name'],
                         $value['Customer']['birth_date'],
                         $value['Customer']['company'],
                         $value['Customer']['homephone1'],
@@ -44,11 +44,11 @@
                 ),
                 array (
                     'onclick' => 'Customer.setId('. $value['Customer']['id'] .')',
-                    'ondblclick' => 'User.initDetailsDialog()',
+                    'ondblclick' => 'Customer.initDetailsDialog()',
                 ),
                 array (
                     'onclick' => 'Customer.setId('. $value['Customer']['id'] .')',
-                    'ondblclick' => 'User.initDetailsDialog()',
+                    'ondblclick' => 'Customer.initDetailsDialog()',
                 )
             );
             ?>

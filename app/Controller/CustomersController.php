@@ -135,6 +135,10 @@ class CustomersController extends AppController {
         
         $this->set(compact('buttons', 'campaigns', 'statuses', 'responses'));
     }
+    
+    public function details($id) {
+        
+    }
 }
 
 ?>

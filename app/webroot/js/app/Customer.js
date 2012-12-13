@@ -12,6 +12,7 @@ var Customer = Class.create({
     },
     
     load: function() {
+        Customer.setId(null);
         new Ajax.Request(Functions.getAppAddress() + 'customers/load', {
             method: 'get',
             onLoading: function() {
@@ -22,8 +23,26 @@ var Customer = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('customerList', response.responseText);
-                Functions.initDatatable('customersDatatable', 180);
+                Functions.initDatatable('customersDatatable', 190);
             }
         })
+    },
+    
+    initDetailsDialog: function() {
+        if (Customer.getId() === null) {
+            Functions.write('customerInfo', '<b>Please select customer first.</b>');
+            Functions.initInformationDialog('customerInfo', 300, 125);
+            jQuery("#customerInfo").dialog('open');
+        }
+        else {
+            new Ajax.Request(Functions.getAppAddress() + 'customers/details/' + Customer.getId(), {
+                asynchronous: false,
+                method: 'get',
+                onSuccess: function(response) {
+                    Functions.write('detailsDialog', response.responseText);
+                }
+            })
+            jQuery('#detailsDialog').dialog('open');
+        }
     }
 })
