@@ -11,41 +11,22 @@ App::import('Controller', 'User');
 class CustomersController extends AppController {
 
     public function load() {
-        /*
-        $options = array (
-            'fields' => array (
-                'Customer.id AS Id',
-                'Customer.batch_no AS BatchNo',
-                'Customer.name AS Name',
-                'Status.name AS Status',
-                'Response.response AS Response',
-                'TM.username AS Username',
-                'TL.username AS Username',
-                'SPV.username AS Username',
-                'QA.username AS Username',
-                'Customer.callback_time AS CallbackTime',
-                'Customer.birth_date AS DOB',
-                'Customer.company AS Company',
-                'Customer.homephone1 AS Homephone1',
-                'Customer.homephone2 AS Homephone2',
-                'Customer.handphone1 AS Handphone1',
-                'Customer.handphone2 AS Handphone2'
-            )
-        );
-         * 
-         */
+        $filter = $this->request->query['data']['FilterCustomer'];
         $options = array (
             'contain' => array (
                 'Import' => array (
                     'Campaign' => array (
                         'fields' => 'Campaign.name AS Name'
+                    ),
+                    'fields' => array (
+                        'Import.id'
                     )
                 ),
                 'Status' => array (
-                    'fields' => 'Status.name AS Status'
+                    'fields' => 'Status.name AS Status',
                 ),
                 'Response' => array (
-                    'fields' => 'Response.response AS Response'
+                    'fields' => 'Response.response AS Response',
                 ),
                 'TM' => array (
                     'fields' => 'TM.username AS Username'
@@ -90,7 +71,14 @@ class CustomersController extends AppController {
                 break;
         }
         
-        $options = array_merge($options, array ('conditions' => array ('Customer.status_id' => $status)));
+        $conditions = array (
+            'conditions' => array (
+                    'Customer.status_id' => ($filter['status_id']) ? $filter['status_id'] : $status,
+                    ($filter['response_id']) ? array('Customer.response_id' => $filter['response_id']) : null,
+                    ($filter['campaign_id']) ? array('Import.campaign_id' => $filter['campaign_id']) : null,
+                )
+        );
+        $options = array_merge($options, $conditions);
         $this->Customer->Behaviors->attach('Containable');
         $customers = $this->Customer->find('all', $options);
         $this->set(compact('customers'));

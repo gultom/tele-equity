@@ -15,6 +15,7 @@ var Customer = Class.create({
         Customer.setId(null);
         new Ajax.Request(Functions.getAppAddress() + 'customers/load', {
             method: 'get',
+            parameters: Form.serialize('FilterCustomer'),
             onLoading: function() {
                 Functions.write('customerList', '');
                 jQuery("#customerList").append('<div id="loadingImage"></div>');
