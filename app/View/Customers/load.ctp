@@ -1,3 +1,4 @@
+<?php if ($count): ?>
     <table id="customersDatatable" class="display">
         <thead>
             <?=
@@ -55,3 +56,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+<?= $this->Html->div('info', $count .' customer(s) listed', array ('style' => 'margin: 5px 0 3px 0')); ?>
+<?php else: ?>
+    <?= $this->Html->div('error', 'data not found', array ('style' => 'text-align: center')); ?>
+<?php endif; ?>

@@ -71,17 +71,37 @@ class CustomersController extends AppController {
                 break;
         }
         
+        $notSystem = false;
+        
+        if (in_array($this->session['level_id'], array (6, 7, 8))) {
+            $notSystem = true;
+            switch ($this->session['level_id']) {
+                case 8:
+                    $field = 'tm_id';
+                    break;
+                case 7:
+                    $field = 'tl_id';
+                    break;
+                case 6:
+                    $field = 'spv_id';
+                    break;
+            }
+        }
+        
         $conditions = array (
             'conditions' => array (
                     'Customer.status_id' => ($filter['status_id']) ? $filter['status_id'] : $status,
                     ($filter['response_id']) ? array('Customer.response_id' => $filter['response_id']) : null,
                     ($filter['campaign_id']) ? array('Import.campaign_id' => $filter['campaign_id']) : null,
+                    ($notSystem) ? array ('Customer.'. $field => $this->session['id']) : null
                 )
         );
+        
         $options = array_merge($options, $conditions);
         $this->Customer->Behaviors->attach('Containable');
         $customers = $this->Customer->find('all', $options);
-        $this->set(compact('customers'));
+        $count = $this->Customer->find('count', $options);
+        $this->set(compact('customers', 'count'));
     }
     
     public function view() {
