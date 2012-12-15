@@ -99,7 +99,7 @@ img {
     font-size: 11px;
     box-shadow: inset 0 0 10px #c0c0c0;
     -webkit-box-shadow: inset 0 0 10px #c0c0c0;
-    padding: 5px 3px 5px 3px;
+    padding: 3px 3px 3px 3px;
 }
 
 .button {
@@ -164,7 +164,7 @@ img {
 
 
 .error {
-    padding: 5px 3px 5px 3px;
+    padding: 3px 3px 3px 3px;
     border: 1px solid #FF1437;
     background: #FFC1C1;
     color: #039E12;
@@ -172,7 +172,7 @@ img {
 
 
 .info {
-    padding: 5px 3px 5px 3px;
+    padding: 3px 3px 3px 3px;
     border: 1px solid #5cb811;
     background: #DDFF75;
     color: #3F6219
