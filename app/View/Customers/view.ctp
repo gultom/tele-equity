@@ -2,7 +2,8 @@
 $this->Html->script(array(
     'lib/datatables/script',
     'app/Customer',
-    'app/Import'
+    'app/Import',
+    'app/Call'
 ), false);
 
 $this->Html->css(array (

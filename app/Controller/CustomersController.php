@@ -146,14 +146,29 @@ class CustomersController extends AppController {
     
     public function details($id) {
         $this->Customer->id = $id;
+        $this->Customer->unbindModel(array (
+            'belongsTo' => array(
+                'Import',
+                'TM',
+                'TL',
+                'SPV',
+                'QA'
+                )
+            ));
         $this->request->data = $this->Customer->read();
+        
         $this->loadModel('Response');
-        $this->set('response', $this->Response->find('list', array (
+        $responses = $this->Response->find('list', array (
             'fields' => array (
                 'Response.id',
                 'Response.response'
             )
-        )));
+        ));
+        
+        $this->loadModel('Status');
+        $this->Status->id = $this->request->data['Customer']['status_id'];
+        $status = $this->Status->field('name');
+        $this->set(compact('responses', 'status'));
     }
 }
 

@@ -44,6 +44,11 @@ var Customer = Class.create({
                 }
             })
             jQuery('#detailsDialog').dialog('open');
+            jQuery('#customerAddressTabs').tabs();
+            if (typeof Call !== 'object')
+                Call = new Call();
+            Call.getLog();
+            Functions.initCalendar('CustomerBirthDate');
         }
     }
 })
