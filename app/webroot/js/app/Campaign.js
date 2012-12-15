@@ -1,5 +1,5 @@
 
-var Campaign = new Class.create({
+var Campaign = Class.create({
     
     id: null,
     
