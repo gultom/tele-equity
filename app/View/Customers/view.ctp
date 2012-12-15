@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
     Import = new Import();
     Customer = new Customer();
     Functions.initDialog("uploadDialog", "Upload Data", 600, 500);
-    Functions.initDialog("detailsDialog", "Customer Details", 750, 380);
+    Functions.initDialog("detailsDialog", "Customer Details", 800, 500);
     jQuery("#FilterCustomerList").click(function() {
         Customer.load();
     });
