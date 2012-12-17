@@ -19,14 +19,15 @@ var Functions = Class.create({
         return '<div class="centerElement"><img src="./tpl/img/' + filename + '" /></div>';
     },
     
-    initDatatable: function(tableId, scrollXInner) {
+    initDatatable: function(tableId, scrollXInner, height) {
+        height = typeof height === 'undefined' ? 280 : height;
         jQuery("#" + tableId.toString()).dataTable({
             "bRetrieve": true,
             "bDestroy": true,
             "bPaginate": false,
             "bFilter": false,
             "bSort": false,
-            "sScrollY": 280,
+            "sScrollY": (height + 'px').toString(),
             "sScrollX": "100%",
             "sScrollXInner": scrollXInner.toString() + "%",
             "bScrollCollapse": true,
