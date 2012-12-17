@@ -89,6 +89,7 @@ img {
 #clear {
     clear: both;
     padding: 0;
+    margin: 3px;
 }
 
 .input-text {
