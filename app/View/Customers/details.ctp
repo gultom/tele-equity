@@ -10,7 +10,7 @@ $this->Form->input('id', array ('type' => 'hidden'));
 ?>
 
 <div style="float: left; width: 40%">
-    <div id="customerAddressTabs">
+    <div id="customerAddressTabs" style="height: 200px">
         <ul>
             <li style="width: 31%"><a href="#tabPersonal">Personal</a></li>
             <li style="width: 31%"><a href="#tabHome">Home</a></li>
@@ -97,8 +97,72 @@ $this->Form->input('id', array ('type' => 'hidden'));
             </table>
         </div>
     </div>
+    <div id="clear"></div>
+    <fieldset>
+        <legend>Contact Information</legend>
+        <table>
+        <?=
+            $this->Html->tableCells(array (
+                array (
+                    array ('Home Phone :', array ('align' => 'center')),
+                    $this->Form->input('homephone1', array ('label' => false, 'class' => 'input-text', 'readonly' => 'readonly')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['homephone1'] != '' && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['homephone1'] .'\')','onclick' => in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '', 'escape' => false))
+                ),
+                array (
+                    array ('Home Phone :', array ('align' => 'center')),
+                    $this->Form->input('homephone2', array ('label' => false, 'class' => 'input-text')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['homephone2_apprv'] && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['homephone2'] .'\')', 'onclick' => $this->request->data['Customer']['homephone2_apprv'] ? (in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '') : (in_array($level, array (6, 7)) ? 'Call.initApproveNumberDialog(\'homephone2\')' : ''), 'escape' => false))
+                ),
+                array (
+                    array ('Office Phone :', array ('align' => 'center')),
+                    $this->Form->input('officephone1', array ('label' => false, 'class' => 'input-text', 'readonly' => 'readonly')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['officephone1'] != '' && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['officephone1'] .'\')', 'onclick' => in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '', 'escape' => false))
+                ),
+                array (
+                    array ('Office Phone :', array ('align' => 'center')),
+                    $this->Form->input('officephone2', array ('label' => false, 'class' => 'input-text')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['officephone2_apprv'] && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['officephone2'] .'\')', 'onclick' => $this->request->data['Customer']['officephone2_apprv'] ? (in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '') : in_array($level, array (6, 7)) ? 'Call.initApproveNumberDialog(\'officephone2\')' : '', 'escape' => false))
+                ),
+                array (
+                    array ('Mobile Phone :', array ('align' => 'center')),
+                    $this->Form->input('handphone1', array ('label' => false, 'class' => 'input-text', 'readonly' => 'readonly')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['handphone1'] != '' && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['handphone1'] .'\')', 'onclick' => in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '', 'escape' => false))
+                ),
+                array (
+                    array ('Mobile Phone :', array ('align' => 'center')),
+                    $this->Form->input('handphone2', array ('label' => false, 'class' => 'input-text')),
+                    $this->Html->link($this->Html->image('icons/icon-'. ($this->request->data['Customer']['handphone2_apprv'] && in_array ($level, array (6, 7, 8)) ? 'call_green' : 'call_red') .'.png', array('align' => 'absmiddle')), 'javascript:void(0)', array('onmouseover' => 'Call.setNumber(\''. $this->request->data['Customer']['handphone2'] .'\')', 'onclick' => $this->request->data['Customer']['handphone2_apprv'] ? (in_array($level, array (6, 7, 8)) ? 'Call.dial()' : '') : in_array($level, array (6, 7)) ? 'Call.initApproveNumberDialog(\'handphone2\')' : '', 'escape' => false))
+                )
+            ));
+        ?>
+        </table>
+    </fieldset>
 </div>
 
 <div style="float: right; width: 59%">
-    <div id="logCalls"></div>
+    <div id="logCalls" style="height: 150px"></div>
+    <div id="clear"></div>
+    <div style="margin-top: 8px">
+        <?=
+           $this->Html->tag('button', $this->Html->image('icons/icon-_question.png', array('align' => 'absmiddle')) . ' Questions', array ('type' => 'button', 'class' => 'transButton', 'style' => 'width: 110px', 'onclick' => 'Questions.loadPolicyQuestions()'))
+           .' '.
+           $this->Html->tag('button', $this->Html->image('icons/icon-_family.png', array('align' => 'absmiddle')) . ' Policy', array ('type' => 'button', 'class' => 'transButton', 'style' => 'width: 110px', 'onclick' => 'Customer.initEditDialog()'))
+        ?>
+    </div>
+    <div id="clear" style="margin-top: 20px"></div>
+    Call Note :<br />
+    <?= $this->Html->tag('textarea', '', array ('cols' => 70, 'rows' => 8, 'id' => 'callNote', 'class' => 'input-text', 'readonly' => 'readonly')) ?>
 </div>
+
+<div id="clear" style="margin-top: 3px"><hr /></div>
+<table width="100%">
+<?=
+    $this->Html->tableCells(array (
+        array (
+            array ($this->Form->button($this->Html->image('icons/icon-play.png', array('align' => 'absmiddle')) .' Playback', array ('type' => 'button', 'class' => 'transButton', 'Call.initPlaybackDialog()')) .' '. $this->Form->button($this->Html->image('icons/icon-submit.png', array('align' => 'absmiddle')) .' Submit', array ('type' => 'button', 'class' => 'transButton', 'onclick' => 'Customer.submit()')) .' '. $this->Form->button($this->Html->image('icons/icon-_details.png', array('align' => 'absmiddle')) .' Notice', array ('type' => 'button', 'class' => 'transButton', 'onclick' => 'Customer.showNotice()')), array ('align' => 'left', 'width' => '50%')),
+            array ($this->Form->button('Save', array ('type' => 'button', 'class' => 'button')) .' '. $this->Form->button('Cancel', array ('type' => 'button', 'class' => 'button', 'onclick' => 'Functions.closeDialog(\'detailsDialog\')')), array ('align' => 'right', 'width' => '50%')),
+        )
+    ));
+?>
+</table>
+<?= $this->Form->end(); ?>

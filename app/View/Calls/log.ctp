@@ -3,25 +3,46 @@
         <thead>
             <?=
             $this->Html->tableHeaders( array (
-                array ('Campaign' => array ('width' => '80px')),
-                array ('Batch' => array ('width' => '80px')),
-                array ('Name' => array ('width' => '120px')),
-                array ('Status' => array ('width' => '40px')),
-                array ('TM' => array ('width' => '50px')),
-                array ('TL' => array ('width' => '50px')),
-                array ('SPV' => array ('width' => '50px')),
-                array ('QA' => array ('width' => '50px')),
-                array ('Response' => array ('width' => '100px')),
-                array ('DOB' => array ('width' => '40px')),
-                array ('Company' => array ('width' => '70px')),
-                array ('Home ph. 1' => array ('width' => '50px')),
-                array ('Home ph. 2' => array ('width' => '50px')),
-                array ('Handphone 1' => array ('width' => '50px')),
-                array ('Handphone 2' => array ('width' => '50px'))
+                array ('Call Date' => array ('width' => '60px')),
+                array ('Call Time' => array ('width' => '60px')),
+                array ('Duration' => array ('width' => '60px')),
+                array ('Phone Number' => array ('width' => '100px')),
+                array ('Connected' => array ('width' => '50px')),
+                array ('Contacted' => array ('width' => '50px')),
+                array ('Callback' => array ('width' => '50px')),
+                array ('Callback Time' => array ('width' => '80px')),
+                array ('CallBack Number' => array ('width' => '100px'))
             ));
             ?>
         </thead>
         <tbody>
+            <?php foreach ($logs as $key => $value): ?>
+            <?=
+               $this->Html->tableCells (array (
+                   array (
+                       array ($value['Call']['call_date'], array ('align' => 'center')),
+                       array ($value['Call']['call_time'], array ('align' => 'center')),
+                       array ($value['Call']['duration'], array ('align' => 'center')),
+                       array ($value['Call']['phone_number'], array ('align' => 'right')),
+                       array (($value['Call']['is_connected']) ? 'Yes' : 'No', array ('align' => 'center')),
+                       array (($value['Call']['is_contacted']) ? 'Yes' : 'No', array ('align' => 'center')),
+                       array (($value['Call']['is_callback']) ? 'Yes' : 'No', array ('align' => 'center')),
+                       array ($value['Call']['callback_time'], array ('align' => 'center')),
+                       array ($value['Call']['callback_number'], array ('align' => 'right'))
+                   )
+               ),
+               array (
+                   'style' => 'cursor: pointer',
+                   'onclick' => 'Call.setId('. $value['Call']['id'] .');Call.getCallNote()',
+                   'ondblclick' => 'Call.initDetailsDialog()',
+               ),
+               array (
+                   'style' => 'cursor: pointer',
+                   'onclick' => 'Call.setId('. $value['Call']['id'] .');Call.getCallNote()',
+                   'ondblclick' => 'User.initDetailsDialog()',
+               ));
+            ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 <?php else: ?>

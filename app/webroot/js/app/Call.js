@@ -2,6 +2,7 @@
 var Call = Class.create({
     
     id: null,
+    number: null,
     
     setId: function(id) {
         this.id = id;
@@ -9,6 +10,14 @@ var Call = Class.create({
     
     getId: function() {
         return this.id;
+    },
+    
+    setNumber: function(number) {
+        this.number = number == '' ? null : number;
+    },
+    
+    getNumber: function() {
+        return this.number;
     },
     
     getLog: function() {
@@ -22,8 +31,31 @@ var Call = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('logCalls', response.responseText);
-                Functions.initDatatable('logCallsDatatable', 150);
+                Functions.initDatatable('logCallsDatatable', 180, 110);
+                jQuery('.dataTables_wrapper').css('min-height', '120px'); // fix default datatables (320px) oversize man !!
             }
         })
+    },
+    
+    getCallNote: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'calls/getcallnote/' + Call.getId(), {
+            method: 'get',
+            onSuccess: function(response) {
+                Functions.write('callNote', response.responseText.evalJSON());
+            }
+        })
+    },
+    
+    dial: function() {
+        var info = Call.getNumber() == undefined ? 'Can not dial this number' : Call.getNumber().toString();
+        alert(info);
+    },
+    
+    initPlaybackDialog: function() {
+        
+    },
+    
+    initApproveNumberDialog: function(field) {
+        
     }
 })

@@ -24,7 +24,7 @@ var Customer = Class.create({
             },
             onSuccess: function(response) {
                 Functions.write('customerList', response.responseText);
-                Functions.initDatatable('customersDatatable', 190);
+                Functions.initDatatable('customersDatatable', 210);
             }
         })
     },
@@ -50,5 +50,13 @@ var Customer = Class.create({
             Call.getLog();
             Functions.initCalendar('CustomerBirthDate');
         }
+    },
+    
+    submit: function() {
+        
+    },
+    
+    showNotice: function() {
+        
     }
 })

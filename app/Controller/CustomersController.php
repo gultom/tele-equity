@@ -145,6 +145,7 @@ class CustomersController extends AppController {
     }
     
     public function details($id) {
+        $level = $this->session['level_id'];
         $this->Customer->id = $id;
         $this->Customer->unbindModel(array (
             'belongsTo' => array(
@@ -156,7 +157,6 @@ class CustomersController extends AppController {
                 )
             ));
         $this->request->data = $this->Customer->read();
-        
         $this->loadModel('Response');
         $responses = $this->Response->find('list', array (
             'fields' => array (
@@ -168,7 +168,7 @@ class CustomersController extends AppController {
         $this->loadModel('Status');
         $this->Status->id = $this->request->data['Customer']['status_id'];
         $status = $this->Status->field('name');
-        $this->set(compact('responses', 'status'));
+        $this->set(compact('responses', 'status', 'level'));
     }
 }
 
