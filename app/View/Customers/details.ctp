@@ -142,7 +142,7 @@ $this->Form->input('id', array ('type' => 'hidden'));
 <div style="float: right; width: 59%">
     <div id="logCalls" style="height: 150px"></div>
     <div id="clear"></div>
-    <div style="margin-top: 8px">
+    <div style="margin-top: 8px; float: right">
         <?=
            $this->Html->tag('button', $this->Html->image('icons/icon-_question.png', array('align' => 'absmiddle')) . ' Questions', array ('type' => 'button', 'class' => 'transButton', 'style' => 'width: 110px', 'onclick' => 'Questions.loadPolicyQuestions()'))
            .' '.

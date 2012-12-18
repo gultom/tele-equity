@@ -45,29 +45,29 @@ class CustomersController extends AppController {
         
         $level = $this->session['level_id'];
         $status = array();
-        for ($i = -1; $i <= 10; ++$i) {
+        for ($i = 1; $i <= 12; ++$i) {
             $status[] = $i;
         }
         
         switch ($level) {
             case 8: // TM
-                $status = array (4, 5 , 7, 9);
+                $status = array (6, 7 , 9, 11);
                 break;
             
             case 5: // QA
-                $status = 6;
-                break;
-            
-            case 7: // TL
-                $status = array (1, 3, 4, 5, 7, 9);
-                break;
-            
-            case 4: // Collection
                 $status = 8;
                 break;
             
+            case 7: // TL
+                $status = array (3, 5, 6, 7, 9, 11);
+                break;
+            
+            case 4: // Collection
+                $status = 10;
+                break;
+            
             case 6: // SPV
-                $status = array (1, 2, 3, 4, 5, 7, 9);
+                $status = array (3, 4, 5, 6, 7, 9, 11);
                 break;
         }
         
@@ -169,6 +169,154 @@ class CustomersController extends AppController {
         $this->Status->id = $this->request->data['Customer']['status_id'];
         $status = $this->Status->field('name');
         $this->set(compact('responses', 'status', 'level'));
+    }
+    
+    public function edit($id = null) {
+        $this->Customer->id = $id;
+        $this->Customer->unbindModel(array (
+            'belongsTo' => array(
+                'Import',
+                'TM',
+                'TL',
+                'SPV',
+                'QA'
+                )
+            ));
+        
+        if ($this->RequestHandler->isGet()) {
+            $this->request->data = $this->Customer->read();
+            
+            $this->loadModel('Gender');
+            $genders = $this->Gender->find('list', array (
+                'fields' => array (
+                    'Gender.id',
+                    'Gender.name'
+                ),
+                'order' => 'Gender.sort_index'
+            ));
+            
+            $this->loadModel('Identities');
+            $identities = $this->Identities->find('list', array (
+                'fields' => array (
+                    'Identities.id',
+                    'Identities.name'
+                ),
+                'order' => 'Identities.sort_index'
+            ));
+            
+            $this->loadModel('Religion');
+            $religions = $this->Religion->find('list', array (
+                'fields' => array (
+                    'Religion.id',
+                    'Religion.name'
+                ),
+                'order' => 'Religion.sort_index'
+            ));
+            
+            $this->loadModel('Citizenship');
+            $citizenships = $this->Citizenship->find('list', array (
+                'fields' => array (
+                    'Citizenship.id',
+                    'Citizenship.name'
+                ),
+                'order' => 'Citizenship.sort_index'
+            ));
+            
+            $this->loadModel('Job');
+            $jobs = $this->Job->find('list', array (
+                'fields' => array (
+                    'Job.id',
+                    'Job.name'
+                ),
+                'order' => 'Job.sort_index'
+            ));
+            
+            $this->loadModel('Income');
+            $incomes = $this->Income->find('list', array (
+                'fields' => array (
+                    'Income.id',
+                    'Income.name'
+                ),
+                'order' => 'Income.sort_index'
+            ));
+            
+            $this->loadModel('Purpose');
+            $purposes = $this->Purpose->find('list', array (
+                'fields' => array (
+                    'Purpose.id',
+                    'Purpose.name'
+                ),
+                'order' => 'Purpose.sort_index'
+            ));
+            
+            $this->loadModel('TypeOfCard');
+            $cards = $this->TypeOfCard->find('list', array (
+                'fields' => array (
+                    'TypeOfCard.id',
+                    'TypeOfCard.name'
+                ),
+                'order' => 'TypeOfCard.sort_index'
+            ));
+            
+            $this->loadModel('Bank');
+            $banks = $this->Bank->find('list', array (
+                'fields' => array (
+                    'Bank.id',
+                    'Bank.shortname'
+                ),
+                'order' => 'Bank.code'
+            ));
+            
+            $expired = array ('month' => array(), 'year' => array());
+            for ($i = 1; $i <= 12; ++$i) {
+                $expired['month'][$i] = ($i < 10) ? "0$i" : "$i";
+            }
+            for ($i = 13; $i <= 99; ++$i) {
+                $expired['year'][$i] = "$i";
+            }
+            
+            $this->loadModel('AddressType');
+            $addressTypes = $this->AddressType->find('list', array (
+                'fields' => array (
+                    'AddressType.id',
+                    'AddressType.name'
+                ),
+                'conditions' => array (
+                    'AddressType.is_enabled' => 1
+                ),
+                'order' => 'AddressType.sort_index'
+            ));
+            
+            $this->loadModel('Province');
+            $provinces = $this->Province->find('list', array (
+                'fields' => array (
+                    'Province.id',
+                    'Province.name'
+                ),
+                'order' => 'Province.sort_index'
+            ));
+            
+            $this->set(compact(
+                        'genders', 
+                        'identities', 
+                        'religions',
+                        'citizenships', 
+                        'jobs',
+                        'incomes',
+                        'purposes',
+                        'cards',
+                        'banks',
+                        'expired',
+                        'addressTypes',
+                        'provinces'
+                    ));
+        }
+        elseif ($this->RequestHandler->isAjax()) {
+            $this->autoRender = false;
+            $this->request->data['Customer']['update_user'] = $this->session['username'];
+            $this->request->data['Customer']['update_time'] = date('Y-m-d H:i:s');
+            return json_encode($this->Customer->save($this->request->data) ? true : false);
+        }
     }
 }
 
