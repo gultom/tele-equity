@@ -1,7 +1,7 @@
 <div id="editCustomerTabs">
     <ul>
         <li style="width: 31%"><a href="#tabForm">Data</a></li>
-        <li style="width: 31%"><a href="#tabPolicies">Tertanggung</a></li>
+        <li style="width: 31%"><a href="#tabPolicies" onclick="Policy.loadCustomerPolicies()">Tertanggung</a></li>
         <li style="width: 31%"><a href="#tabInformation">Keterangan</a></li>
     </ul>
     <div id="tabForm">
@@ -252,9 +252,24 @@ $this->Html->tableCells (array (
 ?>
 
 </table>
-
 <?= $this->Form->end(); ?>
     </div>
     <div id="tabPolicies"></div>
-    <div id="tabInformation"></div>
+    <div id="tabInformation">
+<?=
+$this->Form->create('Customer', array ('id' => 'CustomerInfo', 'name' => 'CustomerInfo')) .
+$this->Form->input('id', array ('type' => 'hidden'));
+?>
+        <table>
+<?=
+$this->Html->tableCells (array (
+    array (
+        'Keterangan :',
+        $this->Form->input('customer_info', array('label' => false, 'class' => 'input-text', 'rows' => 2, 'cols' => 48, 'onchange' => 'Customer.updateCustomerInfo()'))
+    )
+))
+?>
+        </table>
+<?= $this->Form->end(); ?>
+    </div>
 </div>

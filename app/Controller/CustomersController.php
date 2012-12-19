@@ -359,6 +359,11 @@ class CustomersController extends AppController {
             return json_encode($this->Customer->save($this->request->data) ? true : false);
         }
     }
+    
+    public function updateCustomerInfo() {
+        $this->autoRender = false;
+        $this->Customer->save($this->request->data);
+    }
 }
 
 ?>

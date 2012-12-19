@@ -126,6 +126,13 @@ var Customer = Class.create({
         jQuery('#customerEditInfo').fadeOut(8000);
     },
     
+    updateCustomerInfo: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'customers/updatecustomerinfo', {
+            method: 'post',
+            parameters: Form.serialize('CustomerInfo')
+        })
+    },
+    
     submit: function() {
         
     },
