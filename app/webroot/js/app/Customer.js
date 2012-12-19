@@ -65,6 +65,7 @@ var Customer = Class.create({
                 Functions.write('customerEditDialog', response.responseText);
                 jQuery('#editCustomerTabs').tabs();
                 Functions.initCalendar('CustomerEditBirthDate');
+                Customer.isTransfer(jQuery('#CustomerPaymentMethodId').val());
                 jQuery('#CustomerEdit').submit(function() {
                     Customer.edit();
                     jQuery('#customerEditDialog', window.parent.document).scrollTop(0);
@@ -72,6 +73,34 @@ var Customer = Class.create({
                 });
             }
         })
+    },
+    
+    isTransfer: function(transferId) {
+        var isTransfer = transferId == 2 ? true : false, transferTable, transferInfo;
+        if (isTransfer) {
+            transferTable= '<table width="100%" align="center">';
+            transferTable += '<tr><td align="right">Paid Amount :</td><td><div class="input select"><input id="CustomerPaidAmount" class="input-text" type="text" name="data[Customer][paid_amount]" /></div></tr></td>';
+            transferTable += '<tr><td align="right">Paid Date :</td><td><div class="input select"><input id="CustomerPaidDate" class="input-text" type="text" name="data[Customer][paid_date]" /></div></tr></td>';
+            transferTable += '<tr><td align="right">Paid Val. No. :</td><td><div class="input select"><input id="CustomerValidationNo" class="input-text" type="text" name="data[Customer][paid_validation_no]" /></div></tr></td>';
+            transferTable += '<tr><td align="right">Paid Amount :</td><td><div class="input select"><input id="CustomerPaidBankDestination" class="input-text" type="text" name="data[Customer][paid_bank_destination]" /></div></tr></td>';
+            transferTable += '</table>';
+            jQuery(transferTable).appendTo('#paidMethodInfo');
+            new Ajax.Request(Functions.getAppAddress() + 'customers/getTransferInfo/' + Customer.getId(), {
+                asynchronous: false,
+                method: 'post',
+                onSuccess: function(response) {
+                    transferInfo = response.responseText.evalJSON();
+                }
+            })
+            Functions.initCalendar('CustomerPaidDate');
+            jQuery('#CustomerPaidAmount').val(transferInfo.Customer.paid_amount);
+            jQuery('#CustomerPaidDate').val(transferInfo.Customer.paid_date);
+            jQuery('#CustomerValidationNo').val(transferInfo.Customer.paid_validation_no);
+            jQuery('#CustomerPaidBankDestination').val(transferInfo.Customer.paid_bank_destination);
+        }
+        else {
+            Functions.write('paidMethodInfo', '');
+        }
     },
     
     edit: function() {

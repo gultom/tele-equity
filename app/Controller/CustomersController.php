@@ -171,6 +171,22 @@ class CustomersController extends AppController {
         $this->set(compact('responses', 'status', 'level'));
     }
     
+    public function getTransferInfo($id) {
+        $this->autoRender = false;
+        $transferInfo = $this->Customer->find('first', array (
+            'fields' => array (
+                'Customer.paid_amount',
+                'Customer.paid_date',
+                'Customer.paid_validation_no',
+                'Customer.paid_bank_destination'
+            ),
+            'conditions' => array (
+                'Customer.id' => $id
+            )
+        ));
+        return json_encode($transferInfo);
+    }
+    
     public function edit($id = null) {
         $this->Customer->id = $id;
         $this->Customer->unbindModel(array (
@@ -249,6 +265,29 @@ class CustomersController extends AppController {
                 'order' => 'Purpose.sort_index'
             ));
             
+            $this->loadModel('PaymentPeriod');
+            $paymentPeriods = $this->PaymentPeriod->find('list', array (
+                'fields' => array (
+                    'PaymentPeriod.id',
+                    'PaymentPeriod.name'
+                ),
+                'conditions' => array (
+                    'PaymentPeriod.is_enabled' => 1
+                ),
+                'order' => array (
+                    'PaymentPeriod.sort_index'
+                )
+            ));
+            
+            $this->loadModel('PaymentMethod');
+            $paymentMethods = $this->PaymentMethod->find('list', array (
+                'fields' => array (
+                    'PaymentMethod.id',
+                    'PaymentMethod.name'
+                ),
+                'order' => 'PaymentMethod.sort_index'
+            ));
+            
             $this->loadModel('TypeOfCard');
             $cards = $this->TypeOfCard->find('list', array (
                 'fields' => array (
@@ -304,6 +343,8 @@ class CustomersController extends AppController {
                         'jobs',
                         'incomes',
                         'purposes',
+                        'paymentPeriods',
+                        'paymentMethods',
                         'cards',
                         'banks',
                         'expired',

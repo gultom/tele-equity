@@ -62,6 +62,17 @@ $this->Html->tableCells (array (
         $this->Form->input('purpose_id', array ('label' => false, 'options' => $purposes, 'empty' => '(choose one)', 'class' => 'input-text'))
     ),
     array (
+        array ('Payment Period :', array ('align' => 'right')),
+        $this->Form->input('payment_period_id', array ('label' => false, 'options' => $paymentPeriods, 'empty' => '(choose one)', 'class' => 'input-text'))
+    ),
+    array (
+        array ('Payment Method :', array ('align' => 'right')),
+        $this->Form->input('payment_method_id', array ('label' => false, 'options' => $paymentMethods, 'empty' => '(choose one)', 'class' => 'input-text', 'onchange' => 'Customer.isTransfer(this.value)'))
+    ),
+    array (
+        array ($this->Html->tag('div', '', array('id' => 'paidMethodInfo')), array ('align' => 'center', 'colspan' => 2))
+    ),
+    array (
         array ('Credit Card Info', array ('align' => 'center', 'colspan' => 2, 'style' => 'font-weight: bold'))
     ),
     array (
@@ -74,7 +85,7 @@ $this->Html->tableCells (array (
     ),
     array (
         array ('Card Number (1) :', array ('align' => 'right')),
-        $this->Form->input('card1_number', array ('label' => false, 'class' => 'input-text'))
+        $this->Form->input('card1_no', array ('label' => false, 'class' => 'input-text'))
     ),
     array (
         array ('Card Holder (1) :', array ('align' => 'right')),
@@ -95,7 +106,7 @@ $this->Html->tableCells (array (
     ),
     array (
         array ('Card Number (2) :', array ('align' => 'right')),
-        $this->Form->input('card2_number', array ('label' => false, 'class' => 'input-text'))
+        $this->Form->input('card2_no', array ('label' => false, 'class' => 'input-text'))
     ),
     array (
         array ('Card Holder (2) :', array ('align' => 'right')),
@@ -190,7 +201,7 @@ $this->Html->tableCells (array (
     ),
     array (
         array ('Zipcode :', array ('align' => 'right')),
-        $this->Form->input('live_zip', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
+        $this->Form->input('live_postcode', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
     ),
     array (
         array ('Alamat Tagih', array ('align' => 'center', 'colspan' => 2, 'style' => 'font-weight: bold'))
@@ -229,7 +240,7 @@ $this->Html->tableCells (array (
     ),
     array (
         array ('Zipcode :', array ('align' => 'right')),
-        $this->Form->input('receivable_zip', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
+        $this->Form->input('receivable_postcode', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
     ),
     array (
         array ('<hr />', array ('colspan' => 2))
