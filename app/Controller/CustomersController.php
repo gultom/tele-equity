@@ -9,6 +9,46 @@
 App::import('Controller', 'User');
 
 class CustomersController extends AppController {
+    
+    public function view() {
+        $this->set('title_for_layout', 'User List');
+        $level = $this->session['level_id'];
+        $buttons = array (
+            'upload' => (in_array($level, array (1, 2, 3))) ? false : true,
+            'distribute' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'reassign' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'recycle' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
+            'details' => (!in_array($level, array(4)) ? false : true),
+            'search' => false
+        );
+        
+        $this->loadModel('Campaign');
+        $campaigns = $this->Campaign->find('list', array (
+            'fields' => array (
+                'id', 
+                'name'
+            ),
+        ));
+        
+        $this->loadModel('CustomerStatus');
+        $statuses = $this->CustomerStatus->find('list', array (
+            'fields' => array (
+                'code',
+                'name'
+            ),
+            'order' => 'CustomerStatus.sort_index'
+        ));
+        
+        $this->loadModel('CustomerResponse');
+        $responses = $this->CustomerResponse->find('list', array (
+            'fields' => array (
+                'id',
+                'response'
+            )
+        ));
+        
+        $this->set(compact('buttons', 'campaigns', 'statuses', 'responses'));
+    }
 
     public function load() {
         $filter = $this->request->query['data']['FilterCustomer'];
@@ -44,8 +84,8 @@ class CustomersController extends AppController {
         );
         
         $level = $this->session['level_id'];
-        $status = array();
-        for ($i = 1; $i <= 12; ++$i) {
+        $status = array(); // status code
+        for ($i = 0; $i <= 12; ++$i) {
             $status[] = $i;
         }
         
@@ -55,7 +95,7 @@ class CustomersController extends AppController {
                 break;
             
             case 5: // QA
-                $status = 8;
+                $status = 10;
                 break;
             
             case 7: // TL
@@ -63,11 +103,11 @@ class CustomersController extends AppController {
                 break;
             
             case 4: // Collection
-                $status = 10;
+                $status = 8;
                 break;
             
             case 6: // SPV
-                $status = array (3, 4, 5, 6, 7, 9, 11);
+                $status = array (2, 3, 4, 5, 6, 7, 9, 11);
                 break;
         }
         
@@ -90,7 +130,7 @@ class CustomersController extends AppController {
         
         $conditions = array (
             'conditions' => array (
-                    'Customer.status_id' => ($filter['status_id']) ? $filter['status_id'] : $status,
+                    'Status.code' =>($filter['status_code']) ? $filter['status_id'] : $status,
                     ($filter['response_id']) ? array('Customer.response_id' => $filter['response_id']) : null,
                     ($filter['campaign_id']) ? array('Import.campaign_id' => $filter['campaign_id']) : null,
                     ($notSystem) ? array ('Customer.'. $field => $this->session['id']) : null
@@ -102,46 +142,6 @@ class CustomersController extends AppController {
         $customers = $this->Customer->find('all', $options);
         $count = $this->Customer->find('count', $options);
         $this->set(compact('customers', 'count'));
-    }
-    
-    public function view() {
-        $this->set('title_for_layout', 'User List');
-        $level = $this->session['level_id'];
-        $buttons = array (
-            'upload' => (in_array($level, array (1, 2, 3))) ? false : true,
-            'distribute' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
-            'reassign' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
-            'recycle' => (in_array($level, array(1, 2, 3, 6, 7)) ? false : true),
-            'details' => (!in_array($level, array(4)) ? false : true),
-            'search' => false
-        );
-        
-        $this->loadModel('Campaign');
-        $campaigns = $this->Campaign->find('list', array (
-            'fields' => array (
-                'id', 
-                'name'
-            ),
-        ));
-        
-        $this->loadModel('CustomerStatus');
-        $statuses = $this->CustomerStatus->find('list', array (
-            'fields' => array (
-                'id',
-                'name'
-            ),
-            'order' => 'CustomerStatus.sort_index'
-        ));
-        
-        $this->loadModel('CustomerResponse');
-        $responses = $this->CustomerResponse->find('list', array (
-            'fields' => array (
-                'id',
-                'response'
-            )
-        ));
-        
-        $this->set(compact('buttons', 'campaigns', 'statuses', 'responses'));
     }
     
     public function details($id) {

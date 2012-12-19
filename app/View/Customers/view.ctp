@@ -56,7 +56,7 @@ $this->Html->tableCells( array (
     ),
     array (
         $this->Form->input('campaign_id', array ('label' => false, 'empty' => '(All)', 'options' => $campaigns, 'class' => 'input-text')),
-        $this->Form->input('status_id', array ('label' => false, 'empty' => '(All)', 'options' => $statuses, 'class' => 'input-text')),
+        $this->Form->input('status_code', array ('label' => false, 'empty' => '(All)', 'options' => $statuses, 'class' => 'input-text')),
         $this->Form->input('response_id', array ('label' => false, 'empty' => '(All)', 'options' => $responses, 'class' => 'input-text')),
         $this->Form->button('List', array ('label' => false, 'type' => 'button', 'id' => 'FilterCustomerList', 'class' => 'button'))
     )
