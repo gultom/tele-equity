@@ -104,7 +104,6 @@ var Policy = Class.create ({
                     useClass = 'info';
                     Functions.write('addInfo', 'Policy has been successfully added.');
                     Policy.setId(data.id);
-                    jQuery('#addPolicyDialog', window.parent.document).scrollTop(0);
                 }
                 else {
                     useClass = 'error';
@@ -113,7 +112,9 @@ var Policy = Class.create ({
                 jQuery('#addInfo').addClass(useClass.toString());
                 jQuery('#addInfo').css('text-align', 'center');
                 jQuery('#addInfo').css('display', 'block');
-                jQuery('#addInfo').fadeOut(8000);            }
+                jQuery('#addInfo').fadeOut(8000);
+                jQuery('#addPolicyDialog', window.parent.document).scrollTop(0);
+            }
         });
     },
     

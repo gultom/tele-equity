@@ -73,7 +73,7 @@ $this->Html->tableCells (array (
     ),
     array (
         array ('Zipcode :', array ('align' => 'right')),
-        $this->Form->input('home_zip', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
+        $this->Form->input('postcode', array ('label' => false, 'size' => 3, 'class' => 'input-text'))
     ),
     array (
         array ('Phone :', array ('align' => 'right')),
