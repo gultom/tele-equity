@@ -66,6 +66,8 @@ var Customer = Class.create({
                 jQuery('#editCustomerTabs').tabs();
                 Functions.initCalendar('CustomerEditBirthDate');
                 Customer.isTransfer(jQuery('#CustomerPaymentMethodId').val());
+                if (typeof Policy !== 'object')
+                    Policy = new Policy();
                 jQuery('#CustomerEdit').submit(function() {
                     Customer.edit();
                     jQuery('#customerEditDialog', window.parent.document).scrollTop(0);

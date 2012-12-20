@@ -2,6 +2,7 @@
 $this->Html->script(array(
     'lib/datatables/script',
     'app/Customer',
+    'app/Policy',
     'app/Import',
     'app/Call'
 ), false);

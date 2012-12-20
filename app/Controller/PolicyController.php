@@ -8,7 +8,11 @@
 class PolicyController extends AppController {
     
     public function load() {
-        debug($this->Policy->find('all'));
+        
+    }
+    
+    public function tabs() {
+        
     }
 }
 

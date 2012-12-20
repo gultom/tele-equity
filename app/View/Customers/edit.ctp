@@ -1,7 +1,12 @@
+<?= 
+$this->Html->tag('div', '', array ('id' => 'addPolicyDialog')) .
+$this->Html->tag('div', '', array ('id' => 'editPolicyDialog'))
+?>
+
 <div id="editCustomerTabs">
     <ul>
         <li style="width: 31%"><a href="#tabForm">Data</a></li>
-        <li style="width: 31%"><a href="#tabPolicies" onclick="Policy.loadCustomerPolicies()">Tertanggung</a></li>
+        <li style="width: 31%"><a href="#tabPolicies" onclick="Policy.initPolicyTabs()">Tertanggung</a></li>
         <li style="width: 31%"><a href="#tabInformation">Keterangan</a></li>
     </ul>
     <div id="tabForm">
@@ -254,7 +259,9 @@ $this->Html->tableCells (array (
 </table>
 <?= $this->Form->end(); ?>
     </div>
-    <div id="tabPolicies"></div>
+    <div id="tabPolicies">
+        <?= $this->Html->tag('button', $this->Html->image('icons/icon-plus.png', array('align' => 'absmiddle')) .' Add', array ('class' => 'transButton', 'onclick' => 'Policy.initAddDialog()')) ?>
+    </div>
     <div id="tabInformation">
 <?=
 $this->Form->create('Customer', array ('id' => 'CustomerInfo', 'name' => 'CustomerInfo')) .
