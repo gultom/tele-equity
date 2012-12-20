@@ -6,7 +6,7 @@
         <li><a href="#tabQuestion">Questions</a></li>
         <li><a href="#tabLegals">Legal Statements</a></li>
     </ul>
-    <div id="tabForm"></div>
+    <div id="tabForm"><div id="policyForm"></div></div>
     <div id="tabPlan"></div>
     <div id="tabBeneficiary"></div>
     <div id="tabQuestion"></div>
