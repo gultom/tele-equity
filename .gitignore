@@ -1,2 +1,4 @@
 /lib/Cake/Console/Templates/skel/tmp/
 /tags
+/nbproject
+/.svn
