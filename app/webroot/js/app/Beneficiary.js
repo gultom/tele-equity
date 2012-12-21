@@ -1,0 +1,4 @@
+
+var Beneficiary = Class.create({
+    
+})
