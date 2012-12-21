@@ -11,9 +11,9 @@ var Policy = Class.create ({
     },
     
     initPolicyTabs: function() {
-        Plan = Plan !== 'object' ? new Plan : null;
-        Beneficiary = Beneficiary !== 'object' ? new Beneficiary : null;
-        Product = Product !== 'object' ? new Product : null;
+        Plan = typeof Plan !== 'object' ? new Plan : null;
+        Beneficiary = typeof Beneficiary !== 'object' ? new Beneficiary : null;
+        Product = typeof Product !== 'object' ? new Product : null;
         Functions.write('totalPremium', Functions.numberFormat(Customer.getTotalPremium(), '', '.', '', 'Rp. ', ''));
         Policy.loadCustomerPolicies();
         Functions.initDialog('addPolicyDialog', 'Form Tertanggung', 680, 530);
