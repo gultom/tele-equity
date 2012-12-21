@@ -200,6 +200,38 @@ class PolicyController extends AppController {
         $this->autoRender = false;
         return json_encode($this->Policy->delete($id) ? true : false);
     }
+    
+    public function loadPlan($id) {
+        $this->view = 'plan_form';
+        $dataPlan = $this->Policy->find('first', array (
+            'fields' => array (
+                'Policy.id',
+                'Policy.product_id',
+                'Policy.plan_id',
+                'Policy.premium',
+                'Policy.policy_cost',
+                '(Policy.premium + Policy.policy_cost) AS first_installment'
+            ),
+            'conditions' => array (
+                'Policy.id' => $id
+            )
+        ));
+        $this->request->data['Policy']['product_id'] = $dataPlan['Policy']['product_id'];
+        
+        $this->loadModel('Product');
+        $products = $this->Product->find('list', array (
+            'fields' => array (
+                'Product.id',
+                'Product.product_name'
+            ),
+            'conditions' => array (
+                'Product.is_enabled' => 1
+            ),
+            'order' => 'Product.sort_index'
+        ));
+        
+        $this->set(compact('dataPlan', 'products'));
+    }
 }
 
 ?>

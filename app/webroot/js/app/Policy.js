@@ -11,6 +11,9 @@ var Policy = Class.create ({
     },
     
     initPolicyTabs: function() {
+        Plan = Plan !== 'object' ? new Plan : null;
+        Beneficiary = Beneficiary !== 'object' ? new Beneficiary : null;
+        Product = Product !== 'object' ? new Product : null;
         Functions.write('totalPremium', Functions.numberFormat(Customer.getTotalPremium(), '', '.', '', 'Rp. ', ''));
         Policy.loadCustomerPolicies();
         Functions.initDialog('addPolicyDialog', 'Form Tertanggung', 680, 530);
@@ -211,6 +214,15 @@ var Policy = Class.create ({
                 jQuery('#policyInfo').css('text-align', 'center');
                 jQuery('#policyInfo').css('display', 'block');
                 jQuery('#policyInfo').fadeOut(8000);
+            }
+        })
+    },
+    
+    loadPlan: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'policy/loadplan/' + Policy.getId(), {
+            method: 'get',
+            onSuccess: function(response) {
+                Functions.write('planForm', response.responseText);
             }
         })
     }
