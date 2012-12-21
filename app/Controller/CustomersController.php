@@ -364,6 +364,12 @@ class CustomersController extends AppController {
         $this->autoRender = false;
         $this->Customer->save($this->request->data);
     }
+    
+    public function getTotalPremium($id) {
+        $this->autoRender = false;
+        $this->Customer->id = $id;
+        return ((int)$this->Customer->field('total_premium'));
+    }
 }
 
 ?>

@@ -1,6 +1,7 @@
 <?= 
 $this->Html->tag('div', '', array ('id' => 'addPolicyDialog')) .
-$this->Html->tag('div', '', array ('id' => 'editPolicyDialog'))
+$this->Html->tag('div', '', array ('id' => 'editPolicyDialog')) .
+$this->Html->tag('div', '', array ('id' => 'deletePolicyDialog'))
 ?>
 
 <div id="editCustomerTabs">
@@ -261,6 +262,13 @@ $this->Html->tableCells (array (
     </div>
     <div id="tabPolicies">
         <?= $this->Html->tag('button', $this->Html->image('icons/icon-plus.png', array('align' => 'absmiddle')) .' Add', array ('class' => 'transButton', 'onclick' => 'Policy.initAddDialog()')) ?>
+        <hr />
+        <div style="font-size: 18px; font-weight: bold">
+            <?= $this->Html->tag('div', '', array ('id' => 'policyInfo')); ?>
+            Total Premium : <?= $this->Html->tag('span', '', array ('id' => 'totalPremium', 'style' => 'font-size: 18px; font-weight: bold')); ?>
+        </div>
+        <?= $this->Html->tag('div', '', array ('id' => 'clear')); ?>
+        <?= $this->Html->tag('div', '', array ('id' => 'customerPolicies')); ?>
     </div>
     <div id="tabInformation">
 <?=

@@ -135,6 +135,18 @@ var Customer = Class.create({
         })
     },
     
+    getTotalPremium: function() {
+        var total;
+        new Ajax.Request(Functions.getAppAddress() + 'customers/gettotalpremium/' + Customer.getId(), {
+            asynchronous: false,
+            method: 'get',
+            onSuccess: function(response) {
+                total = response.responseText;
+            }
+        })
+        return total;
+    },
+    
     submit: function() {
         
     },
