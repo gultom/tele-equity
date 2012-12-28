@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
     Import = new Import();
     Customer = new Customer();
     Functions.initDialog("uploadDialog", "Upload Data", 600, 500);
-    Functions.initDialog("detailsDialog", "Customer Details", 800, 480);
+    Functions.initDialog("detailsDialog", "Customer Details", 800, 510);
     jQuery("#FilterCustomerList").click(function() {
         Customer.load();
     });
