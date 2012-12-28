@@ -1,15 +1,19 @@
 <?php
 App::import('Vendor', 'excel_reader2');
 class UploadsController extends AppController{
-	public $uses=array('Uploads','Sort','Duplicate');
+	public $uses=array('Uploads','Upload','Duplicate');
 	public function index(){
 		//$this->layout = 'coba2';
 	}
 	public function import(){
+		date_default_timezone_set('Asia/Jakarta');
+		$date = date("Y-m-d H:i:s", time());
 		//$this->layout = 'coba2';
 		//print_r($this->request->data);
 		$data = new Spreadsheet_Excel_Reader($this->request->data['Upload']['file']['tmp_name']);
 		$baris = $data->rowcount($sheet_index=0);
+		$this->set('jml',$data);$this->set('ttl',$data);
+		
 		
 		// import data excel mulai baris ke-2
 		// (karena baris pertama adalah nama kolom)
@@ -41,118 +45,175 @@ class UploadsController extends AppController{
 			$vcode = $data->val($i, 25);
 			$dob=explode('/',$ttl);
 			$dob1=$dob[2].'-'.$dob[0].'-'.$dob[1];
-			
-			$x = $this->Uploads->find('count',array('conditions'=> array('prospect_name'=>$nama, 'mobile_phone' => $mobile)));		
+						
+			$x = $this->Uploads->find('count',array('conditions'=> array('name'=>$nama, 'handphone1' => $mobile)));		
 			echo $x;
 				if($x == 0){
 					$this->Uploads->create();
 					$this->Uploads->save(
 							array(
-								'prospect_name'=>$nama,
-								'date_of_birth'=>$dob1,
+								'name'=>$nama,
+								'birth_date'=>$dob1,
 								'age'=>$age,
-								'home_phone'=>$home_phone,
-								'home_phone2'=>$home_phone2,
-								'office_phone'=>$off_phone,
-								'office_phone2'=>$off_phone2,
-								'mobile_phone'=>$mobile,
-								'mobile_phone2'=>$mobile2,
-								'address1'=>$home_add1,
-								'address2'=>$home_add2,
-								'address3'=>$home_add3,
-								'address4'=>$home_add4,
-								'city'=>$home_city,
-								'zipcode'=>$home_zipcode,
-								'company_name'=>$off_name,
-								'office_address'=>$off_add1,
-								'office_address2'=>$off_add2,
+								'homephone1'=>$home_phone,
+								'homephone2'=>$home_phone2,
+								'officephone1'=>$off_phone,
+								'officephone2'=>$off_phone2,
+								'handphone1'=>$mobile,
+								'handphone2'=>$mobile2,
+								'home_addr1'=>$home_add1,
+								'home_addr2'=>$home_add2,
+								'home_addr3'=>$home_add3,
+								'home_addr4'=>$home_add4,
+								'home_city'=>$home_city,
+								'home_zip'=>$home_zipcode,
+								'company'=>$off_name,
+								'office_addr1'=>$off_add1,
+								'office_addr2'=>$off_add2,
 								'office_city'=>$off_city,
-								'office_zipcode'=>$off_zip,
-								'vid'=>$vid,
-								'vcampaign'=>$vcampaign,
-								'vagent'=>$vagent,
-								'vcode'=>$vcode,
-								'status'=>'Clean'
+								'office_zip'=>$off_zip,
+								'insert_time'=>$date,
+								'status'=>'clean'								
 							));
 				}
 				else{
-					$z = $this->Duplicate->find('count',array('conditions'=> array('prospect_name'=>$nama)));
-					echo $z;
-					if($z == 0){
-					$this->Duplicate->create();
-					$this->Duplicate->save(
+					
+					$this->Uploads->create();
+					$this->Uploads->save(
 							array(
-								'prospect_name'=>$nama,
-								'date_of_birth'=>$dob1,
+								'name'=>$nama,
+								'birth_date'=>$dob1,
 								'age'=>$age,
-								'home_phone'=>$home_phone,
-								'home_phone2'=>$home_phone2,
-								'office_phone'=>$off_phone,
-								'office_phone2'=>$off_phone2,
-								'mobile_phone'=>$mobile,
-								'mobile_phone2'=>$mobile2,
-								'address1'=>$home_add1,
-								'address2'=>$home_add2,
-								'address3'=>$home_add3,
-								'address4'=>$home_add4,
-								'city'=>$home_city,
-								'zipcode'=>$home_zipcode,
-								'company_name'=>$off_name,
-								'office_address'=>$off_add1,
-								'office_address2'=>$off_add2,
+								'homephone1'=>$home_phone,
+								'homephone2'=>$home_phone2,
+								'officephone1'=>$off_phone,
+								'officephone2'=>$off_phone2,
+								'handphone1'=>$mobile,
+								'handphone2'=>$mobile2,
+								'home_addr1'=>$home_add1,
+								'home_addr2'=>$home_add2,
+								'home_addr3'=>$home_add3,
+								'home_addr4'=>$home_add4,
+								'home_city'=>$home_city,
+								'home_zip'=>$home_zipcode,
+								'company'=>$off_name,
+								'office_addr1'=>$off_add1,
+								'office_addr2'=>$off_add2,
 								'office_city'=>$off_city,
-								'office_zipcode'=>$off_zip,
-								'vid'=>$vid,
-								'vcampaign'=>$vcampaign,
-								'vagent'=>$vagent,
-								'vcode'=>$vcode,
-								'status'=>'Duplicate'
+								'office_zip'=>$off_zip,
+								'insert_time'=>$date,
+								'status'=>'duplicates'
 							));
 					}
-					else{
-						$id = $this->Duplicate->find('first',array('conditions'=> array('prospect_name'=>$nama)));
+					/*else{
+						$id = $this->Duplicate->find('first',array('conditions'=> array('name'=>$nama)));
 						$this->Duplicate->delete($id['Duplicate']['id']);
 						$this->Duplicate->create();
 						$this->Duplicate->save(
 							array(
-								'prospect_name'=>$nama,
-								'date_of_birth'=>$dob1,
+								'name'=>$nama,
+								'birth_date'=>$dob1,
 								'age'=>$age,
-								'home_phone'=>$home_phone,
-								'home_phone2'=>$home_phone2,
-								'office_phone'=>$off_phone,
-								'office_phone2'=>$off_phone2,
-								'mobile_phone'=>$mobile,
-								'mobile_phone2'=>$mobile2,
-								'address1'=>$home_add1,
-								'address2'=>$home_add2,
-								'address3'=>$home_add3,
-								'address4'=>$home_add4,
-								'city'=>$home_city,
-								'zipcode'=>$home_zipcode,
-								'company_name'=>$off_name,
-								'office_address'=>$off_add1,
-								'office_address2'=>$off_add2,
+								'homephone1'=>$home_phone,
+								'homephone2'=>$home_phone2,
+								'officephone1'=>$off_phone,
+								'officephone2'=>$off_phone2,
+								'handphone1'=>$mobile,
+								'handphone2'=>$mobile2,
+								'home_addr1'=>$home_add1,
+								'home_addr2'=>$home_add2,
+								'home_addr3'=>$home_add3,
+								'home_addr4'=>$home_add4,
+								'home_city'=>$home_city,
+								'home_zip'=>$home_zipcode,
+								'company'=>$off_name,
+								'office_addr1'=>$off_add1,
+								'office_addr2'=>$off_add2,
 								'office_city'=>$off_city,
-								'office_zipcode'=>$off_zip,
-								'vid'=>$vid,
-								'vcampaign'=>$vcampaign,
-								'vagent'=>$vagent,
-								'vcode'=>$vcode,
-								'status'=>'Duplicate2'
+								'office_zip'=>$off_zip,
+								'insert_time'=>$date
 							));
 					}
-					}
+					}*/
 				}	
 					
 				$this->redirect('sortir');
 			}
+		public function save(){
+			$data = $this->Uploads->find('all');
+			//print_r($this->request->data);
+			$jml = $this->Uploads->find('count',array('conditions'=> array('status'=>'clean')));
+			
+			for($i=0; $i<=$jml; $i++){
+			$jmlduplicate = $this->Upload->find('count',array('conditions'=> array('name'=>$data[$i]['Uploads']['name'],'handphone1'=>$data[$i]['Uploads']['handphone1'])));
+			echo $jmlduplicate;
+			if($jmlduplicate == 0) {
+				
+					$this->Upload->create();
+					$this->Upload->save(
+								array(
+									'batch_no'=>$this->request->data['champaign'],
+									'name'=>$data[$i]['Uploads']['name'],
+									'birth_date'=>$data[$i]['Uploads']['birth_date'],
+									'homephone1'=>$data[$i]['Uploads']['homephone1'],
+									'homephone2'=>$data[$i]['Uploads']['homephone2'],
+									'officephone1'=>$data[$i]['Uploads']['officephone1'],
+									'officephone2'=>$data[$i]['Uploads']['officephone2'],
+									'handphone1'=>$data[$i]['Uploads']['handphone1'],
+									'handphone2'=>$data[$i]['Uploads']['handphone2'],
+									'home_addr1'=>$data[$i]['Uploads']['home_addr1'],
+									'home_addr2'=>$data[$i]['Uploads']['home_addr2'],
+									'home_addr3'=>$data[$i]['Uploads']['home_addr3'],
+									'home_addr4'=>$data[$i]['Uploads']['home_addr4'],
+									'home_city'=>$data[$i]['Uploads']['home_city'],
+									'home_zip'=>$data[$i]['Uploads']['home_zip'],
+									'company'=>$data[$i]['Uploads']['company'],
+									'office_addr1'=>$data[$i]['Uploads']['office_addr1'],
+									'office_addr2'=>$data[$i]['Uploads']['office_addr2'],
+									'office_city'=>$data[$i]['Uploads']['office_city'],
+									'office_zip'=>$data[$i]['Uploads']['office_zip'],
+									'insert_time'=>$data[$i]['Uploads']['insert_time']
+								));
+					$this->Uploads->deleteAll();
+				}
+				else {
+					$this->Duplicate->create();
+					$this->Duplicate->save(
+								array(
+									'batch_no'=>$this->request->data['champaign'],
+									'name'=>$data[$i]['Uploads']['name'],
+									'birth_date'=>$data[$i]['Uploads']['birth_date'],
+									'homephone1'=>$data[$i]['Uploads']['homephone1'],
+									'homephone2'=>$data[$i]['Uploads']['homephone2'],
+									'officephone1'=>$data[$i]['Uploads']['officephone1'],
+									'officephone2'=>$data[$i]['Uploads']['officephone2'],
+									'handphone1'=>$data[$i]['Uploads']['handphone1'],
+									'handphone2'=>$data[$i]['Uploads']['handphone2'],
+									'home_addr1'=>$data[$i]['Uploads']['home_addr1'],
+									'home_addr2'=>$data[$i]['Uploads']['home_addr2'],
+									'home_addr3'=>$data[$i]['Uploads']['home_addr3'],
+									'home_addr4'=>$data[$i]['Uploads']['home_addr4'],
+									'home_city'=>$data[$i]['Uploads']['home_city'],
+									'home_zip'=>$data[$i]['Uploads']['home_zip'],
+									'company'=>$data[$i]['Uploads']['company'],
+									'office_addr1'=>$data[$i]['Uploads']['office_addr1'],
+									'office_addr2'=>$data[$i]['Uploads']['office_addr2'],
+									'office_city'=>$data[$i]['Uploads']['office_city'],
+									'office_zip'=>$data[$i]['Uploads']['office_zip'],
+									'insert_time'=>$data[$i]['Uploads']['insert_time']
+								));
+				}
+								
+			}
+			$this->redirect(array('controller'=>'customers','action'=>'view'));
+		}
 		public function display(){
 					$this->set('list', $this->Uploads->find('all'));
 
 		}
 		public function sortir(){
-			    $this->set('clean',$this->Sort->find('all'));
+				$this->layout = 'default';
+			    $this->set('clean',$this->Uploads->find('all'));
 				$this->set('duplicate',$this->Duplicate->find('all'));
 		}
 	
