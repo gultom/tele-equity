@@ -7,10 +7,6 @@
  */
 class PolicyController extends AppController {
     
-    public function load() {
-        
-    }
-    
     public function tabs() {
         
     }
@@ -203,9 +199,11 @@ class PolicyController extends AppController {
     
     public function loadPlan($id) {
         $this->view = 'plan_form';
+        $this->Policy->id = $id;
         $dataPlan = $this->Policy->find('first', array (
             'fields' => array (
                 'Policy.id',
+                'Policy.birth_date',
                 'Policy.product_id',
                 'Policy.plan_id',
                 'Policy.premium',
@@ -216,13 +214,17 @@ class PolicyController extends AppController {
                 'Policy.id' => $id
             )
         ));
+        
+        $this->request->data['Policy']['birth_date'] = $dataPlan['Policy']['birth_date'];
         $this->request->data['Policy']['product_id'] = $dataPlan['Policy']['product_id'];
+        $this->request->data['Policy']['premium'] = (int)$dataPlan['Policy']['premium'];
+        $this->request->data['Policy']['policy_cost'] = (int)$dataPlan['Policy']['policy_cost'];
         
         $this->loadModel('Product');
         $products = $this->Product->find('list', array (
             'fields' => array (
                 'Product.id',
-                'Product.product_name'
+                'Product.name'
             ),
             'conditions' => array (
                 'Product.is_enabled' => 1
@@ -231,6 +233,32 @@ class PolicyController extends AppController {
         ));
         
         $this->set(compact('dataPlan', 'products'));
+    }
+    
+    private function calculateAgeInMonth($dob) {
+        $this->autoRender = false;
+        $dateStart = new DateTime($dob);
+        $dateEnd = new DateTime(date('Y-m-d'));
+        $diff = $dateStart->diff($dateEnd);
+        
+        return ($diff->format("%y") * 12) + $diff->format("%m");
+    }
+    
+    public function calculatePremium($id, $productId, $planId) {
+        $this->autoRender = false;
+        $this->Policy->id = $id;
+        $ageInMonth = self::calculateAgeInMonth($this->Policy->field('birth_date'));
+        $price = $this->requestAction('/prices/getprice/'. $productId .'/'. $planId .'/'. $ageInMonth);
+        $cost = $this->requestAction('/products/getcost/'. $productId);
+        return json_encode(array (
+                'price' => $price,
+                'cost' => $cost
+            ));
+    }
+    
+    public function savePlan() {
+        $this->autoRender = false;
+        return json_encode($this->Policy->save($this->request->data) ? true : false);
     }
 }
 

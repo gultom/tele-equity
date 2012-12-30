@@ -2,3 +2,5 @@
 /tags
 /nbproject
 /.svn
+/app/tmp/cache
+/app/tmp/logs

@@ -173,7 +173,7 @@ var Policy = Class.create ({
             method: 'post',
             parameters: Form.serialize('PolicyEdit'),
             onSuccess: function(response) {
-                if (response.responseText === 'true') {
+                if (response.responseText.evalJSON()) {
                     useClass = 'info';
                     Functions.write('editInfo', 'Policy has been successfully saved.');
                 }
@@ -201,7 +201,7 @@ var Policy = Class.create ({
             method: 'post',
             onSuccess: function(response) {
                 var useClass;
-                if (response.responseText === 'true') {
+                if (response.responseText.evalJSON()) {
                     useClass = 'info';
                     Functions.write('policyInfo', 'Policy has been deleted.');
                 }
@@ -219,10 +219,101 @@ var Policy = Class.create ({
     },
     
     loadPlan: function() {
+        Policy.resetPlanForm();
         new Ajax.Request(Functions.getAppAddress() + 'policy/loadplan/' + Policy.getId(), {
             method: 'get',
             onSuccess: function(response) {
                 Functions.write('planForm', response.responseText);
+                Policy.validatePlan();
+                Product.setId(jQuery('#PolicyProductId').val());
+                Plan.listPlan();
+            }
+        })
+    },
+    
+    resetPlanForm: function() {
+        jQuery('#PolicyPremium').val(0);
+        jQuery('#PolicyPolicyCost').val(0);
+        jQuery('#PolicyFirstInstallment').val(0);
+    },
+    
+    calculatePremium: function() {
+        Policy.resetPlanForm();
+        new Ajax.Request(Functions.getAppAddress() + 'policy/calculatepremium/' + Policy.getId() + '/' + Product.getId() + '/' + Plan.getId(), {
+            method: 'get',
+            onSuccess: function(response) {
+                jQuery('#PolicyPremium').val(response.responseText.evalJSON().price);
+                jQuery('#PolicyPolicyCost').val(response.responseText.evalJSON().cost);
+                jQuery('#PolicyFirstInstallment').val(parseInt(response.responseText.evalJSON().price) + parseInt(response.responseText.evalJSON().cost));
+            }
+        })
+    },
+    
+    validatePlan: function() {
+        jQuery('#PolicyPlanForm').validate({
+            onkeyup: false,
+            errorPlacement: function(error, placement) {
+                $(placement).qtip({
+                    content: error.text(),
+                    show: { when: { event: 'none'}, ready: true },
+                    hide: { when: { event: 'unfocus' } },
+                    position: {
+                      corner: {
+                         target: 'topRight',
+                         tooltip: 'bottomLeft'
+                      }
+                   },
+                   style: {
+                      border: {
+                         width: 1,
+                         radius: 10
+                      },
+                      tip: true,
+                      name: 'red'
+                   }
+                });
+            },
+            rules: {
+                'data[Policy][product_id]': {
+                    required: true
+                },
+                'data[Policy][plan_id]': {
+                    required: true
+                }
+            },
+            messages: {
+                'data[Policy][product_id]': {
+                    required: 'Please select product'
+                },
+                'data[Policy][plan_id]': {
+                    required: 'Please select plan'
+                }
+            },
+            submitHandler: function() {
+                Policy.savePlan();
+            }
+        });
+    },
+    
+    savePlan: function() {
+        new Ajax.Request(Functions.getAppAddress() + 'policy/saveplan', {
+            method: 'post',
+            parameters: Form.serialize('planForm'),
+            onSuccess: function(response) {
+                var useClass;
+                if (response.responseText.evalJSON()) {
+                    useClass = 'info';
+                    Functions.write('planInfo', 'Plan has been successfully saved');
+                }
+                else {
+                    useClass = 'error';
+                    Functions.write('planInfo', 'Failed to save policy plan');
+                }
+                Policy.loadCustomerPolicies();
+                jQuery('#planInfo').addClass(useClass.toString());
+                jQuery('#planInfo').css('text-align', 'center');
+                jQuery('#planInfo').css('display', 'block');
+                jQuery('#planInfo').fadeOut(8000);
             }
         })
     }

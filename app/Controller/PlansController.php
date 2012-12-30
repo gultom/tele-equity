@@ -12,12 +12,12 @@ class PlansController extends AppController {
         return (json_encode($this->Plan->find('list', array (
             'fields' => array (
                 'Plan.id',
-                'Plan.plan_name'
+                'Plan.name'
             ),
             'conditions' => array (
                 'Plan.product_id' => $productId
             ),
-            'order' => 'Plan.plan_name'
+            'order' => 'Plan.name'
         ))));
     }
 }

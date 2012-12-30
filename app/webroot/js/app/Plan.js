@@ -3,7 +3,7 @@ var Plan = Class.create({
     id: null,
     
     setId: function(id) {
-        this.id = id;
+        this.id = id ? id : 0;
     },
     
     getId: function() {
@@ -23,6 +23,8 @@ var Plan = Class.create({
                         value : key
                     }).text(value));
                 })
+                Plan.setId(jQuery('#PolicyCurrentPlanId').val());
+                jQuery('#PolicyPlanId').val(Plan.getId());
             }
         })
     }
